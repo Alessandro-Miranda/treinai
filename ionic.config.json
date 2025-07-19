@@ -1,0 +1,7 @@
+{
+  "name": "treinaí",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
