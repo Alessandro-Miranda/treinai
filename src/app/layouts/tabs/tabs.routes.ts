@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { authRoutes } from '@Routes/auth.routes';
-import { TabsLayoutComponent } from './tabs-layout.component';
+import { TabsLayoutComponent } from './tabs.component';
 
 export const routes: Routes = [
   {

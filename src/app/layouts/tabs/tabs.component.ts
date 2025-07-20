@@ -5,8 +5,8 @@ import { ellipse, square, triangle } from 'ionicons/icons';
 
 
 @Component({
-  selector: 'app-tabs-layout',
-  templateUrl: './tabs-layout.component.html',
+  selector: 'app-tabs',
+  templateUrl: './tabs.component.html',
   imports: [IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel]
 })
 export class TabsLayoutComponent {
