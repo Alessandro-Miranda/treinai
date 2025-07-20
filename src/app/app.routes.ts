@@ -2,7 +2,12 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: '',
-    loadChildren: () => import('./layouts/tabs/tabs.routes').then((m) => m.routes),
+    path: 'auth',
+    loadComponent: () => import('@Features/auth/auth.component').then((m) => m.AuthComponent),
   },
+  {
+    path: '',
+    redirectTo: 'auth',
+    pathMatch: 'full'
+  }
 ];
