@@ -1,16 +1,13 @@
 import { Routes } from '@angular/router';
+import { authRoutes } from '@Routes/auth.routes';
 import { TabsLayoutComponent } from './tabs-layout.component';
 
 export const routes: Routes = [
   {
-    path: 'tabs',
+    path: 'routes',
     component: TabsLayoutComponent,
     children: [
-      {
-        path: 'tab1',
-        loadComponent: () =>
-          import('../../tab1/tab1.page').then((m) => m.Tab1Page),
-      },
+      ...authRoutes,
       {
         path: 'tab2',
         loadComponent: () =>
@@ -30,7 +27,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/routes/login',
     pathMatch: 'full',
   },
 ];
