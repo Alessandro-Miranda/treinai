@@ -21,7 +21,7 @@
     "lib": ["es2018", "dom"],
     "useDefineForClassFields": false,
     "paths": {
-      "@features/*": ["src/app/features/*"],
+      "@Features/*": ["src/app/features/*"],
       "@Routes/*": ["src/app/routes/*"]
     }
   },
