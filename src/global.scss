@@ -33,3 +33,12 @@
  */
 
 @import "@ionic/angular/css/palettes/dark.always.css";
+
+:root {
+  --font-heading: "Bebas Neue";
+  --font-body: "Roboto";
+}
+
+ion-text, p, span, blockquote, a, div {
+  font-family: var(--font-body);
+}
