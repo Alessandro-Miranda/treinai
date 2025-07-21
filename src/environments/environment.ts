@@ -2,16 +2,7 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-import { FirebaseOptions } from "@angular/fire/app";
-
-const firebaseConfig: FirebaseOptions = {
-  apiKey: import.meta.env['API_KEY'],
-  authDomain: import.meta.env['AUTH_DOMAIN'],
-  projectId: import.meta.env['PROJECT_ID'],
-  storageBucket: import.meta.env['STORAGE_BUCKET'],
-  messagingSenderId: import.meta.env['MESSAGING_SENDER_ID'],
-  appId: import.meta.env['APP_ID'],
-};
+import { firebaseConfig } from "src/app/core/firebase/firebase.config";
 
 export const environment = {
   production: false,
