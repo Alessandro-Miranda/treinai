@@ -5,12 +5,12 @@
 import { FirebaseOptions } from "@angular/fire/app";
 
 const firebaseConfig: FirebaseOptions = {
-  apiKey: 'AIzaSyAFSJYzzsECebh7-oBlUrFoLa90Eoqhpwg',
-  authDomain: 'treinai-e5e78.firebaseapp.com',
-  projectId: 'treinai-e5e78',
-  storageBucket: 'treinai-e5e78.firebasestorage.app',
-  messagingSenderId: '907724283487',
-  appId: '1:907724283487:web:6082687c662aa64d9845ea',
+  apiKey: import.meta.env['API_KEY'],
+  authDomain: import.meta.env['AUTH_DOMAIN'],
+  projectId: import.meta.env['PROJECT_ID'],
+  storageBucket: import.meta.env['STORAGE_BUCKET'],
+  messagingSenderId: import.meta.env['MESSAGING_SENDER_ID'],
+  appId: import.meta.env['APP_ID'],
 };
 
 export const environment = {
