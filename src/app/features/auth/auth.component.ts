@@ -19,7 +19,6 @@ export class AuthComponent {
   loginToastState = {
     isOpen: false,
     message: '',
-    title: ''
   };
 
   constructor() {
@@ -33,7 +32,6 @@ export class AuthComponent {
     } catch (err: any) {
       this.loginToastState.isOpen = true;
       this.loginToastState.message = err.message;
-      this.loginToastState.title = 'Erro ao fazer login'
     }
   }
 }
