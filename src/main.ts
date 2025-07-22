@@ -6,7 +6,7 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { AppComponent } from './app/app.component';
-import { routes } from './app/app.routes';
+import { routes } from './app/routes/app.routes';
 import { environment } from './environments/environment';
 
 bootstrapApplication(AppComponent, {
