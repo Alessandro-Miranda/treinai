@@ -4,7 +4,6 @@ import { IonToast } from "@ionic/angular/standalone";
 @Component({
   selector: 'app-toast-alert',
   templateUrl: './toast.component.html',
-  styleUrls: ['./toast.component.scss'],
   imports: [IonToast],
 })
 export class ToastComponent {
