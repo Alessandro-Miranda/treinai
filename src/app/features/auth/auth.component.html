@@ -12,4 +12,10 @@
       Login com Google
     </ion-button>
   </div>
+
+  <app-toast-alert
+    [(isOpen)]="loginToastState.isOpen"
+    [message]="loginToastState.message"
+    [title]="loginToastState.title"
+  />
 </ion-content>
