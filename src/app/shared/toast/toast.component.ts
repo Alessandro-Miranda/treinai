@@ -9,7 +9,6 @@ import { IonToast } from "@ionic/angular/standalone";
 export class ToastComponent {
   @Input() isOpen = false;
   @Input() message = '';
-  @Input() title = '';
   @Output() isOpenChange = new EventEmitter<boolean>();
 
   onToastDismissed() {
