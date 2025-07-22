@@ -14,19 +14,19 @@ export const routes: Routes = [
     canActivate: [CanActivateSession],
     children: [
       {
-        path: 'home',
+        path: 'training',
         loadComponent: () =>
-          import('@Features/home/home.component').then((m) => m.HomeComponent),
+          import('@Features/training/training.component').then((m) => m.TrainingComponent),
       },
       {
         path: '',
-        redirectTo: 'home',
+        redirectTo: 'training',
         pathMatch: 'full',
       },
     ],
   },
   {
     path: '**',
-    redirectTo: 'home',
+    redirectTo: 'training',
   },
 ];
