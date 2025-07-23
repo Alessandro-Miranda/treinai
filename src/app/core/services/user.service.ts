@@ -1,11 +1,12 @@
 import { EnvironmentInjector, inject, Injectable, runInInjectionContext } from "@angular/core";
-import { User } from "@angular/fire/auth";
+import { Auth, User } from "@angular/fire/auth";
 import { doc, DocumentData, DocumentReference, Firestore, getDoc, serverTimestamp, setDoc } from "@angular/fire/firestore";
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
   private firestore = inject(Firestore);
   private injector = inject(EnvironmentInjector);
+  private auth = inject(Auth);
 
   async createIfNotExists(user: User): Promise<void> {
     let snapshotExists = false;
@@ -26,5 +27,9 @@ export class UserService {
         createdAt: serverTimestamp(),
       });
     })
+  }
+
+  getCurrentUser(): User | null {
+    return this.auth.currentUser;
   }
 }
