@@ -28,8 +28,4 @@ export class UserService {
       });
     })
   }
-
-  getCurrentUser(): User | null {
-    return this.auth.currentUser;
-  }
 }
