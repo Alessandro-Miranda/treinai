@@ -1,0 +1,44 @@
+<ion-content class="ion-padding" [fullscreen]="true">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-text class="title ion-text-center">
+        {{ user.displayName }}
+      </ion-text>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-note>
+        <small>
+          Treinaí ID: {{ user.uid }}
+        </small>
+      </ion-note>
+    </ion-row>
+  </ion-grid>
+
+  <ion-card class="ion-padding">
+    <ion-card-content>
+      <ion-grid [fixed]="true" class="ion-no-padding">
+        <ion-row class="ion-align-items-center ion-justify-content-between">
+          <ion-col size="auto">
+            <ion-text class="card-title" color="dark">
+              {{ userRegistrationDate | daysSince }} dias
+            </ion-text>
+            <ion-text class="card-subtitle">
+              Treinando com a gente
+            </ion-text>
+          </ion-col>
+  
+          <ion-col size="auto">
+            <ion-icon name="medal-outline" class="card-icon" size="large" />
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button expand="block" color="danger" class="logout" (click)="onLogout()">
+    <ion-text color="dark">
+      Sair
+    </ion-text>
+    <ion-icon name="log-out-outline" color="dark" />
+  </ion-button>
+</ion-content>

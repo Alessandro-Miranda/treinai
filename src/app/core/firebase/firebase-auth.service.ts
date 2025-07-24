@@ -10,12 +10,21 @@ export class FirebaseAuthService {
     const provider = new GoogleAuthProvider();
 
     return new Promise((resolve, reject) => {
-      runInInjectionContext(this.injector, async () =>{
+      runInInjectionContext(this.injector, async () => {
         signInWithPopup(this.auth, provider)
           .then(({ user }) => {
             resolve(user);
-          }).catch(err => reject(err));
+          })
+          .catch((err) => reject(err));
       });
     });
+  }
+
+  async logout(): Promise<void> {
+    await this.auth.signOut();
+  }
+
+  getCurrentUser(): User | null {
+    return this.auth.currentUser;
   }
 }

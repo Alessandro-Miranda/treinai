@@ -9,12 +9,12 @@ export class UserService {
 
   async createIfNotExists(user: User): Promise<void> {
     let snapshotExists = false;
-    let docRef: DocumentReference<DocumentData, DocumentData>
+    let docRef: DocumentReference<DocumentData, DocumentData>;
 
     await runInInjectionContext(this.injector, async () => {
       docRef = doc(this.firestore, 'users', user.uid);
-      snapshotExists = (await getDoc(docRef)).exists(); 
-    })
+      snapshotExists = (await getDoc(docRef)).exists();
+    });
 
     if (snapshotExists) return;
 
@@ -25,6 +25,6 @@ export class UserService {
         displayName: user.displayName,
         createdAt: serverTimestamp(),
       });
-    })
+    });
   }
 }
