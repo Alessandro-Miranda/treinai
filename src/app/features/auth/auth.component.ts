@@ -32,7 +32,7 @@ export class AuthComponent {
       const user = await this.firebaseService.signInWithGoogle();
 
       await this.userService.createIfNotExists(user);
-      this.router.navigate(['/home'], { replaceUrl: true });
+      this.router.navigate(['/training'], { replaceUrl: true });
     } catch (err: any) {
       this.loginToastState.isOpen = true;
       this.loginToastState.message = err.message;

@@ -19,6 +19,10 @@ export const routes: Routes = [
           import('@Features/training/training.component').then((m) => m.TrainingComponent),
       },
       {
+        path: 'profile',
+        loadComponent: () => import('@Features/profile/profile.component').then(m => m.ProfileComponent)
+      },
+      {
         path: '',
         redirectTo: 'training',
         pathMatch: 'full',
