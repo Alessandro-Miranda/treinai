@@ -1,0 +1,25 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Meus treinos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" [class.ion-padding]="trainings" [class.empty]="!trainings">
+  <div *ngIf="!trainings" class="empty-component">
+    <ion-text>
+      <p class="ion-text-center">
+        Você ainda não adicionou nenhum treino.
+      </p>
+    </ion-text>
+    <ion-button fill="outline" class="ion-padding add-new-training">
+      <ion-icon name="add-outline"></ion-icon>
+      Novo Treino
+    </ion-button>
+  </div>
+
+  <ion-grid *ngIf="trainings">
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <p>Aqui vai os cards</p>
+    </ion-row>
+  </ion-grid>
+</ion-content>
