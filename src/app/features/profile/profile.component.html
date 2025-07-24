@@ -2,13 +2,13 @@
   <ion-grid>
     <ion-row class="ion-justify-content-center">
       <ion-text class="title ion-text-center">
-        {{ user?.displayName }}
+        {{ user.displayName }}
       </ion-text>
     </ion-row>
     <ion-row class="ion-justify-content-center">
       <ion-note>
         <small>
-          Treinaí ID: {{ user?.uid }}
+          Treinaí ID: {{ user.uid }}
         </small>
       </ion-note>
     </ion-row>
@@ -20,7 +20,7 @@
         <ion-row class="ion-align-items-center ion-justify-content-between">
           <ion-col size="auto">
             <ion-text class="card-title" color="dark">
-              25 dias
+              {{ userRegistrationDate | daysSince }} dias
             </ion-text>
             <ion-text class="card-subtitle">
               Treinando com a gente
