@@ -34,5 +34,5 @@ import { ExerciseModalComponent } from './components/exercise-modal/exercise-mod
   ],
 })
 export class CreateTrainingComponent {
-  
+  isAddingExercise = true;
 }
