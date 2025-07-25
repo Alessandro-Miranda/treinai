@@ -1,0 +1,10 @@
+fieldset {
+  border: none;
+  padding: 0;
+}
+
+.save-training {
+  --background: var(--color-primary-red);
+  --color: var(--color-white);
+  margin-top: 2rem;
+}
