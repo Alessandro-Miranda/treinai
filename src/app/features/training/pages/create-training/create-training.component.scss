@@ -3,6 +3,13 @@ fieldset {
   padding: 0;
 }
 
+.training-division {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1rem;
+  border-top: 1.5px solid var(--color-dark-magenta);
+}
+
 .save-training {
   --background: var(--color-primary-red);
   --color: var(--color-white);
