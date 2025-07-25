@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   IonButton,
   IonContent,
@@ -32,6 +33,8 @@ import { addOutline } from 'ionicons/icons';
   ],
 })
 export class TrainingComponent implements OnInit {
+  private router = inject(Router);
+
   trainings: string[] | null = null;
 
   constructor() {
@@ -40,5 +43,9 @@ export class TrainingComponent implements OnInit {
 
   ngOnInit() {
     console.log('iniciou');
+  }
+
+  onAddNewTraining() {
+    this.router.navigate(['/training/add']);
   }
 }
