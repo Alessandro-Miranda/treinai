@@ -1,20 +1,18 @@
 import { Component } from '@angular/core';
 import {
   IonButton,
-  IonCol,
   IonContent,
   IonGrid,
   IonHeader,
   IonInput,
-  IonItem,
-  IonItemDivider,
-  IonItemGroup,
-  IonLabel,
-  IonList,
   IonRow,
+  IonText,
   IonTitle,
   IonToolbar,
 } from '@ionic/angular/standalone';
+import { AddDivisionComponent } from './components/add-division/add-division.component';
+import { DivisionListComponent } from './components/division-list/division-list.component';
+import { ExerciseModalComponent } from './components/exercise-modal/exercise-modal.component';
 
 @Component({
   selector: 'app-create-training',
@@ -26,17 +24,15 @@ import {
     IonHeader,
     IonContent,
     IonButton,
-    IonList,
-    IonItem,
     IonInput,
-    IonItemGroup,
-    IonItemDivider,
-    IonLabel,
     IonGrid,
     IonRow,
-    IonCol,
+    IonText,
+    AddDivisionComponent,
+    DivisionListComponent,
+    ExerciseModalComponent,
   ],
 })
 export class CreateTrainingComponent {
-  constructor() {}
+  
 }
