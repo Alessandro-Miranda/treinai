@@ -15,8 +15,7 @@ export const routes: Routes = [
     children: [
       {
         path: 'training',
-        loadComponent: () =>
-          import('@Features/training/training.component').then((m) => m.TrainingComponent),
+        loadChildren: () => import('@Features/training/training.route').then(m => m.trainingRoute)
       },
       {
         path: 'profile',
