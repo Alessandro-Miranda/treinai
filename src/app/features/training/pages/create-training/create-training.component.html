@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Novo Treino</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <form>
+    <ion-list>
+      <ion-item-divider>
+        <ion-label color="dark">
+          <h2>Informações do treino</h2>
+        </ion-label>
+      </ion-item-divider>
+      <ion-item>
+        <ion-input placeholder="Nome do Treino" />
+      </ion-item>
+
+      <ion-item>
+        <ion-input placeholder="Duração (em dias)" type="number" />
+      </ion-item>
+    </ion-list>
+
+    <ion-list>
+      <ion-item-group>
+        <ion-item-divider>
+          <ion-label color="dark">
+            <h2>Divisão do Treino</h2>
+          </ion-label>
+        </ion-item-divider>
+
+        <ion-item>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-input placeholder="Divisão..." />
+              </ion-col>
+              <ion-col>
+                <ion-button fill="outline" class="ion-margin-top">
+                  Adicionar divisão
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+      </ion-item-group>
+    </ion-list>
+
+    <ion-button>
+      Salvar treino
+    </ion-button>
+  </form>
+</ion-content>
