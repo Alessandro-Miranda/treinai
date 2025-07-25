@@ -7,10 +7,10 @@ export const trainingRoute: Routes = [
     component: TrainingComponent,
   },
   {
-    path: 'add',
+    path: 'create',
     loadComponent: () =>
-      import('./pages/add-training/add-training.component').then(
-        (m) => m.AddTrainingComponent
+      import('./pages/create-training/create-training.component').then(
+        (m) => m.CreateTrainingComponent
       ),
   },
 ];
