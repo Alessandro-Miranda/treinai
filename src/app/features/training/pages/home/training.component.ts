@@ -46,6 +46,6 @@ export class TrainingComponent implements OnInit {
   }
 
   onAddNewTraining() {
-    this.router.navigate(['/training/add']);
+    this.router.navigate(['/training/create']);
   }
 }
