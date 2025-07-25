@@ -50,6 +50,11 @@
   --color-light-gray: #eaeaea;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  letter-spacing: 2px;
+}
+
 ion-text.title {
   font-family: var(--font-heading);
   font-size: 2.75rem;
