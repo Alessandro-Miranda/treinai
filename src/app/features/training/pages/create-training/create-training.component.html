@@ -6,48 +6,46 @@
 
 <ion-content [fullscreen]="true" class="ion-padding">
   <form>
-    <ion-list>
-      <ion-item-divider>
-        <ion-label color="dark">
-          <h2>Informações do treino</h2>
-        </ion-label>
-      </ion-item-divider>
-      <ion-item>
-        <ion-input placeholder="Nome do Treino" />
-      </ion-item>
+    <fieldset>
+      <ion-grid class="ion-no-padding">
+        <ion-row>
+          <ion-text>
+            <h2>Informações do treino</h2>
+          </ion-text>
+        </ion-row>
+  
+        <ion-row>
+          <ion-input
+            label="Nome do Treino"
+            labelPlacement="floating"
+            placeholder="Nome do Treino"
+            fill="solid"
+          />
+        </ion-row>
+  
+        <ion-row>
+          <ion-input
+            label="Duração (em dias)"
+            labelPlacement="floating"
+            placeholder="Duração (em dias)"
+            type="number"
+            fill="solid"
+            class="ion-margin-top"
+          />
+        </ion-row>
+      </ion-grid>
+    </fieldset>
 
-      <ion-item>
-        <ion-input placeholder="Duração (em dias)" type="number" />
-      </ion-item>
-    </ion-list>
+    <fieldset class="ion-margin-top">
+      <app-add-division />
 
-    <ion-list>
-      <ion-item-group>
-        <ion-item-divider>
-          <ion-label color="dark">
-            <h2>Divisão do Treino</h2>
-          </ion-label>
-        </ion-item-divider>
+      <app-division-list />
+    </fieldset>
 
-        <ion-item>
-          <ion-grid>
-            <ion-row>
-              <ion-col>
-                <ion-input placeholder="Divisão..." />
-              </ion-col>
-              <ion-col>
-                <ion-button fill="outline" class="ion-margin-top">
-                  Adicionar divisão
-                </ion-button>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-item>
-      </ion-item-group>
-    </ion-list>
-
-    <ion-button>
+    <ion-button class="save-training" type="submit">
       Salvar treino
     </ion-button>
   </form>
+
+  <app-exercise-modal />
 </ion-content>
