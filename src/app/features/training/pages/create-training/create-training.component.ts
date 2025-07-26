@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
 import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import {
   IonButton,
   IonContent,
   IonGrid,
@@ -31,8 +37,26 @@ import { ExerciseModalComponent } from './components/exercise-modal/exercise-mod
     AddDivisionComponent,
     DivisionListComponent,
     ExerciseModalComponent,
+    ReactiveFormsModule
   ],
 })
 export class CreateTrainingComponent {
-  isAddingExercise = true;
+  training = new FormGroup({
+    name: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    duration: new FormControl('', [Validators.required, Validators.min(1)])
+  });
+  isAddingExercise = false;
+
+  get name() { return this.training.get('name'); }
+  get duration() { return this.training.get('duration'); }
+
+  onSubmit() {
+    if (this.training.invalid) {
+      this.training.markAllAsTouched();
+      alert('Preenche essa porra, seu pau no cu')
+      return;
+    }
+
+    alert('Preencheu tudo certo, seu arrombado')
+  }
 }
