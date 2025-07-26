@@ -25,14 +25,14 @@ import { chevronBackOutline } from 'ionicons/icons';
 ],
 })
 export class ExerciseModalComponent {
-  @Input() isOpen = false;
-  @Output() isOpenChange = new EventEmitter<boolean>();
+  @Input() addExercise = { open: false, division: '' };
+  @Output() addExerciseChange = new EventEmitter<{ open: boolean, division: string }>();
 
   constructor() {
     addIcons({ chevronBackOutline })
   }
 
   onCloseModal() {
-    this.isOpenChange.emit(false);
+    this.addExerciseChange.emit({ open: false, division: '' });
   }
 }
