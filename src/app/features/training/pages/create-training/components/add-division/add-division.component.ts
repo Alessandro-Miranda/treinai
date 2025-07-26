@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
   IonCol,
   IonGrid,
@@ -14,10 +15,19 @@ import { addCircleOutline } from 'ionicons/icons';
   selector: 'app-add-division',
   templateUrl: './add-division.component.html',
   styleUrls: ['./add-division.component.scss'],
-  imports: [IonText, IonGrid, IonRow, IonCol, IonInput, IonIcon],
+  imports: [IonText, IonGrid, IonRow, IonCol, IonInput, IonIcon, ReactiveFormsModule],
 })
 export class AddDivisionComponent {
+  division = new FormControl('', [Validators.required]);
+  @Output() addDivision = new EventEmitter<FormControl>();
+
   constructor() {
     addIcons({ addCircleOutline });
+  }
+
+  onAddDivision() {
+    if (this.division.invalid) return;
+
+    this.addDivision.emit(this.division);
   }
 }
