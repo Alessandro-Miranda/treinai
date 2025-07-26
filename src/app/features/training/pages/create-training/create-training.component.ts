@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import {
+  FormArray,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
-  Validators,
+  Validators
 } from '@angular/forms';
 import {
   IonButton,
@@ -37,26 +38,63 @@ import { ExerciseModalComponent } from './components/exercise-modal/exercise-mod
     AddDivisionComponent,
     DivisionListComponent,
     ExerciseModalComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
 })
 export class CreateTrainingComponent {
   training = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    duration: new FormControl('', [Validators.required, Validators.min(1)])
+    duration: new FormControl('', [Validators.required, Validators.min(1)]),
+    divisions: new FormArray([
+      new FormGroup({ 
+        title: new FormControl(''),
+        exercises: new FormArray([ this.createExercisesGroup() ]),
+      }),
+    ]),
   });
-  isAddingExercise = false;
+
+  addExercise = {
+    open: false,
+    divisionIndex: 0,
+  };
 
   get name() { return this.training.get('name'); }
   get duration() { return this.training.get('duration'); }
+  get divisions() { return this.training.get('divisions') as FormArray; }
+
+  private createExercisesGroup() {
+    return new FormGroup({
+      exercise: new FormControl(''),
+      reps: new FormControl(''),
+      rest: new FormControl(''),
+      weight: new FormControl(''),
+      observations: new FormControl(''),
+    });
+  }
 
   onSubmit() {
     if (this.training.invalid) {
       this.training.markAllAsTouched();
-      alert('Preenche essa porra, seu pau no cu')
       return;
     }
 
-    alert('Preencheu tudo certo, seu arrombado')
+    // Implementar lógica para salvar no firebase
+  }
+
+  onAddDivision(division: FormControl) {
+    this.divisions.push(
+      new FormGroup({
+        title: division,
+        exercises: this.createExercisesGroup()
+      })
+    );
+
+    const currentDivisionIndex = this.divisions.length - 1;
+
+    this.addExerciseToDivision(currentDivisionIndex);
+  }
+
+  addExerciseToDivision(divisionIndex: number) {
+    this.addExercise = { open: true, divisionIndex };
   }
 }
