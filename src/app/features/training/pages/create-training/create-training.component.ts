@@ -46,9 +46,9 @@ export class CreateTrainingComponent {
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     duration: new FormControl('', [Validators.required, Validators.min(1)]),
     divisions: new FormArray([
-      new FormGroup({ 
+      new FormGroup({
         title: new FormControl(''),
-        exercises: new FormArray([ this.createExercisesGroup() ]),
+        exercises: new FormArray([this.createExercisesGroup()]),
       }),
     ]),
   });
@@ -58,9 +58,15 @@ export class CreateTrainingComponent {
     divisionIndex: 0,
   };
 
-  get name() { return this.training.get('name'); }
-  get duration() { return this.training.get('duration'); }
-  get divisions() { return this.training.get('divisions') as FormArray; }
+  get name() {
+    return this.training.get('name');
+  }
+  get duration() {
+    return this.training.get('duration');
+  }
+  get divisions() {
+    return this.training.get('divisions') as FormArray;
+  }
 
   private createExercisesGroup() {
     return new FormGroup({
@@ -70,6 +76,10 @@ export class CreateTrainingComponent {
       weight: new FormControl(''),
       observations: new FormControl(''),
     });
+  }
+
+  private addExerciseToDivision(divisionIndex: number) {
+    this.addExercise = { open: true, divisionIndex };
   }
 
   onSubmit() {
@@ -85,16 +95,12 @@ export class CreateTrainingComponent {
     this.divisions.push(
       new FormGroup({
         title: division,
-        exercises: this.createExercisesGroup()
+        exercises: this.createExercisesGroup(),
       })
     );
 
     const currentDivisionIndex = this.divisions.length - 1;
 
     this.addExerciseToDivision(currentDivisionIndex);
-  }
-
-  addExerciseToDivision(divisionIndex: number) {
-    this.addExercise = { open: true, divisionIndex };
   }
 }
