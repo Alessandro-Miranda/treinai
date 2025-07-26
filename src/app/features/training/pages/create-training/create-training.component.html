@@ -59,7 +59,7 @@
     </fieldset>
 
     <fieldset class="training-division">
-      <app-add-division />
+      <app-add-division (addDivision)="onAddDivision($event)" />
 
       <app-division-list />
     </fieldset>
