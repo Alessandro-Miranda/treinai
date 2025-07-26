@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  <form>
+  <form [formGroup]="training" (ngSubmit)="onSubmit()">
     <fieldset>
       <ion-grid class="ion-no-padding">
         <ion-row>
@@ -20,10 +20,23 @@
             labelPlacement="floating"
             placeholder="Nome do Treino"
             fill="solid"
+            id="name"
+            formControlName="name"
           />
+
+          @if (name?.invalid && (name?.touched || name?.dirty)) {
+            <div class="alert-error">
+              @if (name?.hasError('required')) {
+                <span>O nome é obrigatório</span>
+              }
+              @if (name?.hasError('minlength')) {
+                <span>O nome deve ter no mínimo 4 caracteres</span>
+              }
+            </div>
+          }
         </ion-row>
   
-        <ion-row>
+        <ion-row class="ion-margin-top">
           <ion-input
             label="Duração (em dias)"
             labelPlacement="floating"
@@ -31,7 +44,16 @@
             type="number"
             fill="solid"
             class="ion-margin-top"
+            id="duration"
+            formControlName="duration"
           />
+          @if (duration?.invalid && (duration?.touched || duration?.dirty)) {
+            <div class="alert-error">
+            @if (duration?.hasError('min') || duration?.hasError('required')) {
+            <span>A duração deve ser de no mínimo 1 dia</span>
+            }
+          </div>
+          }
         </ion-row>
       </ion-grid>
     </fieldset>
