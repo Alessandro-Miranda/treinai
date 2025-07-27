@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { FormArray } from '@angular/forms';
 import { IonAccordion, IonAccordionGroup, IonItem, IonLabel, IonText } from "@ionic/angular/standalone";
 
 @Component({
@@ -8,7 +9,6 @@ import { IonAccordion, IonAccordionGroup, IonItem, IonLabel, IonText } from "@io
   imports: [IonAccordionGroup, IonAccordion, IonItem, IonLabel, IonText],
 })
 export class DivisionListComponent {
-
-  constructor() { }
+  @Input() divisions: FormArray | null = null;
 
 }
