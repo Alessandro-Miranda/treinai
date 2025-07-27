@@ -61,7 +61,7 @@
     <fieldset class="training-division">
       <app-add-division (addDivision)="onAddDivision($event)" />
 
-      <app-division-list />
+      <app-division-list [divisions]="divisions" />
     </fieldset>
 
     <ion-button class="save-training" type="submit" expand="block">
