@@ -45,12 +45,7 @@ export class CreateTrainingComponent {
   training = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     duration: new FormControl('', [Validators.required, Validators.min(1)]),
-    divisions: new FormArray([
-      new FormGroup({
-        title: new FormControl(''),
-        exercises: new FormArray([this.createExercisesGroup()]),
-      }),
-    ]),
+    divisions: new FormArray([]),
   });
 
   addExercise = {
@@ -68,16 +63,6 @@ export class CreateTrainingComponent {
     return this.training.get('divisions') as FormArray;
   }
 
-  private createExercisesGroup() {
-    return new FormGroup({
-      exercise: new FormControl(''),
-      reps: new FormControl(''),
-      rest: new FormControl(''),
-      weight: new FormControl(''),
-      observations: new FormControl(''),
-    });
-  }
-
   private addExerciseToDivision(divisionIndex: number) {
     this.addExercise = { open: true, divisionIndex };
   }
@@ -91,11 +76,11 @@ export class CreateTrainingComponent {
     // Implementar lógica para salvar no firebase
   }
 
-  onAddDivision(division: FormControl) {
+  onAddDivision(divisionTitle: string | null) {
     this.divisions.push(
       new FormGroup({
-        title: division,
-        exercises: this.createExercisesGroup(),
+        title: new FormControl(divisionTitle, Validators.required),
+        exercises: new FormArray([]),
       })
     );
 
