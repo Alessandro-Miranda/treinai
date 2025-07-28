@@ -16,6 +16,7 @@
                   <thead>
                     <tr>
                       <th>Exercício</th>
+                      <th>Séries</th>
                       <th>Repetições</th>
                       <th>Descanso</th>
                       <th>Carga</th>
@@ -24,6 +25,7 @@
                   <tbody>
                     @for (exercise of exercises.controls; track $index) {
                       <tr>
+                        <td>{{ exercise.get('') }}</td>
                         <td>{{ exercise.get('') }}</td>
                         <td>{{ exercise.get('') }}</td>
                         <td>{{ exercise.get('') }}</td>
