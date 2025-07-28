@@ -1,17 +1,17 @@
-<ion-modal [isOpen]="isOpen">
+<ion-modal [isOpen]="addExercise.open">
   <ng-template>
     <ion-header>
       <ion-toolbar>
         <ion-grid>
           <ion-row class="ion-align-items-center">
             <ion-col size="auto">
-              <ion-button size="small" color="dark" fill="clear" (click)="onCloseModal()">
+              <ion-button size="small" color="dark" fill="clear" (click)="onCloseModal(addExercise.divisionIndex)">
                 <ion-icon name="chevron-back-outline"></ion-icon>
               </ion-button>
             </ion-col>
             <ion-col size="9" class="ion-text-center">
               <ion-title>
-                Adicionar exercício
+                Adicionar exercício {{ addExercise.divisionIndex }}
               </ion-title>
             </ion-col>
           </ion-row>
@@ -35,6 +35,10 @@
           </ion-item>
   
           <ion-item class="ion-margin-top">
+            <ion-input label="Séries" labelPlacement="stacked" type="number" />
+          </ion-item>
+
+          <ion-item class="ion-margin-top">
             <ion-input label="Repetições" labelPlacement="stacked" type="number" />
           </ion-item>
   
@@ -54,7 +58,7 @@
         <ion-grid class="ion-no-padding ion-margin-top">
           <ion-row class="ion-justify-content-end">
             <ion-col size="auto">
-              <ion-button fill="clear" color="medium" (click)="onCloseModal()">
+              <ion-button fill="clear" color="medium" (click)="onCloseModal(addExercise.divisionIndex)">
                 Fechar
               </ion-button>
             </ion-col>
