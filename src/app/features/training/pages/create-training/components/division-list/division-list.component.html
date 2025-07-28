@@ -1,32 +1,42 @@
 <div class="division-list">
-  <ion-text>
-    <h3>Divisões</h3>
-  </ion-text>
-  <ion-accordion-group>
-    <ion-accordion value="first" ope>
-      <ion-item slot="header" color="light">
-        <ion-label>A - Peito e Tríceps</ion-label>
-      </ion-item>
-      <div class="accordion-content" slot="content">
-        <table>
-          <thead>
-            <tr>
-              <th>Exercício</th>
-              <th>Repetições</th>
-              <th>Descanso</th>
-              <th>Carga</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Supino Reto</td>
-              <td>12</td>
-              <td>60s</td>
-              <td>50 KG</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </ion-accordion>
-  </ion-accordion-group>
+  @if (divisions!.length > 0) {
+    <ng-container>
+      <ion-text>
+        <h3>Divisões</h3>
+      </ion-text>
+      <ion-accordion-group>
+        @for (division of divisions?.controls; track $index) {
+          <ion-accordion value="{{ division.get('title')?.value }}">
+            <ion-item slot="header" color="light">
+              <ion-label>{{ division.get('title')?.value }}</ion-label>
+            </ion-item>
+            <div class="accordion-content" slot="content">
+              @if (exercises.length > 0) {
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Exercício</th>
+                      <th>Repetições</th>
+                      <th>Descanso</th>
+                      <th>Carga</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (exercise of exercises.controls; track $index) {
+                      <tr>
+                        <td>{{ exercise.get('') }}</td>
+                        <td>{{ exercise.get('') }}</td>
+                        <td>{{ exercise.get('') }}</td>
+                        <td>{{ exercise.get('') }}</td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              }
+            </div>
+          </ion-accordion>
+        }
+      </ion-accordion-group>
+    </ng-container>
+  }
 </div>
