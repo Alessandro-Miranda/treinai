@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { IonButton, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonInput, IonItem, IonItemGroup, IonModal, IonRow, IonTextarea, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { chevronBackOutline } from 'ionicons/icons';
+import { ExercisesGroup } from '../../@types/exercises-group';
 
 @Component({
   selector: 'app-exercise-modal',
@@ -21,18 +23,31 @@ import { chevronBackOutline } from 'ionicons/icons';
     IonCol,
     IonIcon,
     IonItemGroup,
-    IonTextarea
-],
+    IonTextarea,
+  ],
 })
 export class ExerciseModalComponent {
-  @Input() addExercise = { open: false, division: '' };
-  @Output() addExerciseChange = new EventEmitter<{ open: boolean, division: string }>();
+  @Input() addExercise = { open: false, divisionIndex: 0 };
+  @Output() addExerciseChange = new EventEmitter<{
+    open: boolean;
+    divisionIndex: number;
+  }>();
+  
+  exercises = new FormGroup<ExercisesGroup>({
+    uuid: new FormControl(''),
+    title: new FormControl(''),
+    sets: new FormControl(0),
+    reps: new FormControl(0),
+    rest: new FormControl(0),
+    weight: new FormControl(0),
+    observation: new FormControl(''),
+  })
 
   constructor() {
-    addIcons({ chevronBackOutline })
+    addIcons({ chevronBackOutline });
   }
 
-  onCloseModal() {
-    this.addExerciseChange.emit({ open: false, division: '' });
+  onCloseModal(divisionIndex: number) {
+    this.addExerciseChange.emit({ open: false, divisionIndex });
   }
 }
