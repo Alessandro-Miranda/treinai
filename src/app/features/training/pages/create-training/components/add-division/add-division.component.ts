@@ -19,7 +19,7 @@ import { addCircleOutline } from 'ionicons/icons';
 })
 export class AddDivisionComponent {
   division = new FormControl('', [Validators.required]);
-  @Output() addDivision = new EventEmitter<FormControl>();
+  @Output() addDivision = new EventEmitter<string | null>();
 
   constructor() {
     addIcons({ addCircleOutline });
@@ -28,6 +28,7 @@ export class AddDivisionComponent {
   onAddDivision() {
     if (this.division.invalid) return;
 
-    this.addDivision.emit(this.division);
+    this.addDivision.emit(this.division.value);
+    this.division.reset();
   }
 }
