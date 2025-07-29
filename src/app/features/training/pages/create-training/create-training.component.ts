@@ -60,13 +60,8 @@ export class CreateTrainingComponent {
     return this.training.get('divisions') as FormArray;
   }
 
-  /**
-   * @todo Improve the method to get exercises from divisions getter using the divisionIndex
-   */
-  private addExerciseToDivision(
-    divisionIndex: number,
-    exercises: FormArray<FormGroup<ExercisesGroup>>
-  ) {
+  private addExerciseToDivision(divisionIndex: number) {
+    const exercises = this.divisions.at(divisionIndex).get('exercises') as FormArray;
     this.addExercise = { open: true, divisionIndex, exercises };
   }
 
@@ -89,6 +84,6 @@ export class CreateTrainingComponent {
 
     const currentDivisionIndex = this.divisions.length - 1;
 
-    this.addExerciseToDivision(currentDivisionIndex, newDivisionData.get('exercises') as FormArray);
+    this.addExerciseToDivision(currentDivisionIndex);
   }
 }
