@@ -9,16 +9,10 @@
         label="Divisão. Ex.: A - Peito"
         labelPlacement="floating"
         placeholder="Divisão. Ex.: A - Peito"
+        errorText="Campo obrigatório"
         fill="solid"
         [formControl]="division"
       />
-      @if (division.invalid && (division.touched || division.dirty)) {
-        <div class="alert-error">
-          @if (division.hasError('required')) {
-          <span>Campo obrigatório</span>
-          }
-        </div>
-      }
     </ion-col>
 
     <ion-col size="2">
