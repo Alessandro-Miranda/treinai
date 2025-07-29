@@ -8,5 +8,5 @@ export type ExercisesGroup = {
   reps: ExerciseControl<number>;
   rest: ExerciseControl<number>;
   weight: ExerciseControl<number>;
-  observation: ExerciseControl<string>;
+  observation?: ExerciseControl<string>;
 };
