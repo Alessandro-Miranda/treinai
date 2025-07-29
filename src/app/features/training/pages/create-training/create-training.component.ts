@@ -60,6 +60,9 @@ export class CreateTrainingComponent {
     return this.training.get('divisions') as FormArray;
   }
 
+  /**
+   * @todo Improve the method to get exercises from divisions getter using the divisionIndex
+   */
   private addExerciseToDivision(
     divisionIndex: number,
     exercises: FormArray<FormGroup<ExercisesGroup>>
