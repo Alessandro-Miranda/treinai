@@ -19,21 +19,11 @@
             label="Nome do Treino"
             labelPlacement="floating"
             placeholder="Nome do Treino"
+            errorText="O nome é obrigatório e deve ter, no mínimo, 4 caracteres"
             fill="solid"
             id="name"
             formControlName="name"
           />
-
-          @if (name?.invalid && (name?.touched || name?.dirty)) {
-            <div class="alert-error">
-              @if (name?.hasError('required')) {
-                <span>O nome é obrigatório</span>
-              }
-              @if (name?.hasError('minlength')) {
-                <span>O nome deve ter no mínimo 4 caracteres</span>
-              }
-            </div>
-          }
         </ion-row>
   
         <ion-row class="ion-margin-top">
@@ -41,19 +31,13 @@
             label="Duração (em dias)"
             labelPlacement="floating"
             placeholder="Duração (em dias)"
+            errorText="A duração deve ser de no mínimo 1 dia"
             type="number"
             fill="solid"
             class="ion-margin-top"
             id="duration"
             formControlName="duration"
           />
-          @if (duration?.invalid && (duration?.touched || duration?.dirty)) {
-            <div class="alert-error">
-            @if (duration?.hasError('min') || duration?.hasError('required')) {
-            <span>A duração deve ser de no mínimo 1 dia</span>
-            }
-          </div>
-          }
         </ion-row>
       </ion-grid>
     </fieldset>
