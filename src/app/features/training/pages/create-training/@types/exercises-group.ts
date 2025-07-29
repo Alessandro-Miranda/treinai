@@ -7,6 +7,6 @@ export type ExercisesGroup = {
   sets: ExerciseControl<number>;
   reps: ExerciseControl<number>;
   rest: ExerciseControl<number>;
-  weight: ExerciseControl<number>;
+  weight?: ExerciseControl<number>;
   observation?: ExerciseControl<string>;
 };
