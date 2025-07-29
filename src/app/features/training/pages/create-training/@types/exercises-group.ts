@@ -3,7 +3,7 @@ import { FormControl } from "@angular/forms";
 type ExerciseControl<T> = FormControl<T | null>;
 
 export type ExercisesGroup = {
-  title: ExerciseControl<string>;
+  name: ExerciseControl<string>;
   sets: ExerciseControl<number>;
   reps: ExerciseControl<number>;
   rest: ExerciseControl<number>;
