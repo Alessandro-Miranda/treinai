@@ -49,16 +49,10 @@ export class CreateTrainingComponent {
   });
 
   addExercise = {
-    open: false,
+    open: true,
     divisionIndex: 0,
   };
 
-  get name() {
-    return this.training.get('name');
-  }
-  get duration() {
-    return this.training.get('duration');
-  }
   get divisions() {
     return this.training.get('divisions') as FormArray;
   }
