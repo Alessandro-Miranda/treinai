@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { AbstractControl, FormArray } from '@angular/forms';
+import { FormArray, FormGroup } from '@angular/forms';
 import { IonAccordion, IonAccordionGroup, IonItem, IonLabel, IonText } from "@ionic/angular/standalone";
-import { ExercisesGroup } from '../../@types/exercises-group';
+import { ExercisesGroup } from '../../@types/exercises';
 
 @Component({
   selector: 'app-division-list',
@@ -13,7 +13,7 @@ export class DivisionListComponent {
   @Input() divisions: FormArray | null = null;
 
   get exercises() {
-    return this.divisions?.get('exercises') as FormArray<AbstractControl<ExercisesGroup>>;
+    return this.divisions?.get('exercises') as FormArray<FormGroup<ExercisesGroup>>;
   }
 
 }
