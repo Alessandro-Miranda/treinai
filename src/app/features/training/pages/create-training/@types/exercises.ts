@@ -1,6 +1,6 @@
-import { FormControl } from "@angular/forms";
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
-type ExerciseControl<T> = {
+export type ExerciseControl<T> = {
   [Property in keyof T]: FormControl<T[Property] | null>;
 };
 
@@ -13,4 +13,9 @@ export type Exercises = {
   observation?: string;
 };
 
-export type ExercisesGroup = ExerciseControl<Exercises>
+export type ExercisesGroup = FormGroup<ExerciseControl<Exercises>>;
+
+export type DivisionGroup = FormGroup<{
+  title: FormControl;
+  exercises: FormArray<ExercisesGroup>;
+}>;
