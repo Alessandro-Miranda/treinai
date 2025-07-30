@@ -3,7 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { IonButton, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonInput, IonModal, IonRow, IonTextarea, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { chevronBackOutline } from 'ionicons/icons';
-import { Exercises, ExercisesGroup } from '../../@types/exercises';
+import { ExerciseControl, Exercises } from '../../@types/exercises';
 
 @Component({
   selector: 'app-exercise-modal',
@@ -30,7 +30,7 @@ export class ExerciseModalComponent {
   @Output() isOpenChange = new EventEmitter<boolean>();
   @Output() exerciseAdded = new EventEmitter<Exercises>();
 
-  exercisesForm = new FormGroup<ExercisesGroup>({
+  exercisesForm = new FormGroup<ExerciseControl<Exercises>>({
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     sets: new FormControl(0, [Validators.required, Validators.min(1)]),
     reps: new FormControl(0, [Validators.required, Validators.min(1)]),
