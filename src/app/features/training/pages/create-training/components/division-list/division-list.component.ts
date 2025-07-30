@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FormArray } from '@angular/forms';
 import {
   IonAccordion,
@@ -11,7 +11,7 @@ import {
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { trashOutline } from 'ionicons/icons';
-import { ToastComponent } from "src/app/shared/toast/toast.component";
+import { ToastService } from 'src/app/shared/toast/toast.service';
 import { DivisionGroup, ExercisesGroup } from '../../@types/exercises';
 
 @Component({
@@ -26,13 +26,13 @@ import { DivisionGroup, ExercisesGroup } from '../../@types/exercises';
     IonText,
     IonButton,
     IonIcon,
-    ToastComponent,
   ],
 })
 export class DivisionListComponent {
   @Input() divisions: FormArray<DivisionGroup> | null = null;
   @Output() addExercise = new EventEmitter<number>();
-  showExerciseDeletedToast = false;
+  
+  private toastService = inject(ToastService);
 
   constructor() {
     addIcons({ trashOutline });
@@ -48,6 +48,6 @@ export class DivisionListComponent {
 
   onRemoveExercise(division: DivisionGroup, exerciseIndex: number) {
     this.exercisesFrom(division).removeAt(exerciseIndex);
-    this.showExerciseDeletedToast = true;
+    this.toastService.show('Exercício removido com sucesso');
   }
 }
