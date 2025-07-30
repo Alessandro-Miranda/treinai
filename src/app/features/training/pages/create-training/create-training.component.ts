@@ -17,7 +17,7 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/angular/standalone';
-import { Exercises } from './@types/exercises';
+import { DivisionGroup, ExerciseControl, Exercises, ExercisesGroup } from './@types/exercises';
 import { AddDivisionComponent } from './components/add-division/add-division.component';
 import { DivisionListComponent } from './components/division-list/division-list.component';
 import { ExerciseModalComponent } from './components/exercise-modal/exercise-modal.component';
@@ -46,17 +46,21 @@ export class CreateTrainingComponent {
   training = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     duration: new FormControl('', [Validators.required, Validators.min(1)]),
-    divisions: new FormArray([]),
+    divisions: new FormArray<DivisionGroup>([]),
   });
 
-  isExerciseModalOpen = true;
+  isExerciseModalOpen = false;
 
-  get divisions() {
-    return this.training.get('divisions') as FormArray;
+  private currentDivisionIndex = 0;
+
+  get divisions(): FormArray<DivisionGroup> {
+    return this.training.get('divisions') as FormArray<DivisionGroup>;
   }
 
-  private addExerciseToDivision(divisionIndex: number) {
-    this.isExerciseModalOpen = true;
+  get currentExercises(): FormArray<ExercisesGroup> {
+    return this.divisions
+      .at(this.currentDivisionIndex)
+      .get('exercises') as FormArray<ExercisesGroup>;
   }
 
   onSubmit() {
@@ -71,17 +75,31 @@ export class CreateTrainingComponent {
   onAddDivision(divisionTitle: string | null) {
     const newDivisionData = new FormGroup({
       title: new FormControl(divisionTitle, Validators.required),
-      exercises: new FormArray([]),
+      exercises: new FormArray<ExercisesGroup>([]),
     });
 
     this.divisions.push(newDivisionData);
 
-    const currentDivisionIndex = this.divisions.length - 1;
+    const divisionIndex = this.divisions.length - 1;
 
-    this.addExerciseToDivision(currentDivisionIndex);
+    this.onAddExerciseToDivision(divisionIndex);
   }
 
-  onAddExercise(event: Exercises) {
-    
+  onAddExerciseToDivision(divisionIndex: number) {
+    this.isExerciseModalOpen = true;
+    this.currentDivisionIndex = divisionIndex;
+  }
+
+  onAddExercise(exercise: Exercises) {
+    this.currentExercises.push(
+      new FormGroup<ExerciseControl<Exercises>>({
+        name: new FormControl(exercise.name),
+        reps: new FormControl(exercise.reps),
+        rest: new FormControl(exercise.rest),
+        sets: new FormControl(exercise.sets),
+        observation: new FormControl(exercise.observation),
+        weight: new FormControl(exercise.weight),
+      })
+    );
   }
 }
