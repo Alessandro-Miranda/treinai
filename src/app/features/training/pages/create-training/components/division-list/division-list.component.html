@@ -11,25 +11,25 @@
               <ion-label>{{ division.get('title')?.value }}</ion-label>
             </ion-item>
             <div class="accordion-content" slot="content">
-              @if (exercises.length > 0) {
+              @if (exercisesFrom(division).length) {
                 <table>
                   <thead>
                     <tr>
                       <th>Exercício</th>
                       <th>Séries</th>
-                      <th>Repetições</th>
+                      <th>Reps.</th>
                       <th>Descanso</th>
                       <th>Carga</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @for (exercise of exercises.controls; track $index) {
+                    @for (exercise of exercisesFrom(division).controls; track $index) {
                       <tr>
-                        <td>{{ exercise.get('') }}</td>
-                        <td>{{ exercise.get('') }}</td>
-                        <td>{{ exercise.get('') }}</td>
-                        <td>{{ exercise.get('') }}</td>
-                        <td>{{ exercise.get('') }}</td>
+                        <td>{{ exercise.controls.name.value }}</td>
+                        <td>{{ exercise.controls.sets.value }}</td>
+                        <td>{{ exercise.controls.reps.value }}</td>
+                        <td>{{ exercise.controls.rest.value }}</td>
+                        <td>{{ exercise.controls.weight?.value }}</td>
                       </tr>
                     }
                   </tbody>
