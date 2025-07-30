@@ -11,6 +11,7 @@ import {
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { trashOutline } from 'ionicons/icons';
+import { ToastComponent } from "src/app/shared/toast/toast.component";
 import { ToastService } from 'src/app/shared/toast/toast.service';
 import { DivisionGroup, ExercisesGroup } from '../../@types/exercises';
 
@@ -26,7 +27,8 @@ import { DivisionGroup, ExercisesGroup } from '../../@types/exercises';
     IonText,
     IonButton,
     IonIcon,
-  ],
+    ToastComponent
+],
 })
 export class DivisionListComponent {
   @Input() divisions: FormArray<DivisionGroup> | null = null;
