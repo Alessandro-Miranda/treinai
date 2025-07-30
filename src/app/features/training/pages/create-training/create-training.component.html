@@ -53,5 +53,5 @@
     </ion-button>
   </form>
 
-  <app-exercise-modal [(addExercise)]="addExercise" />
+  <app-exercise-modal [(isOpen)]="isExerciseModalOpen" (exerciseAdded)="onAddExercise($event)" />
 </ion-content>
