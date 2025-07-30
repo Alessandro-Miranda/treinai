@@ -1,18 +1,26 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { IonToast } from "@ionic/angular/standalone";
+import { ToastService } from './toast.service';
 
 @Component({
   selector: 'app-toast-alert',
   templateUrl: './toast.component.html',
   imports: [IonToast],
 })
-export class ToastComponent {
-  @Input() isOpen = false;
-  @Input() message = '';
-  @Output() isOpenChange = new EventEmitter<boolean>();
+export class ToastComponent implements OnInit {
+  private toastService = inject(ToastService);
 
+  isOpen = false;
+  message = '';
+
+  ngOnInit() {
+    this.toastService.toast$.subscribe(({ message }) => {
+      this.message = message;
+      this.isOpen = true
+    });
+  }
+  
   onToastDismissed() {
     this.isOpen = false;
-    this.isOpenChange.emit(false);
   }
 }
