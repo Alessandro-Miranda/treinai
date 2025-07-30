@@ -14,8 +14,3 @@ export type Exercises = {
 };
 
 export type ExercisesGroup = ExerciseControl<Exercises>
-
-export type ExerciseModalState = {
-  open: boolean;
-  divisionIndex: number;
-};
