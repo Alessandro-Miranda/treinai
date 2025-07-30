@@ -17,8 +17,7 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/angular/standalone';
-import { AddExercise } from './@types/add-exercise';
-import { ExercisesGroup } from './@types/exercises-group';
+import { Exercises } from './@types/exercises';
 import { AddDivisionComponent } from './components/add-division/add-division.component';
 import { DivisionListComponent } from './components/division-list/division-list.component';
 import { ExerciseModalComponent } from './components/exercise-modal/exercise-modal.component';
@@ -50,19 +49,14 @@ export class CreateTrainingComponent {
     divisions: new FormArray([]),
   });
 
-  addExercise: AddExercise = {
-    open: true,
-    divisionIndex: 0,
-    exercises: new FormArray<FormGroup<ExercisesGroup>>([]),
-  };
+  isExerciseModalOpen = true;
 
   get divisions() {
     return this.training.get('divisions') as FormArray;
   }
 
   private addExerciseToDivision(divisionIndex: number) {
-    const exercises = this.divisions.at(divisionIndex).get('exercises') as FormArray;
-    this.addExercise = { open: true, divisionIndex, exercises };
+    this.isExerciseModalOpen = true;
   }
 
   onSubmit() {
@@ -77,7 +71,7 @@ export class CreateTrainingComponent {
   onAddDivision(divisionTitle: string | null) {
     const newDivisionData = new FormGroup({
       title: new FormControl(divisionTitle, Validators.required),
-      exercises: new FormArray<FormGroup<ExercisesGroup>>([]),
+      exercises: new FormArray([]),
     });
 
     this.divisions.push(newDivisionData);
@@ -85,5 +79,9 @@ export class CreateTrainingComponent {
     const currentDivisionIndex = this.divisions.length - 1;
 
     this.addExerciseToDivision(currentDivisionIndex);
+  }
+
+  onAddExercise(event: Exercises) {
+    
   }
 }
