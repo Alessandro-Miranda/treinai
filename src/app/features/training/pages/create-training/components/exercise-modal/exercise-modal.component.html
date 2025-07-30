@@ -1,17 +1,17 @@
-<ion-modal [isOpen]="addExercise.open">
+<ion-modal [isOpen]="isOpen">
   <ng-template>
     <ion-header>
       <ion-toolbar>
         <ion-grid>
           <ion-row class="ion-align-items-center">
             <ion-col size="auto">
-              <ion-button size="small" color="dark" fill="clear" (click)="onCloseModal(addExercise.divisionIndex)">
+              <ion-button size="small" color="dark" fill="clear" (click)="onCloseModal()">
                 <ion-icon name="chevron-back-outline"></ion-icon>
               </ion-button>
             </ion-col>
             <ion-col size="9" class="ion-text-center">
               <ion-title>
-                Adicionar exercício {{ addExercise.divisionIndex }}
+                Adicionar exercício
               </ion-title>
             </ion-col>
           </ion-row>
@@ -20,50 +20,88 @@
     </ion-header>
 
     <ion-content class="ion-padding">
-      <form>
+      <form [formGroup]="exercisesForm" (ngSubmit)="onAddExercise()">
         <h2>
           Informações do Exerício
         </h2>
-  
-        <ion-item-group>
-          <ion-item>
+
+        <ion-grid class="ion-no-padding">
+          <ion-row>
             <ion-input
               label="Exerício"
               labelPlacement="stacked"
+              errorText="Este campo é obrigatório e deve ter, no mínimo, 4 caracteres"
               type="text"
+              fill="solid"
+              formControlName="name"
             />
-          </ion-item>
-  
-          <ion-item class="ion-margin-top">
-            <ion-input label="Séries" labelPlacement="stacked" type="number" />
-          </ion-item>
+          </ion-row>
 
-          <ion-item class="ion-margin-top">
-            <ion-input label="Repetições" labelPlacement="stacked" type="number" />
-          </ion-item>
-  
-          <ion-item class="ion-margin-top">
-            <ion-input label="Descanso (Em segundos)" labelPlacement="stacked" type="number" />
-          </ion-item>
-  
-          <ion-item class="ion-margin-top">
-            <ion-input label="Carga (KG)" labelPlacement="stacked" type="number" />
-          </ion-item>
+          <ion-row class="ion-margin-top">
+            <ion-input
+              label="Séries"
+              labelPlacement="stacked"
+              errorText="Este campo é obrigatório"
+              type="number"
+              fill="solid"
+              formControlName="sets"
+            />
+          </ion-row>
           
-          <ion-item class="ion-margin-top">
-            <ion-textarea label="Observações" labelPlacement="stacked" rows="5" />
-          </ion-item>
-        </ion-item-group>
+          <ion-row class="ion-margin-top">
+            <ion-input
+              label="Repetições"
+              labelPlacement="stacked"
+              errorText="Este campo é obrigatório"
+              type="number"
+              fill="solid"
+              formControlName="reps"
+            />
+          </ion-row>
+
+          <ion-row class="ion-margin-top">
+            <ion-input
+              label="Descanso (Em segundos)"
+              labelPlacement="stacked"
+              errorText="Este campo é obrigatório"
+              type="number"
+              fill="solid"
+              formControlName="rest"
+            />
+          </ion-row>
+
+          <ion-row class="ion-margin-top">
+            <ion-input
+              label="Carga (KG)"
+              labelPlacement="stacked"
+              errorText="Este campo é obrigatório"
+              type="number"
+              fill="solid"
+              formControlName="weight"
+            />
+          </ion-row>
+
+          <ion-row class="ion-margin-top">
+            <ion-textarea
+              label="Observações"
+              labelPlacement="stacked"
+              errorText="Este campo é obrigatório"
+              rows="5"
+              fill="solid"
+              formControlName="observation"
+            />
+          </ion-row>
+        </ion-grid>
   
         <ion-grid class="ion-no-padding ion-margin-top">
           <ion-row class="ion-justify-content-end">
             <ion-col size="auto">
-              <ion-button fill="clear" color="medium" (click)="onCloseModal(addExercise.divisionIndex)">
+              <ion-button fill="clear" color="medium" (click)="onCloseModal()">
                 Fechar
               </ion-button>
             </ion-col>
             <ion-col size="auto" class="ion-margin-start">
-              <ion-button fill="solid" class="add-exercise">
+              <ion-button fill="solid" class="add-exercise" type="submit">
                 Adicionar
               </ion-button>
             </ion-col>
