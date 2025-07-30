@@ -5,13 +5,14 @@ import { addIcons } from 'ionicons';
 import { logoGoogle } from "ionicons/icons";
 import { FirebaseAuthService } from 'src/app/core/firebase/firebase-auth.service';
 import { UserService } from 'src/app/core/services/user.service';
+import { ToastComponent } from "src/app/shared/toast/toast.component";
 import { ToastService } from 'src/app/shared/toast/toast.service';
 
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss'],
-  imports: [IonContent, IonButton, IonText, IonIcon],
+  imports: [IonContent, IonButton, IonText, IonIcon, ToastComponent],
 })
 export class AuthComponent {
   private firebaseService = inject(FirebaseAuthService);
