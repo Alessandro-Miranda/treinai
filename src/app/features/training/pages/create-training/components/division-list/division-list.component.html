@@ -19,7 +19,7 @@
                       <th>Séries</th>
                       <th>Reps.</th>
                       <th>Descanso</th>
-                      <th>Carga</th>
+                      
                     </tr>
                   </thead>
                   <tbody>
@@ -29,16 +29,31 @@
                         <td>{{ exercise.controls.sets.value }}</td>
                         <td>{{ exercise.controls.reps.value }}</td>
                         <td>{{ exercise.controls.rest.value }}</td>
-                        <td>{{ exercise.controls.weight?.value }}</td>
+                        <td>
+                          <ion-icon
+                            color="danger"
+                            name="trash-outline"
+                            (click)="onRemoveExercise(division, $index)"
+                          />
+                        </td>
                       </tr>
                     }
                   </tbody>
                 </table>
               }
+              <ion-button
+                fill="outline"
+                color="dark"
+                class="ion-margin-top"
+                (click)="onAddExercise($index)"
+              >
+                Adicionar Exercício
+              </ion-button>
             </div>
           </ion-accordion>
         }
       </ion-accordion-group>
     </ng-container>
   }
+  <app-toast-alert [(isOpen)]="showExerciseDeletedToast" message="Exercício deletado com sucesso" />
 </div>
