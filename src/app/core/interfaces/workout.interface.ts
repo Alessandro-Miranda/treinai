@@ -11,6 +11,7 @@ export interface Workout {
   name: string;
   duration: string;
   divisions: Divisions[];
+  userId: string;
 }
 
 export interface WorkoutData {
