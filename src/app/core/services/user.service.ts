@@ -1,31 +1,12 @@
-import { EnvironmentInjector, inject, Injectable, runInInjectionContext } from "@angular/core";
-import { Auth, User } from "@angular/fire/auth";
-import { doc, DocumentData, DocumentReference, Firestore, getDoc, serverTimestamp, setDoc } from "@angular/fire/firestore";
+import { inject, Injectable } from "@angular/core";
+import { User } from "@angular/fire/auth";
+import { FirebaseUserService } from "../firebase/firebase-user.service";
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  private firestore = inject(Firestore);
-  private injector = inject(EnvironmentInjector);
-  private auth = inject(Auth);
+  private firebaseUserService = inject(FirebaseUserService);
 
   async createIfNotExists(user: User): Promise<void> {
-    let snapshotExists = false;
-    let docRef: DocumentReference<DocumentData, DocumentData>;
-
-    await runInInjectionContext(this.injector, async () => {
-      docRef = doc(this.firestore, 'users', user.uid);
-      snapshotExists = (await getDoc(docRef)).exists();
-    });
-
-    if (snapshotExists) return;
-
-    await runInInjectionContext(this.injector, async () => {
-      await setDoc(docRef, {
-        uid: user.uid,
-        email: user.email,
-        displayName: user.displayName,
-        createdAt: serverTimestamp(),
-      });
-    });
+    return this.firebaseUserService.createUser(user);
   }
 }
