@@ -17,6 +17,7 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/angular/standalone';
+import { WorkoutService } from 'src/app/core/services/workout.service';
 import { ToastService } from 'src/app/shared/toast/toast.service';
 import { DivisionGroup, ExerciseControl, Exercises, ExercisesGroup } from './@types/exercises';
 import { AddDivisionComponent } from './components/add-division/add-division.component';
@@ -44,8 +45,9 @@ import { ExerciseModalComponent } from './components/exercise-modal/exercise-mod
   ],
 })
 export class CreateTrainingComponent {
-  private currentDivisionIndex = 0;
   private toastService = inject(ToastService);
+  private workoutService = inject(WorkoutService);
+  private currentDivisionIndex = 0;
 
   training = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
@@ -65,14 +67,14 @@ export class CreateTrainingComponent {
       .get('exercises') as FormArray<ExercisesGroup>;
   }
 
-  onSubmit() {
+  async onSubmit() {
     if (this.training.invalid) {
       this.training.markAllAsTouched();
       this.toastService.show('Preencha todos os campos obrigatórios: Nome, duração, divisão e exercícios!');
       return;
     }
 
-    // Implementar lógica para salvar no firebase
+    await this.workoutService.save(this.training)
   }
 
   onAddDivision(divisionTitle: string | null) {
