@@ -9,7 +9,7 @@ export class WorkoutService {
   private firebaseAuthService = inject(FirebaseAuthService);
   private firestoreService = inject(FirestoreService);
 
-  async createWokrout(workoutForm: FormGroup<WorkoutData>) {
+  async createWorkout(workoutForm: FormGroup<WorkoutData>) {
     const workout = workoutForm.getRawValue() as Omit<Workout, "id" | "userId">;
     const workoutId = crypto.randomUUID();
 
