@@ -1,8 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonButton, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonInput, IonModal, IonRow, IonTextarea, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { chevronBackOutline } from 'ionicons/icons';
+import { ToastComponent } from "src/app/shared/toast/toast.component";
+import { ToastService } from 'src/app/shared/toast/toast.service';
 import { ExerciseControl, Exercises } from '../../@types/exercises';
 
 @Component({
@@ -23,9 +25,12 @@ import { ExerciseControl, Exercises } from '../../@types/exercises';
     IonIcon,
     IonTextarea,
     ReactiveFormsModule,
-  ],
+    ToastComponent
+],
 })
 export class ExerciseModalComponent {
+  private toastService = inject(ToastService);
+
   @Input() isOpen = false;
   @Output() isOpenChange = new EventEmitter<boolean>();
   @Output() exerciseAdded = new EventEmitter<Exercises>();
@@ -54,6 +59,7 @@ export class ExerciseModalComponent {
       return;
     }
 
+    this.toastService.show('Exercício adicionado com sucesso');
     this.exerciseAdded.emit(this.exercisesForm.getRawValue() as Exercises);
     this.exercisesForm.reset();
   }
