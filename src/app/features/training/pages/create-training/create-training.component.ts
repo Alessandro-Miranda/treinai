@@ -75,7 +75,7 @@ export class CreateTrainingComponent {
       return;
     }
 
-    this.workoutService.createWokrout(this.training).then(() => {
+    this.workoutService.createWorkout(this.training).then(() => {
       this.toastService.show('Treino Criado com sucesso!');
     })
   }
