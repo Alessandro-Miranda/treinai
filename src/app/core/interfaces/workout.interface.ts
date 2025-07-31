@@ -7,7 +7,7 @@ type Divisions = {
 }
 
 export interface Workout {
-  uuid: string;
+  id: string;
   name: string;
   duration: string;
   divisions: Divisions[];
