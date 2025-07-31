@@ -17,6 +17,7 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/angular/standalone';
+import { WorkoutData } from 'src/app/core/interfaces/workout.interface';
 import { WorkoutService } from 'src/app/core/services/workout.service';
 import { ToastService } from 'src/app/shared/toast/toast.service';
 import { DivisionGroup, ExerciseControl, Exercises, ExercisesGroup } from './@types/exercises';
@@ -49,7 +50,7 @@ export class CreateTrainingComponent {
   private workoutService = inject(WorkoutService);
   private currentDivisionIndex = 0;
 
-  training = new FormGroup({
+  training = new FormGroup<WorkoutData>({
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     duration: new FormControl('', [Validators.required, Validators.min(1)]),
     divisions: new FormArray<DivisionGroup>([], Validators.required),
@@ -67,14 +68,16 @@ export class CreateTrainingComponent {
       .get('exercises') as FormArray<ExercisesGroup>;
   }
 
-  async onSubmit() {
+  onSubmit() {
     if (this.training.invalid) {
       this.training.markAllAsTouched();
       this.toastService.show('Preencha todos os campos obrigatórios: Nome, duração, divisão e exercícios!');
       return;
     }
 
-    await this.workoutService.save(this.training)
+    this.workoutService.createWokrout(this.training).then(() => {
+      this.toastService.show('Treino Criado com sucesso!');
+    })
   }
 
   onAddDivision(divisionTitle: string | null) {
