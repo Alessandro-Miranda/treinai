@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormArray,
   FormControl,
@@ -17,6 +17,7 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/angular/standalone';
+import { ToastService } from 'src/app/shared/toast/toast.service';
 import { DivisionGroup, ExerciseControl, Exercises, ExercisesGroup } from './@types/exercises';
 import { AddDivisionComponent } from './components/add-division/add-division.component';
 import { DivisionListComponent } from './components/division-list/division-list.component';
@@ -43,15 +44,16 @@ import { ExerciseModalComponent } from './components/exercise-modal/exercise-mod
   ],
 })
 export class CreateTrainingComponent {
+  private currentDivisionIndex = 0;
+  private toastService = inject(ToastService);
+
   training = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     duration: new FormControl('', [Validators.required, Validators.min(1)]),
-    divisions: new FormArray<DivisionGroup>([]),
+    divisions: new FormArray<DivisionGroup>([], Validators.required),
   });
 
   isExerciseModalOpen = false;
-
-  private currentDivisionIndex = 0;
 
   get divisions(): FormArray<DivisionGroup> {
     return this.training.get('divisions') as FormArray<DivisionGroup>;
@@ -66,6 +68,7 @@ export class CreateTrainingComponent {
   onSubmit() {
     if (this.training.invalid) {
       this.training.markAllAsTouched();
+      this.toastService.show('Preencha todos os campos obrigatórios: Nome, duração, divisão e exercícios!');
       return;
     }
 
@@ -75,7 +78,7 @@ export class CreateTrainingComponent {
   onAddDivision(divisionTitle: string | null) {
     const newDivisionData = new FormGroup({
       title: new FormControl(divisionTitle, Validators.required),
-      exercises: new FormArray<ExercisesGroup>([]),
+      exercises: new FormArray<ExercisesGroup>([], Validators.required),
     });
 
     this.divisions.push(newDivisionData);
@@ -93,10 +96,10 @@ export class CreateTrainingComponent {
   onAddExercise(exercise: Exercises) {
     this.currentExercises.push(
       new FormGroup<ExerciseControl<Exercises>>({
-        name: new FormControl(exercise.name),
-        reps: new FormControl(exercise.reps),
-        rest: new FormControl(exercise.rest),
-        sets: new FormControl(exercise.sets),
+        name: new FormControl(exercise.name, Validators.required),
+        reps: new FormControl(exercise.reps, Validators.required),
+        rest: new FormControl(exercise.rest, Validators.required),
+        sets: new FormControl(exercise.sets, Validators.required),
         observation: new FormControl(exercise.observation),
         weight: new FormControl(exercise.weight),
       })
