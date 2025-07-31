@@ -1,18 +1,28 @@
 import { inject, Injectable } from '@angular/core';
 import { User } from '@angular/fire/auth';
 import { serverTimestamp } from '@angular/fire/firestore';
-import { FirebaseUserService } from '../firebase/firebase-user.service';
+import { FirestoreService } from '../firebase/firestore.service';
+import { UserData } from '../interfaces/user.inteface';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  private firebaseUserService = inject(FirebaseUserService);
+  private firestoreService = inject(FirestoreService);
 
   async createIfNotExists(user: User): Promise<void> {
-    return this.firebaseUserService.createUser({
+    const collectionpath = this.getCollectionPath(user);
+    const userSnapshot = await this.firestoreService.read(collectionpath);
+
+    if (userSnapshot.exists()) return;
+
+    return await this.firestoreService.create<UserData>(collectionpath, {
       uid: user.uid,
       displayName: user.displayName,
       email: user.email,
-      createdAt: serverTimestamp(),
+      createdAt: serverTimestamp()
     });
+  }
+
+  private getCollectionPath(user: User) {
+    return `users/${user.uid}`;
   }
 }
