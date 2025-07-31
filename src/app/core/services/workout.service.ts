@@ -1,17 +1,22 @@
-import { Injectable } from "@angular/core";
-import { FormArray, FormControl, FormGroup } from "@angular/forms";
-import { DivisionGroup } from "@Features/training/pages/create-training/@types/exercises";
-
-type SaveWorkoutData = {
-  name: FormControl<string | null>;
-  duration: FormControl<string | null>,
-  divisions: FormArray<DivisionGroup>
-}
+import { inject, Injectable } from "@angular/core";
+import { FormGroup } from "@angular/forms";
+import { FirebaseAuthService } from "../firebase/firebase-auth.service";
+import { FirestoreService } from "../firebase/firestore.service";
+import { Workout, WorkoutData } from "../interfaces/workout.interface";
 
 @Injectable({ providedIn: 'root' })
 export class WorkoutService {
-  async save(workoutForm: FormGroup<SaveWorkoutData>) {
-    const workout = workoutForm.getRawValue();
-    // Fazer o save no firebase
+  private firebaseAuthService = inject(FirebaseAuthService);
+  private firestoreService = inject(FirestoreService);
+
+  async createWokrout(workoutForm: FormGroup<WorkoutData>) {
+    const workout = workoutForm.getRawValue() as Omit<Workout, "id" | "userId">;
+    const workoutId = crypto.randomUUID();
+
+    return this.firestoreService.create<Workout>(`workouts/${workoutId}`, {
+      id: workoutId,
+      userId: this.firebaseAuthService.getCurrentUser()!.uid,
+      ...workout,
+    });
   }
 }
