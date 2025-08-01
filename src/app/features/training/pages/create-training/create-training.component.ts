@@ -78,6 +78,8 @@ export class CreateTrainingComponent {
     this.workoutService.createWorkout(this.training)
       .then(() => {
         this.toastService.show('Treino Criado com sucesso!');
+        this.training.reset();
+        this.divisions.clear()
       })
       .catch(err => {
         this.toastService.show(err.message);
