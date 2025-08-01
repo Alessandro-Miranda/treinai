@@ -75,9 +75,13 @@ export class CreateTrainingComponent {
       return;
     }
 
-    this.workoutService.createWorkout(this.training).then(() => {
-      this.toastService.show('Treino Criado com sucesso!');
-    })
+    this.workoutService.createWorkout(this.training)
+      .then(() => {
+        this.toastService.show('Treino Criado com sucesso!');
+      })
+      .catch(err => {
+        this.toastService.show(err.message);
+      });
   }
 
   onAddDivision(divisionTitle: string | null) {
