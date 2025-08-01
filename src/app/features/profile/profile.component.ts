@@ -15,7 +15,7 @@ import {
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { logOutOutline, medalOutline } from 'ionicons/icons';
-import { FirebaseAuthService } from 'src/app/core/firebase/firebase-auth.service';
+import { AuthService } from 'src/app/core/firebase/auth.service';
 import { DaysSincePipe } from './pipes/days-since.pipe';
 
 @Component({
@@ -37,7 +37,7 @@ import { DaysSincePipe } from './pipes/days-since.pipe';
   ],
 })
 export class ProfileComponent implements OnInit {
-  private firebaseService = inject(FirebaseAuthService);
+  private authService = inject(AuthService);
   private router = inject(Router);
   
   user!: User;
@@ -48,12 +48,12 @@ export class ProfileComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.user = this.firebaseService.getCurrentUser() as User;
+    this.user = this.authService.getCurrentUser() as User;
     this.userRegistrationDate = new Date(this.user.metadata.creationTime!).getTime();
   }
 
   async onLogout() {
-    this.firebaseService.logout().then(() => {
+    this.authService.logout().then(() => {
       this.router.navigate(['/auth'], { replaceUrl: true });
     });
   }
