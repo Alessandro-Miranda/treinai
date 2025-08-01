@@ -9,23 +9,33 @@ import {
   setDoc,
   WithFieldValue,
 } from '@angular/fire/firestore';
+import { FirebaseContext } from './firebase-context.helper';
 
 @Injectable({ providedIn: 'root' })
 export class FirestoreService {
   private firestore = inject(Firestore);
+  private firebaseContext = inject(FirebaseContext);
 
   async create<T>(
     path: string,
     data: WithFieldValue<{ [Property in keyof T]: T[Property] }>
   ): Promise<void> {
-    return setDoc(this.getRef(path), data);
+    return this.firebaseContext.runInContext<void>(() =>
+      setDoc(this.getRef(path), data)
+    );
   }
 
   async read(path: string): Promise<DocumentSnapshot> {
-    return getDoc(this.getRef(path));
+    return this.firebaseContext.runInContext<DocumentSnapshot>(() =>
+      getDoc(this.getRef(path))
+    );
   }
 
   getRef(path: string): DocumentReference<DocumentData> {
-    return doc(this.firestore, path);
+    const docRef = this.firebaseContext.runInContext<
+      DocumentReference<DocumentData>
+    >(() => doc(this.firestore, path)) as DocumentReference<DocumentData>;
+
+    return docRef;
   }
 }
