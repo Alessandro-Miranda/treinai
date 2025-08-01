@@ -1,3 +1,4 @@
+import { FieldValue } from "@angular/fire/firestore";
 import { FormArray, FormControl } from "@angular/forms";
 import { DivisionGroup, Exercises } from "@Features/training/pages/create-training/@types/exercises";
 
@@ -12,6 +13,7 @@ export interface Workout {
   duration: string;
   divisions: Divisions[];
   userId: string;
+  createdAt: FieldValue
 }
 
 export interface WorkoutData {
