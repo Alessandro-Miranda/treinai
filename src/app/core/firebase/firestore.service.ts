@@ -13,10 +13,11 @@ import {
   setDoc,
   where,
   WhereFilterOp,
-  WithFieldValue,
+  WithFieldValue
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { FirebaseContext } from './firebase-context.helper';
+import { FirebaseContext } from './decorators/firebase-context';
+import { RunInFirebaseContext } from './decorators/run-in-context';
 
 type QueryPath = {
   path: string;
@@ -34,44 +35,45 @@ type ReadParams<T> = QueryPath & {
   };
 };
 
+@RunInFirebaseContext
 @Injectable({ providedIn: 'root' })
-export class FirestoreService {
+export class FirestoreService extends FirebaseContext {
   private firestore = inject(Firestore);
-  private firebaseContext = inject(FirebaseContext);
 
   async create<T>({ data, path }: CreateParams<T>): Promise<void> {
-    return this.firebaseContext.runInContext<void>(() =>
-      setDoc(this.getRef({ path }), data)
-    );
+    return setDoc(this.getRef({ path }), data);
   }
 
   async findDoc({ path }: QueryPath): Promise<DocumentSnapshot> {
-    return this.firebaseContext.runInContext<DocumentSnapshot>(() =>
-      getDoc(this.getRef({ path }))
-    );
+    return getDoc(this.getRef({ path }));
   }
 
   findMany<T>({ path, where: filter }: ReadParams<T>): Observable<T[]> {
     const collection = this.getCollection({ path });
-    const q = query(
-      collection,
-      where(filter.fieldPath, filter.operation, filter.value)
-    );
-    
+    const q = this.prepareWhereQuery({ collection, where: filter });
+
     return collectionData(q) as Observable<T[]>;
   }
 
   getRef({ path }: QueryPath): DocumentReference<DocumentData> {
-    const docRef = this.firebaseContext.runInContext<
-      DocumentReference<DocumentData>
-    >(() => doc(this.firestore, path)) as DocumentReference<DocumentData>;
-
-    return docRef;
+    return doc(this.firestore, path);
   }
 
   getCollection({ path }: QueryPath): CollectionReference {
-    return this.firebaseContext.runInContext<CollectionReference<DocumentData>>(() =>
-      collection(this.firestore, path)
-    ) as CollectionReference<DocumentData>;
+    return collection(this.firestore, path);
+  }
+
+  prepareWhereQuery({
+    collection,
+    where: filter,
+  }: Pick<ReadParams<any>, 'where'> & { collection: CollectionReference }) {
+    return query(
+      collection,
+      where(filter.fieldPath, filter.operation, filter.value)
+    );
+  }
+
+  test() {
+    console.log('eaee');
   }
 }
