@@ -9,7 +9,7 @@ import { Workout, WorkoutData } from '../interfaces/workout.interface';
 @Injectable({ providedIn: 'root' })
 export class WorkoutService {
   private authService = inject(AuthService);
-  private firestoreService = inject(FirestoreService);
+  public firestoreService = inject(FirestoreService);
 
   async createWorkout(workoutForm: FormGroup<WorkoutData>) {
     const workout = workoutForm.getRawValue() as Omit<
