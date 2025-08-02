@@ -1,8 +1,6 @@
 import {
-  EnvironmentInjector,
   inject,
-  Injectable,
-  runInInjectionContext
+  Injectable
 } from '@angular/core';
 import {
   Auth,
@@ -10,18 +8,18 @@ import {
   signInWithPopup,
   User
 } from '@angular/fire/auth';
+import { FirebaseContext } from './decorators/firebase-context';
+import { RunMethodInContext } from './decorators/run-in-context';
 
 @Injectable({ providedIn: 'root' })
-export class AuthService {
+export class AuthService extends FirebaseContext {
   private auth = inject(Auth);
-  private injector = inject(EnvironmentInjector);
 
+  @RunMethodInContext
   async signInWithGoogle(): Promise<User> {
     const provider = new GoogleAuthProvider();
 
-    return runInInjectionContext(this.injector, async () => {
-      return signInWithPopup(this.auth, provider).then(({ user }) => user);
-    })
+    return signInWithPopup(this.auth, provider).then(({ user }) => user);
   }
 
   async logout(): Promise<void> {
