@@ -1,16 +1,19 @@
+import { Location } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import {
   FormArray,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
-  Validators
+  Validators,
 } from '@angular/forms';
 import {
   IonButton,
+  IonCol,
   IonContent,
   IonGrid,
   IonHeader,
+  IonIcon,
   IonInput,
   IonRow,
   IonText,
@@ -20,7 +23,12 @@ import {
 import { WorkoutData } from 'src/app/core/interfaces/workout.interface';
 import { WorkoutService } from 'src/app/core/services/workout.service';
 import { ToastService } from 'src/app/shared/toast/toast.service';
-import { DivisionGroup, ExerciseControl, Exercises, ExercisesGroup } from './@types/exercises';
+import {
+  DivisionGroup,
+  ExerciseControl,
+  Exercises,
+  ExercisesGroup,
+} from './@types/exercises';
 import { AddDivisionComponent } from './components/add-division/add-division.component';
 import { DivisionListComponent } from './components/division-list/division-list.component';
 import { ExerciseModalComponent } from './components/exercise-modal/exercise-modal.component';
@@ -43,11 +51,14 @@ import { ExerciseModalComponent } from './components/exercise-modal/exercise-mod
     DivisionListComponent,
     ExerciseModalComponent,
     ReactiveFormsModule,
+    IonCol,
+    IonIcon,
   ],
 })
 export class CreateTrainingComponent {
   private toastService = inject(ToastService);
   private workoutService = inject(WorkoutService);
+  private location = inject(Location);
   private currentDivisionIndex = 0;
 
   training = new FormGroup<WorkoutData>({
@@ -68,20 +79,27 @@ export class CreateTrainingComponent {
       .get('exercises') as FormArray<ExercisesGroup>;
   }
 
+  backToHome() {
+    this.location.back();
+  }
+
   onSubmit() {
     if (this.training.invalid) {
       this.training.markAllAsTouched();
-      this.toastService.show('Preencha todos os campos obrigatórios: Nome, duração, divisão e exercícios!');
+      this.toastService.show(
+        'Preencha todos os campos obrigatórios: Nome, duração, divisão e exercícios!'
+      );
       return;
     }
 
-    this.workoutService.createWorkout(this.training)
+    this.workoutService
+      .createWorkout(this.training)
       .then(() => {
         this.toastService.show('Treino Criado com sucesso!');
         this.training.reset();
-        this.divisions.clear()
+        this.divisions.clear();
       })
-      .catch(err => {
+      .catch((err) => {
         this.toastService.show(err.message);
       });
   }
