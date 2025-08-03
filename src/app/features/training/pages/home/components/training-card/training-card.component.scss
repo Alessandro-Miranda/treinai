@@ -1,0 +1,41 @@
+:host {
+  width: 100%;
+}
+
+.training-card {
+  background-image: url('../../../../../../../assets/cards-bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  box-shadow: -5px 5px 20px rgba(234, 234, 234, .2);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(12, 12, 12, .9);
+  }
+}
+
+.see-training-button {
+  margin-right: 1.375rem;
+}
+
+.card-content {
+  display: flex;
+  align-items: center;
+  margin-bottom: .5rem;
+
+  p {
+    color: rgba(234, 234, 234, .8);
+    font-size: 1rem;
+    margin: 0
+  }
+}
