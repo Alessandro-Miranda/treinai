@@ -20,8 +20,8 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/angular/standalone';
-import { WorkoutData } from 'src/app/core/interfaces/workout.interface';
-import { WorkoutService } from 'src/app/core/services/workout.service';
+import { TrainingData } from 'src/app/core/interfaces/training.interface';
+import { TrainingService } from 'src/app/core/services/training.service';
 import { ToastService } from 'src/app/shared/toast/toast.service';
 import {
   DivisionGroup,
@@ -57,11 +57,11 @@ import { ExerciseModalComponent } from './components/exercise-modal/exercise-mod
 })
 export class CreateTrainingComponent {
   private toastService = inject(ToastService);
-  private workoutService = inject(WorkoutService);
+  private trainingService = inject(TrainingService);
   private location = inject(Location);
   private currentDivisionIndex = 0;
 
-  training = new FormGroup<WorkoutData>({
+  training = new FormGroup<TrainingData>({
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     duration: new FormControl('', [Validators.required, Validators.min(1)]),
     divisions: new FormArray<DivisionGroup>([], Validators.required),
@@ -92,7 +92,7 @@ export class CreateTrainingComponent {
       return;
     }
 
-    this.workoutService
+    this.trainingService
       .createWorkout(this.training)
       .then(() => {
         this.toastService.show('Treino Criado com sucesso!');
