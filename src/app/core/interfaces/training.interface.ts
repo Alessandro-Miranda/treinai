@@ -7,7 +7,7 @@ type Divisions = {
   exercises: Exercises[];
 }
 
-export interface Workout {
+export interface Training {
   id: string;
   name: string;
   duration: string;
@@ -16,7 +16,7 @@ export interface Workout {
   createdAt: Timestamp
 }
 
-export interface WorkoutData {
+export interface TrainingData {
   name: FormControl<string | null>;
   duration: FormControl<string | null>;
   divisions: FormArray<DivisionGroup>;
