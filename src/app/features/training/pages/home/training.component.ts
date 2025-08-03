@@ -1,12 +1,28 @@
-import { AsyncPipe, CommonModule, DatePipe } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonFab, IonFabButton, IonGrid, IonHeader, IonIcon, IonRow, IonText, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import {
+  IonButton,
+  IonContent,
+  IonFab,
+  IonFabButton,
+  IonGrid,
+  IonHeader,
+  IonIcon,
+  IonRow,
+  IonText,
+  IonTitle,
+  IonToolbar,
+} from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { add, addOutline, calendarOutline, timeOutline } from 'ionicons/icons';
+import {
+  add,
+  addOutline
+} from 'ionicons/icons';
 import { Observable } from 'rxjs';
 import { Training } from 'src/app/core/interfaces/training.interface';
 import { TrainingService } from 'src/app/core/services/training.service';
+import { TrainingCardComponent } from './components/training-card/training-card.component';
 
 @Component({
   selector: 'app-training',
@@ -24,14 +40,10 @@ import { TrainingService } from 'src/app/core/services/training.service';
     IonButton,
     IonIcon,
     AsyncPipe,
-    IonCard,
-    IonCardHeader,
-    IonCardTitle,
-    IonCardContent,
     IonFab,
     IonFabButton,
-    DatePipe
-],
+    TrainingCardComponent,
+  ],
 })
 export class TrainingComponent implements OnInit {
   private router = inject(Router);
@@ -41,7 +53,7 @@ export class TrainingComponent implements OnInit {
   trainings: string[] | null = null;
 
   constructor() {
-    addIcons({ addOutline, add, calendarOutline, timeOutline });
+    addIcons({ addOutline, add });
   }
 
   ngOnInit() {
