@@ -7,18 +7,16 @@ import {
   IonFab,
   IonFabButton,
   IonGrid,
-  IonHeader,
   IonIcon,
   IonRow,
-  IonText,
-  IonTitle,
-  IonToolbar,
+  IonText
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { add, addOutline } from 'ionicons/icons';
 import { map, Observable } from 'rxjs';
 import { TrainingPreviewData } from 'src/app/core/interfaces/training.interface';
 import { TrainingService } from 'src/app/core/services/training.service';
+import { HeaderComponent } from "src/app/shared/header/header.component";
 import { TrainingCardComponent } from './components/training-card/training-card.component';
 
 @Component({
@@ -27,9 +25,6 @@ import { TrainingCardComponent } from './components/training-card/training-card.
   styleUrls: ['./training.component.scss'],
   imports: [
     IonContent,
-    IonHeader,
-    IonTitle,
-    IonToolbar,
     IonGrid,
     IonRow,
     CommonModule,
@@ -40,7 +35,8 @@ import { TrainingCardComponent } from './components/training-card/training-card.
     IonFab,
     IonFabButton,
     TrainingCardComponent,
-  ],
+    HeaderComponent
+],
 })
 export class TrainingComponent implements OnInit {
   private router = inject(Router);

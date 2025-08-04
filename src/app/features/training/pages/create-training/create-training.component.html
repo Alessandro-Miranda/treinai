@@ -1,21 +1,4 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-grid>
-      <ion-row class="ion-align-items-center">
-        <ion-col size="auto">
-          <ion-button size="small" color="dark" fill="clear" (click)="backToHome()">
-            <ion-icon name="chevron-back-outline"></ion-icon>
-          </ion-button>
-        </ion-col>
-        <ion-col size="9" class="ion-text-center">
-          <ion-title>
-            Novo Treino
-          </ion-title>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-toolbar>
-</ion-header>
+<app-header title="Novo Treino" backTo="/training" />
 
 <ion-content [fullscreen]="true" class="ion-padding">
   <form [formGroup]="training" (ngSubmit)="onSubmit()">

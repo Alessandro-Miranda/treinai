@@ -9,19 +9,15 @@ import {
 } from '@angular/forms';
 import {
   IonButton,
-  IonCol,
   IonContent,
   IonGrid,
-  IonHeader,
-  IonIcon,
   IonInput,
   IonRow,
-  IonText,
-  IonTitle,
-  IonToolbar,
+  IonText
 } from '@ionic/angular/standalone';
 import { TrainingData } from 'src/app/core/interfaces/training.interface';
 import { TrainingService } from 'src/app/core/services/training.service';
+import { HeaderComponent } from "src/app/shared/header/header.component";
 import { ToastService } from 'src/app/shared/toast/toast.service';
 import {
   DivisionGroup,
@@ -38,9 +34,6 @@ import { ExerciseModalComponent } from './components/exercise-modal/exercise-mod
   templateUrl: './create-training.component.html',
   styleUrls: ['./create-training.component.scss'],
   imports: [
-    IonToolbar,
-    IonTitle,
-    IonHeader,
     IonContent,
     IonButton,
     IonInput,
@@ -51,9 +44,8 @@ import { ExerciseModalComponent } from './components/exercise-modal/exercise-mod
     DivisionListComponent,
     ExerciseModalComponent,
     ReactiveFormsModule,
-    IonCol,
-    IonIcon,
-  ],
+    HeaderComponent
+],
 })
 export class CreateTrainingComponent {
   private toastService = inject(ToastService);
