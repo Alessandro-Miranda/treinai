@@ -10,7 +10,7 @@ import { TrainingService } from 'src/app/core/services/training.service';
 import { HeaderComponent } from 'src/app/shared/header/header.component';
 
 @Component({
-  selector: 'app-training-detail',
+  selector: 'app-training-details',
   templateUrl: './training-details.component.html',
   styleUrls: ['./training-details.component.scss'],
   imports: [
