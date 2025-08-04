@@ -1,35 +1,37 @@
-<ion-card color="light" class="ion-no-margin training-card">
-  <div>
-    <ion-card-header>
-      <ion-card-title>
-        <h2 class="ion-no-margin">
-          {{ training.name }}
-        </h2>
-      </ion-card-title>
-    </ion-card-header>
-    <ion-card-content class="ion-margin-top">
-      <div class="card-content">
-        <ion-icon name="calendar-outline"></ion-icon>
-        <ion-text class="ion-margin-start">
-          <p class="card-text">
-            <span>Criado em: </span> <time>{{ training.createdAt.toMillis() | date:'dd/MM/yyyy' }}</time>
-          </p>
-        </ion-text>
-      </div>
-
-      <div class="card-content">
-        <ion-icon name="time-outline" class=""></ion-icon>
-        <ion-text class="ion-margin-start">
-          <p>
-            <span>Duração:</span> {{ training.duration }} dias
-          </p>
-        </ion-text>
-      </div>
-    </ion-card-content>
-  </div>
-  <div class="see-training-button">
-    <ion-button shape="round" color="dark">
-      <ion-icon slot="icon-only" name="chevron-forward-outline"></ion-icon>
-    </ion-button>
-  </div>
-</ion-card>
+<a [routerLink]="['/training', training.id]">
+  <ion-card color="light" class="ion-no-margin ion-padding training-card">
+    <div>
+      <ion-card-header>
+        <ion-card-title>
+          <h2 class="ion-no-margin">
+            {{ training.name }}
+          </h2>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content class="ion-margin-top">
+        <div class="card-content">
+          <ion-icon name="calendar-outline"></ion-icon>
+          <ion-text class="ion-margin-start">
+            <p class="card-text">
+              <span>Criado em: </span> <time>{{ training.createdAt.toMillis() | date:'dd/MM/yyyy' }}</time>
+            </p>
+          </ion-text>
+        </div>
+  
+        <div class="card-content">
+          <ion-icon name="time-outline" class=""></ion-icon>
+          <ion-text class="ion-margin-start">
+            <p>
+              <span>Duração:</span> {{ training.duration }} dias
+            </p>
+          </ion-text>
+        </div>
+      </ion-card-content>
+    </div>
+    <div>
+      <ion-button shape="round" color="dark">
+        <ion-icon slot="icon-only" name="chevron-forward-outline"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-card>
+</a>
