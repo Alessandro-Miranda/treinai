@@ -29,7 +29,7 @@ export class TrainingService {
     });
   }
 
-  listWorkouts(): Observable<Training[]> {
+  listTrainings(): Observable<Training[]> {
     return this.firestoreService.findMany<Training>({
       path: 'workouts',
       where: {
@@ -39,4 +39,6 @@ export class TrainingService {
       }
     });
   }
+
+
 }
