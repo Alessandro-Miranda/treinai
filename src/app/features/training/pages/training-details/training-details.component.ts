@@ -1,14 +1,7 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import {
-  IonCol,
-  IonContent,
-  IonGrid,
-  IonIcon,
-  IonRow,
-  IonText,
-} from '@ionic/angular/standalone';
+import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonCol, IonContent, IonGrid, IonIcon, IonRow, IonText } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { calendarOutline, chevronBackOutline } from 'ionicons/icons';
 import { Observable } from 'rxjs';
@@ -29,7 +22,12 @@ import { HeaderComponent } from 'src/app/shared/header/header.component';
     IonGrid,
     IonRow,
     IonCol,
-  ],
+    IonCard,
+    IonCardContent,
+    IonCardHeader,
+    IonCardTitle,
+    IonButton
+],
 })
 export class TrainingDetailsComponent implements OnInit {
   private route = inject(ActivatedRoute);
