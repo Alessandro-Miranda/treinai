@@ -10,8 +10,16 @@ fieldset {
   border-top: 1.5px solid var(--color-dark-magenta);
 }
 
-.save-training {
+.form-buttons {
+  margin-top: 2rem;
+}
+
+.cancel-button {
+  --border-color: rgba(255, 255, 255, .2);
+  --color: rgba(234, 234, 234, .5);
+}
+
+.save-training-button {
   --background: var(--color-primary-red);
   --color: var(--color-white);
-  margin-top: 2rem;
 }

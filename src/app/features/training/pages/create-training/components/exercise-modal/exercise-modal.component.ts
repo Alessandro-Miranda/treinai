@@ -59,7 +59,7 @@ export class ExerciseModalComponent {
       return;
     }
 
-    this.toastService.show('Exercício adicionado com sucesso');
+    this.toastService.show('Exercício adicionado');
     this.exerciseAdded.emit(this.exercisesForm.getRawValue() as Exercises);
     this.exercisesForm.reset();
   }

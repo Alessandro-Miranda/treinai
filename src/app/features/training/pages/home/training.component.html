@@ -4,8 +4,32 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" [class.ion-padding]="trainings" [class.empty]="!trainings">
-  <div *ngIf="!trainings" class="empty-component">
+<ng-container *ngIf="training$ | async as trainings;">
+  <ion-content
+    [fullscreen]="true"
+    [class.ion-padding]="trainings.length"
+    [class.empty]="!trainings.length"
+  >
+    <ng-container *ngIf="trainings.length else empty_data">
+      <ion-grid>
+        @for(training of trainings; track $index) {
+          <ion-row>
+            <app-training-card [training]="training" />
+          </ion-row>
+        }
+      </ion-grid>
+      
+      <ion-fab vertical="bottom" horizontal="end">
+        <ion-fab-button>
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </ng-container>
+  </ion-content>
+</ng-container>
+
+<ng-template #empty_data>
+  <div class="empty-component">
     <ion-text>
       <p class="ion-text-center">
         Você ainda não adicionou nenhum treino.
@@ -16,10 +40,4 @@
       Novo Treino
     </ion-button>
   </div>
-
-  <ion-grid *ngIf="trainings">
-    <ion-row class="ion-justify-content-center ion-align-items-center">
-      <p>Aqui vai os cards</p>
-    </ion-row>
-  </ion-grid>
-</ion-content>
+</ng-template>

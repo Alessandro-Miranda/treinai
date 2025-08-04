@@ -2,6 +2,16 @@ ion-content.empty {
   --background: url('../../../../../assets/training-bg.jpg') no-repeat center center / cover;
 }
 
+ion-fab {
+  margin-bottom: 4rem;
+  margin-right: .75rem;
+}
+
+ion-fab-button {
+  --background: var(--color-primary-red);
+  --color: var(--color-light-gray);
+}
+
 .empty-component {
   position: relative;
   height: 100%;
