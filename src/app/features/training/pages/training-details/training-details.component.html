@@ -1,3 +1,26 @@
-<p>
-  training-detail works!
-</p>
+<app-header title="Detalhes" backTo="/training" />
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  @if (training$ | async; as training) {
+    <ion-text class="ion-text-center">
+      <h1>
+        {{ training.name }}
+      </h1>
+    </ion-text>
+    <ion-grid class="ion-margin-horizontal ion-no-padding details-duration">
+      <ion-row class="ion-justify-content-center ion-align-items-center">
+        <ion-col size="auto">
+          <ion-icon name="calendar-outline" />
+        </ion-col>
+        <ion-col size="auto">
+          <ion-text>
+            <span class="ion-no-margin">
+              Duração: {{ training.duration }} dias
+            </span>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  }
+</ion-content>
+
