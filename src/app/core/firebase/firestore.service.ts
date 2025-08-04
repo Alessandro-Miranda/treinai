@@ -4,11 +4,10 @@ import {
   collectionData,
   CollectionReference,
   doc,
+  docSnapshots,
   DocumentData,
   DocumentReference,
-  DocumentSnapshot,
   Firestore,
-  getDoc,
   query,
   setDoc,
   where,
@@ -44,8 +43,8 @@ export class FirestoreService extends FirebaseContext {
     return setDoc(this.getRef({ path }), data);
   }
 
-  async findDoc({ path }: QueryPath): Promise<DocumentSnapshot> {
-    return getDoc(this.getRef({ path }));
+  findDoc<T>({ path }: QueryPath): Observable<T> {
+    return docSnapshots(this.getRef({ path })) as Observable<T>;
   }
 
   findMany<T>({ path, where: filter }: ReadParams<T>): Observable<T[]> {
@@ -62,7 +61,7 @@ export class FirestoreService extends FirebaseContext {
   getCollection({ path }: QueryPath): CollectionReference {
     return collection(this.firestore, path);
   }
-
+  
   prepareWhereQuery({
     collection,
     where: filter,
@@ -71,9 +70,5 @@ export class FirestoreService extends FirebaseContext {
       collection,
       where(filter.fieldPath, filter.operation, filter.value)
     );
-  }
-
-  test() {
-    console.log('eaee');
   }
 }
