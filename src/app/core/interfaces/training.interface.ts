@@ -16,6 +16,8 @@ export interface Training {
   createdAt: Timestamp
 }
 
+export type TrainingPreviewData = Pick<Training, 'id' | 'name' | 'createdAt' | 'duration'>;
+
 export interface TrainingData {
   name: FormControl<string | null>;
   duration: FormControl<string | null>;
