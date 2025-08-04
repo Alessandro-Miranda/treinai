@@ -1,0 +1,13 @@
+.back-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 100%;
+  font-size: 18px;
+}
+
+.back-icon {
+  color: var(--color-light-gray);
+}

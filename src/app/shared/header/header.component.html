@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row class="ion-align-items-center">
+        @if (backTo) {
+          <ion-col size="auto">
+            <a [routerLink]="[backTo]" class="back-button">
+              <ion-icon name="chevron-back-outline" size="large" class="back-icon"></ion-icon>
+            </a>
+          </ion-col>
+        }
+        <ion-col [size]="backTo ? 9 : 12" class="ion-text-center">
+          <ion-title>
+            {{ title }}
+          </ion-title>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
