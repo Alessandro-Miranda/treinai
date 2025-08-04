@@ -57,7 +57,7 @@ export class TrainingComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.training$ = this.trainingService.listWorkouts();
+    this.training$ = this.trainingService.listTrainings();
   }
 
   onAddNewTraining() {
