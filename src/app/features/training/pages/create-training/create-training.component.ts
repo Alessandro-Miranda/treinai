@@ -93,7 +93,7 @@ export class CreateTrainingComponent {
     }
 
     this.trainingService
-      .createWorkout(this.training)
+      .createTraining(this.training)
       .then(() => {
         this.toastService.show('Treino Criado com sucesso!');
         this.training.reset();
