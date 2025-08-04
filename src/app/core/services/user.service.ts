@@ -10,7 +10,11 @@ export class UserService {
 
   async createIfNotExists(user: User): Promise<void> {
     const collectionpath = this.getCollectionPath(user);
-    const userSnapshot = await this.firestoreService.read(collectionpath);
+    const userSnapshot = await firstValueFrom(
+      this.firestoreService.findDoc<DocumentSnapshot>({
+        path: collectionpath,
+      })
+    );
 
     if (userSnapshot.exists()) return;
 
