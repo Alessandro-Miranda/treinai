@@ -11,7 +11,7 @@ export class TrainingService {
   private authService = inject(AuthService);
   public firestoreService = inject(FirestoreService);
 
-  async createWorkout(workoutForm: FormGroup<TrainingData>) {
+  async createTraining(workoutForm: FormGroup<TrainingData>) {
     const workout = workoutForm.getRawValue() as Omit<
       Training,
       'id' | 'userId' | 'createdAt'
@@ -40,5 +40,5 @@ export class TrainingService {
     });
   }
 
-
+  
 }
