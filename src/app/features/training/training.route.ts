@@ -13,4 +13,11 @@ export const trainingRoute: Routes = [
         (m) => m.CreateTrainingComponent
       ),
   },
+  {
+    path: ':id',
+    loadComponent: () =>
+      import('./pages/training-details/training-details.component').then(
+        (m) => m.TrainingDetailsComponent
+      ),
+  },
 ];
