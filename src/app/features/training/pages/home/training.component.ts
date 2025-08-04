@@ -15,12 +15,9 @@ import {
   IonToolbar,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import {
-  add,
-  addOutline
-} from 'ionicons/icons';
-import { Observable } from 'rxjs';
-import { Training } from 'src/app/core/interfaces/training.interface';
+import { add, addOutline } from 'ionicons/icons';
+import { map, Observable } from 'rxjs';
+import { TrainingPreviewData } from 'src/app/core/interfaces/training.interface';
 import { TrainingService } from 'src/app/core/services/training.service';
 import { TrainingCardComponent } from './components/training-card/training-card.component';
 
@@ -48,7 +45,7 @@ import { TrainingCardComponent } from './components/training-card/training-card.
 export class TrainingComponent implements OnInit {
   private router = inject(Router);
   private trainingService = inject(TrainingService);
-  training$!: Observable<Training[]>;
+  training$!: Observable<TrainingPreviewData[]>;
 
   trainings: string[] | null = null;
 
@@ -57,7 +54,18 @@ export class TrainingComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.training$ = this.trainingService.listTrainings();
+    this.training$ = this.trainingService.listTrainings().pipe(
+      map((trainings) =>
+        trainings.map(
+          (training): TrainingPreviewData => ({
+            id: training.id,
+            createdAt: training.createdAt,
+            duration: training.duration,
+            name: training.name,
+          })
+        )
+      )
+    );
   }
 
   onAddNewTraining() {
