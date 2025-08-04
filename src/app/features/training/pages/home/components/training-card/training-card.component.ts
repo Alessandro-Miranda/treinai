@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonIcon, IonText } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { calendarOutline, chevronForwardOutline, timeOutline } from 'ionicons/icons';
@@ -17,7 +18,8 @@ import { Training } from 'src/app/core/interfaces/training.interface';
     IonButton,
     IonIcon,
     IonText,
-    DatePipe
+    DatePipe,
+    RouterLink
 ],
 })
 export class TrainingCardComponent {
