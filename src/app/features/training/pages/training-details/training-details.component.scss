@@ -13,3 +13,16 @@
     margin-right: .375rem;
   }
 }
+
+.training-divisions {
+  margin-top: 1.375rem;
+
+  ion-card {
+    width: 100%;
+  }
+}
+
+.init-training-button {
+  --background: var(--color-dark-red);
+  --color: white;
+}
