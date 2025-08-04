@@ -21,6 +21,32 @@
         </ion-col>
       </ion-row>
     </ion-grid>
+
+    <ion-grid class="ion-no-padding training-divisions">
+      @for (division of training.divisions; track $index) {
+        <ion-row>
+          <ion-card class="ion-padding">
+            <ion-card-header>
+              <ion-card-title>
+                <h3 class="ion-no-margin">
+                  {{ division.title }}
+                </h3>
+              </ion-card-title>
+              <ion-text>
+                <p class="ion-no-margin">
+                  {{ division.exercises.length }} exercícios
+                </p>
+              </ion-text>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-button class="init-training-button">
+                Iniciar
+              </ion-button>
+            </ion-card-content>
+          </ion-card>
+        </ion-row>
+      }
+    </ion-grid>
   }
 </ion-content>
 
