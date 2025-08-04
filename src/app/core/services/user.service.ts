@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { User } from '@angular/fire/auth';
-import { serverTimestamp } from '@angular/fire/firestore';
+import { DocumentSnapshot, serverTimestamp } from '@angular/fire/firestore';
 import { firstValueFrom } from 'rxjs';
 import { FirestoreService } from '../firebase/firestore.service';
 import { UserData } from '../interfaces/user.inteface';
