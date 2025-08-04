@@ -4,7 +4,7 @@ import { RouterLink } from '@angular/router';
 import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonIcon, IonText } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { calendarOutline, chevronForwardOutline, timeOutline } from 'ionicons/icons';
-import { Training } from 'src/app/core/interfaces/training.interface';
+import { TrainingPreviewData } from 'src/app/core/interfaces/training.interface';
 
 @Component({
   selector: 'app-training-card',
@@ -23,7 +23,7 @@ import { Training } from 'src/app/core/interfaces/training.interface';
 ],
 })
 export class TrainingCardComponent {
-  @Input() training!: Training;
+  @Input() training!: TrainingPreviewData;
 
   constructor() {
     addIcons({ calendarOutline, timeOutline, chevronForwardOutline })
