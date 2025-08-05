@@ -9,6 +9,7 @@ import {
 import { CardComponent } from 'src/app/shared/card/card.component';
 import { CardContentComponent } from 'src/app/shared/card/components/card-content/card-content.component';
 import { CardHeaderComponent } from 'src/app/shared/card/components/card-header/card-header.component';
+import { PopoverComponent } from "src/app/shared/popover/popover.component";
 import { ExerciseCardDetailComponent } from "./exercises-card-detail.component";
 
 @Component({
@@ -23,9 +24,11 @@ import { ExerciseCardDetailComponent } from "./exercises-card-detail.component";
     IonRow,
     IonButton,
     IonIcon,
-    ExerciseCardDetailComponent
+    ExerciseCardDetailComponent,
+    PopoverComponent
 ],
 })
 export class ExercisesCardComponent {
   @Input({ required: true }) exercise!: Exercises;
+  @Input({ required: true }) id!: string | number;
 }
