@@ -1,6 +1,6 @@
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import {
   IonButton,
   IonContent,
@@ -35,7 +35,8 @@ import { TrainingCardComponent } from './components/training-card/training-card.
     IonFab,
     IonFabButton,
     TrainingCardComponent,
-    HeaderComponent
+    HeaderComponent,
+    RouterLink
 ],
 })
 export class TrainingComponent implements OnInit {
