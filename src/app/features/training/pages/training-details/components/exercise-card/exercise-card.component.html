@@ -17,20 +17,7 @@
   <ion-button
     shape="round"
     class="exercise-infos"
-    [id]="`exercise-infos-{{ id }}`"
   >
     <ion-icon slot="icon-only" name="information-circle-outline" />
   </ion-button>
-  
-  <ion-popover [trigger]="`exercise-infos-{{ id }}`" triggerAction="click">
-    <ng-template>
-      <ion-content>
-        <p>
-          oi do popover
-        </p>
-        <ng-content />
-      </ion-content>
-    </ng-template>
-  </ion-popover>
-
-</app-card>
+  </app-card>
