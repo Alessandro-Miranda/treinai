@@ -1,0 +1,48 @@
+<app-card>
+  <div>
+    <app-card-header [title]="exercise.name" />
+
+    <app-card-content>
+      <ion-grid>
+        <ion-row class="ion-justify-content-between">
+          <ion-col size="auto">
+            <p>
+              Séries:
+            </p>
+            <p>
+              {{ exercise.sets }}
+            </p>
+          </ion-col>
+          <ion-col size="auto">
+            <p>
+              Repetições:
+            </p>
+            <p>
+              {{ exercise.reps }}
+            </p>
+          </ion-col>
+          <ion-col size="auto">
+            <p>
+              Descanso:
+            </p>
+            <p>
+              {{ exercise.rest }} seg.
+            </p>
+          </ion-col>
+          <ion-col size="auto">
+            <p>
+              Carga:
+            </p>
+            <p>
+              {{ exercise.weight }}
+            </p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </app-card-content>
+  </div>
+
+  <ion-button shape="round" class="exercise-infos">
+    <ion-icon slot="icon-only" name="information-circle-outline" />
+  </ion-button>
+</app-card>
