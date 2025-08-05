@@ -5,9 +5,11 @@ import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonCol
 import { addIcons } from 'ionicons';
 import { calendarOutline, chevronBackOutline } from 'ionicons/icons';
 import { Observable } from 'rxjs';
-import { Training } from 'src/app/core/interfaces/training.interface';
+import { Divisions, Training } from 'src/app/core/interfaces/training.interface';
 import { TrainingService } from 'src/app/core/services/training.service';
 import { HeaderComponent } from 'src/app/shared/header/header.component';
+import { ExercisesListModalComponent } from "./components/exercises-list-modal/exercises-list-modal.component";
+import { ExercisesListModalService } from './components/exercises-list-modal/exercises-list-modal.service';
 
 @Component({
   selector: 'app-training-details',
@@ -26,12 +28,14 @@ import { HeaderComponent } from 'src/app/shared/header/header.component';
     IonCardContent,
     IonCardHeader,
     IonCardTitle,
-    IonButton
+    IonButton,
+    ExercisesListModalComponent
 ],
 })
 export class TrainingDetailsComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private trainingService = inject(TrainingService);
+  private exercisesListService = inject(ExercisesListModalService);
   private trainingId!: string;
   training$!: Observable<Training>;
 
@@ -42,5 +46,9 @@ export class TrainingDetailsComponent implements OnInit {
   async ngOnInit() {
     this.trainingId = this.route.snapshot.params['id'];
     this.training$ = this.trainingService.findTrainingById(this.trainingId);
+  }
+
+  openExerciseList(exerciseDivision: Divisions) {
+    this.exercisesListService.open(exerciseDivision);
   }
 }

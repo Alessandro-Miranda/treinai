@@ -39,7 +39,7 @@
               </ion-text>
             </ion-card-header>
             <ion-card-content>
-              <ion-button class="init-training-button">
+              <ion-button class="init-training-button" (click)="openExerciseList(division)">
                 Iniciar
               </ion-button>
             </ion-card-content>
@@ -48,5 +48,6 @@
       }
     </ion-grid>
   }
-</ion-content>
 
+  <app-exercises-list-modal />
+</ion-content>
