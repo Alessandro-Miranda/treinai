@@ -1,0 +1,15 @@
+<app-card>
+  <app-card-header [title]="trainingDivision.title">
+    <ion-text card-header-content>
+      <p class="ion-no-margin">
+        {{ trainingDivision.exercises.length }} exercícios
+      </p>
+    </ion-text>
+  </app-card-header>
+
+  <app-card-content>
+    <ion-button class="init-training-button" (click)="openExerciseList(trainingDivision)">
+      Iniciar
+    </ion-button>
+  </app-card-content>
+</app-card>
