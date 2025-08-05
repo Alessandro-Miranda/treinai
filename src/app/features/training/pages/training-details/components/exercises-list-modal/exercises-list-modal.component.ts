@@ -1,29 +1,17 @@
 import { Component, inject, OnInit } from '@angular/core';
-import {
-  IonButton,
-  IonCol,
-  IonContent,
-  IonGrid,
-  IonHeader,
-  IonIcon,
-  IonModal,
-  IonRow,
-  IonText,
-  IonTitle,
-  IonToolbar,
-} from '@ionic/angular/standalone';
+import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonModal, IonRow, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { chevronBackOutline } from 'ionicons/icons';
+import { chevronBackOutline, informationCircleOutline } from 'ionicons/icons';
 import { Divisions } from 'src/app/core/interfaces/training.interface';
 import { ExercisesListModalService } from './exercises-list-modal.service';
 
 @Component({
   selector: 'app-exercises-list-modal',
   templateUrl: './exercises-list-modal.component.html',
+  styleUrl: './exercises-list-modal.component.scss',
   imports: [
     IonModal,
     IonContent,
-    IonText,
     IonCol,
     IonTitle,
     IonIcon,
@@ -32,7 +20,11 @@ import { ExercisesListModalService } from './exercises-list-modal.service';
     IonToolbar,
     IonHeader,
     IonButton,
-  ],
+    IonCard,
+    IonCardHeader,
+    IonCardTitle,
+    IonCardContent
+],
 })
 export class ExercisesListModalComponent implements OnInit {
   private modalService = inject(ExercisesListModalService);
@@ -41,7 +33,11 @@ export class ExercisesListModalComponent implements OnInit {
   isOpen = false;
 
   constructor() {
-    addIcons({ chevronBackOutline });
+    addIcons({ chevronBackOutline, informationCircleOutline });
+  }
+
+  get exercises() {
+    return this.exerciseDivision.exercises;
   }
 
   ngOnInit() {
