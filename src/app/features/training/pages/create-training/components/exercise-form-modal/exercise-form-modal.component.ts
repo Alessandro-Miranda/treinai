@@ -8,9 +8,9 @@ import { ToastService } from 'src/app/shared/toast/toast.service';
 import { ExerciseControl, Exercises } from '../../@types/exercises';
 
 @Component({
-  selector: 'app-exercise-modal',
-  templateUrl: './exercise-modal.component.html',
-  styleUrls: ['./exercise-modal.component.scss'],
+  selector: 'app-exercise-form-modal',
+  templateUrl: './exercise-form-modal.component.html',
+  styleUrls: ['./exercise-form-modal.component.scss'],
   imports: [
     IonModal,
     IonHeader,
