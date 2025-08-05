@@ -14,7 +14,11 @@
     </app-card-content>
   </div>
 
-  <ion-button shape="round" class="exercise-infos">
+  <ion-button
+    shape="round"
+    class="exercise-infos"
+    (click)="onOpenExerciseInfo(exercise.observation)"
+  >
     <ion-icon slot="icon-only" name="information-circle-outline" />
   </ion-button>
 </app-card>
