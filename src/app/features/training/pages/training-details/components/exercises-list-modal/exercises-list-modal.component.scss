@@ -1,0 +1,19 @@
+.exercises-length {
+  color: rgba(234, 234, 234, .3);
+}
+
+ion-card {
+  position: relative;
+}
+
+ion-row, ion-card {
+  width: 100%;
+}
+
+.exercise-infos {
+  --background: var(--color-light-gray);
+  --color: var(--color-dark-red);
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
