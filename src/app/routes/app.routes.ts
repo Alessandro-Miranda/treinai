@@ -15,11 +15,24 @@ export const routes: Routes = [
     children: [
       {
         path: 'training',
-        loadChildren: () => import('@Features/training/training.route').then(m => m.trainingRoute)
+        loadChildren: () =>
+          import('@Features/training/training.route').then(
+            (m) => m.trainingRoute
+          ),
       },
       {
         path: 'profile',
-        loadComponent: () => import('@Features/profile/profile.component').then(m => m.ProfileComponent)
+        loadComponent: () =>
+          import('@Features/profile/profile.component').then(
+            (m) => m.ProfileComponent
+          ),
+      },
+      {
+        path: 'progress',
+        loadComponent: () =>
+          import('@Features/progress/progress.component').then(
+            (m) => m.ProgressComponent
+          ),
       },
       {
         path: '',
