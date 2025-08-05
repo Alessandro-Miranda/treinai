@@ -27,7 +27,7 @@ import {
 } from './@types/exercises';
 import { AddDivisionComponent } from './components/add-division/add-division.component';
 import { DivisionListComponent } from './components/division-list/division-list.component';
-import { ExerciseModalComponent } from './components/exercise-modal/exercise-modal.component';
+import { ExerciseFormModalComponent } from './components/exercise-form-modal/exercise-form-modal.component';
 
 @Component({
   selector: 'app-create-training',
@@ -42,7 +42,7 @@ import { ExerciseModalComponent } from './components/exercise-modal/exercise-mod
     IonText,
     AddDivisionComponent,
     DivisionListComponent,
-    ExerciseModalComponent,
+    ExerciseFormModalComponent,
     ReactiveFormsModule,
     HeaderComponent
 ],
