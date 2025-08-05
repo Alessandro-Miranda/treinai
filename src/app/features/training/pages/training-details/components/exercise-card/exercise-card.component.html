@@ -1,0 +1,36 @@
+<app-card>
+  <div>
+    <app-card-header [title]="exercise.name" />
+
+    <app-card-content>
+      <ion-grid>
+        <ion-row class="ion-justify-content-between">
+          <app-exercise-card-detail label="Séries:" [value]="exercise.sets" />
+          <app-exercise-card-detail label="Repetições:" [value]="exercise.reps" />
+          <app-exercise-card-detail label="Descanso:" [value]="exercise.rest" />
+          <app-exercise-card-detail label="Carga:" [value]="exercise.weight" />
+        </ion-row>
+      </ion-grid>
+    </app-card-content>
+  </div>
+
+  <ion-button
+    shape="round"
+    class="exercise-infos"
+    [id]="`exercise-infos-{{ id }}`"
+  >
+    <ion-icon slot="icon-only" name="information-circle-outline" />
+  </ion-button>
+  
+  <ion-popover [trigger]="`exercise-infos-{{ id }}`" triggerAction="click">
+    <ng-template>
+      <ion-content>
+        <p>
+          oi do popover
+        </p>
+        <ng-content />
+      </ion-content>
+    </ng-template>
+  </ion-popover>
+
+</app-card>
