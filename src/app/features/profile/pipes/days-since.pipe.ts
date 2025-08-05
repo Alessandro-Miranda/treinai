@@ -5,14 +5,15 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class DaysSincePipe implements PipeTransform {
 
-  transform(dateInTimestamp: number): number {
-    if (dateInTimestamp === 0) return 0;
+  transform(dateInTimestamp: number): string {
+    if (dateInTimestamp === 0) return '';
 
     const currentDate = Date.now();
     const dateDifference = currentDate - dateInTimestamp;
     const millisecondsInDay = 24 * 60 * 60 * 1000;
+    const daysPassed = Math.ceil(dateDifference / millisecondsInDay);
 
-    return Math.ceil(dateDifference / millisecondsInDay);
+    return daysPassed + ` dia${daysPassed <= 1 ? '' : 's'}`;
   }
 
 }
