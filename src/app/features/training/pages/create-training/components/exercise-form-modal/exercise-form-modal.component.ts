@@ -28,7 +28,7 @@ import { ExerciseControl, Exercises } from '../../@types/exercises';
     ToastComponent
 ],
 })
-export class ExerciseModalComponent {
+export class ExerciseFormModalComponent {
   private toastService = inject(ToastService);
 
   @Input() isOpen = false;
