@@ -14,7 +14,7 @@ import {
 import { addIcons } from 'ionicons';
 import { chevronBackOutline, informationCircleOutline } from 'ionicons/icons';
 import { Divisions } from 'src/app/core/interfaces/training.interface';
-import { ExercisesCardComponent } from "../exercises-card/exercises-card.component";
+import { ExercisesCardComponent } from "../exercise-card/exercise-card.component";
 import { ExercisesListModalService } from './exercises-list-modal.service';
 
 @Component({

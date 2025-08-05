@@ -31,7 +31,7 @@
       <ion-grid class="ion-no-margin ion-no-padding">
         @for (exercise of exercises; track $index) {
         <ion-row>
-          <app-exercises-card [exercise]="exercise" [id]="$index" />
+          <app-exercise-card [exercise]="exercise" [id]="$index" />
         </ion-row>
         }
       </ion-grid>
