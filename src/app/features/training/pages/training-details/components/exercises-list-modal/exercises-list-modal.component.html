@@ -21,13 +21,68 @@
     </ion-header>
 
     <ion-content class="ion-padding">
-      <h2>
-        Divisão {{ exerciseDivision.title }}
-      </h2>
-      <span>{{ exerciseDivision.exercises.length }} exercício(s)</span>
-      <ion-text>
-        <p>Aqui vai o conteúdo foda</p>
-      </ion-text>
+      <div class="ion-text-center ion-margin-top ion-margin-bottom">
+        <h2 class="ion-no-margin">
+          Divisão {{ exerciseDivision.title }}
+        </h2>
+        <span class="exercises-length">{{ exerciseDivision.exercises.length }} exercício(s)</span>
+      </div>
+
+      <ion-grid class="ion-no-margin ion-no-padding">
+        @for (exercise of exercises; track $index) {
+          <ion-row>
+            <ion-card class="ion-padding">
+              <div>
+                <ion-card-header>
+                  <ion-card-title>{{ exercise.name }}</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                  <ion-grid>
+                    <ion-row class="ion-justify-content-between">
+                      <ion-col size="auto">
+                        <p>
+                          Séries:
+                        </p>
+                        <p>
+                          {{ exercise.sets }}
+                        </p>
+                      </ion-col>
+                      <ion-col size="auto">
+                        <p>
+                          Repetições:
+                        </p>
+                        <p>
+                          {{ exercise.reps }}
+                        </p>
+                      </ion-col>
+                      <ion-col size="auto">
+                        <p>
+                          Descanso:
+                        </p>
+                        <p>
+                          {{ exercise.rest }}
+                        </p>
+                      </ion-col>
+                      <ion-col size="auto">
+                        <p>
+                          Carga:
+                        </p>
+                        <p>
+                          {{ exercise?.weight }}
+                        </p>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-card-content>
+              </div>
+              <ion-button shape="round" class="exercise-infos">
+                <ion-icon slot="icon-only" name="information-circle-outline" />
+              </ion-button>
+            </ion-card>
+          </ion-row>
+        }
+      </ion-grid>
+      
     </ion-content>
   </ng-template>
 </ion-modal>
