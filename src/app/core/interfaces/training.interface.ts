@@ -2,7 +2,7 @@ import { Timestamp } from "@angular/fire/firestore";
 import { FormArray, FormControl } from "@angular/forms";
 import { DivisionGroup, Exercises } from "@Features/training/pages/create-training/@types/exercises";
 
-type Divisions = {
+export type Divisions = {
   title: string;
   exercises: Exercises[];
 }
