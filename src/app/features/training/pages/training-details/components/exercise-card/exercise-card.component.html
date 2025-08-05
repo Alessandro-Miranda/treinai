@@ -17,6 +17,7 @@
   <ion-button
     shape="round"
     class="exercise-infos"
+    (click)="onOpenExerciseInfo($event, exercise.observation)"
   >
     <ion-icon slot="icon-only" name="information-circle-outline" />
   </ion-button>
