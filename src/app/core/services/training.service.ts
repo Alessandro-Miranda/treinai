@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { DocumentSnapshot, serverTimestamp } from '@angular/fire/firestore';
 import { FormGroup } from '@angular/forms';
 import { filter, map, Observable } from 'rxjs';
-import { AuthService } from '../firebase/auth.service';
+import { AuthService } from '../auth/auth.service';
 import { FirestoreService } from '../firebase/firestore.service';
 import { Training, TrainingData } from '../interfaces/training.interface';
 
@@ -17,25 +17,27 @@ export class TrainingService {
       'id' | 'userId' | 'createdAt'
     >;
     const workoutId = crypto.randomUUID();
+    const { uid: userId } = await this.authService.getCurrentUser();
 
     return this.firestoreService.create<Training>({
       path: `workouts/${workoutId}`,
       data: {
         id: workoutId,
-        userId: this.authService.getCurrentUser()!.uid,
+        userId,
         ...workout,
         createdAt: serverTimestamp(),
       },
     });
   }
 
-  listTrainings(): Observable<Training[]> {
+  async listTrainings(): Promise<Observable<Training[]>> {
+    const { uid: userId } = await this.authService.getCurrentUser();
     return this.firestoreService.findMany<Training>({
       path: 'workouts',
       where: {
         fieldPath: 'userId',
         operation: '==',
-        value: this.authService.getCurrentUser()!.uid,
+        value: userId,
       },
     });
   }
