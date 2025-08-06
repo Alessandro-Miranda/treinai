@@ -50,8 +50,9 @@ export class TrainingComponent implements OnInit {
     addIcons({ addOutline, add });
   }
 
-  ngOnInit() {
-    this.training$ = this.trainingService.listTrainings().pipe(
+  async ngOnInit() {
+    const training = await this.trainingService.listTrainings();
+    this.training$ = training.pipe(
       map((trainings) =>
         trainings.map(
           (training): TrainingPreviewData => ({

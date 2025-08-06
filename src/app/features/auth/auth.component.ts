@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { IonButton, IonContent, IonIcon, IonText } from "@ionic/angular/standalone";
 import { addIcons } from 'ionicons';
 import { logoGoogle } from "ionicons/icons";
-import { AuthService } from 'src/app/core/firebase/auth.service';
+import { AuthService } from 'src/app/core/auth/auth.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { ToastComponent } from "src/app/shared/toast/toast.component";
 import { ToastService } from 'src/app/shared/toast/toast.service';
