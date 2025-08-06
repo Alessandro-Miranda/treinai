@@ -1,5 +1,4 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { User } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import {
   IonButton,
@@ -15,7 +14,8 @@ import {
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { logOutOutline, medalOutline } from 'ionicons/icons';
-import { AuthService } from 'src/app/core/firebase/auth.service';
+import { AuthService } from 'src/app/core/auth/auth.service';
+import { UserData } from 'src/app/core/auth/interfaces/user-data.interace';
 import { DaysSincePipe } from './pipes/days-since.pipe';
 
 @Component({
@@ -40,16 +40,14 @@ export class ProfileComponent implements OnInit {
   private authService = inject(AuthService);
   private router = inject(Router);
   
-  user!: User;
-  userRegistrationDate = 0;
+  user!: UserData;
 
   constructor() {
     addIcons({ medalOutline, logOutOutline });
   }
   
-  ngOnInit() {
-    this.user = this.authService.getCurrentUser() as User;
-    this.userRegistrationDate = new Date(this.user.metadata.creationTime!).getTime();
+  async ngOnInit() {
+    this.user = await this.authService.getCurrentUser();
   }
 
   async onLogout() {
