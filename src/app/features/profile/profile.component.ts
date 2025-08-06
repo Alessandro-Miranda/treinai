@@ -40,7 +40,7 @@ export class ProfileComponent implements OnInit {
   private authService = inject(AuthService);
   private router = inject(Router);
   
-  user!: UserData;
+  user: UserData | null = null;
 
   constructor() {
     addIcons({ medalOutline, logOutOutline });
