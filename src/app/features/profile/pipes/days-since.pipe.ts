@@ -5,8 +5,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class DaysSincePipe implements PipeTransform {
 
-  transform(dateInTimestamp: number): string {
-    if (dateInTimestamp === 0) return '';
+  transform(dateInTimestamp?: number): string {
+    if (dateInTimestamp === 0 || !dateInTimestamp) return '';
 
     const currentDate = Date.now();
     const dateDifference = currentDate - dateInTimestamp;
