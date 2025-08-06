@@ -1,15 +1,14 @@
 import { inject, Injectable } from '@angular/core';
-import { User } from '@angular/fire/auth';
-import { DocumentSnapshot, serverTimestamp } from '@angular/fire/firestore';
+import { DocumentSnapshot } from '@angular/fire/firestore';
 import { firstValueFrom } from 'rxjs';
+import { UserData } from '../auth/interfaces/user-data.interace';
 import { FirestoreService } from '../firebase/firestore.service';
-import { UserData } from '../interfaces/user.inteface';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
   private firestoreService = inject(FirestoreService);
 
-  async createIfNotExists(user: User): Promise<void> {
+  async createIfNotExists(user: UserData): Promise<void> {
     const collectionpath = this.getCollectionPath(user);
     const userSnapshot = await firstValueFrom(
       this.firestoreService.findDoc<DocumentSnapshot>({
@@ -21,16 +20,11 @@ export class UserService {
 
     return await this.firestoreService.create<UserData>({
       path: collectionpath,
-      data: {
-        uid: user.uid,
-        displayName: user.displayName,
-        email: user.email,
-        createdAt: serverTimestamp(),
-      },
+      data: user
     });
   }
 
-  private getCollectionPath(user: User) {
+  private getCollectionPath(user: UserData) {
     return `users/${user.uid}`;
   }
 }
