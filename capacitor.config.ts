@@ -1,9 +1,16 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
+  appId: 'com.alessandro.treinai',
   appName: 'treinaí',
-  webDir: 'www'
+  webDir: 'www',
+  plugins: {
+    FirebaseAuthentication: {
+      authDomain: undefined,
+      providers: ['google.com'],
+      skipNativeAuth: false,
+    },
+  },
 };
 
 export default config;
