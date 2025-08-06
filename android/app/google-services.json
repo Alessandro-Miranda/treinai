@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "907724283487",
+    "project_id": "treinai-e5e78",
+    "storage_bucket": "treinai-e5e78.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:907724283487:android:b7bea378075b55b39845ea",
+        "android_client_info": {
+          "package_name": "com.alessandro.treinai"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "907724283487-smu0ckljlf212pv0f7p4k6v23eg2qscu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.alessandro.treinai",
+            "certificate_hash": "beaf23cb94f0e9c7389077e9f901b7e5db2ed5fd"
+          }
+        },
+        {
+          "client_id": "907724283487-npknne30hi9b1uic0pa0e0in20vsj6p6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjUQSCgHscO7Kac1tK_aYdNQu7lDgx67g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "907724283487-npknne30hi9b1uic0pa0e0in20vsj6p6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
