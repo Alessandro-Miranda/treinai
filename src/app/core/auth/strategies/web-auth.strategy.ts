@@ -1,18 +1,19 @@
-import { inject, Injectable } from "@angular/core";
+import { EnvironmentInjector, inject, Injectable, runInInjectionContext } from "@angular/core";
 import { Auth, signInWithPopup } from "@angular/fire/auth";
 import { GoogleAuthProvider } from "firebase/auth";
-import { RunMethodInContext } from "../../firebase/decorators/run-in-context";
 import { UserData } from "../interfaces/user-data.interace";
 import { AuthStrategy } from "./auth-strategy";
 
 @Injectable({ providedIn: 'root' })
 export class WebAuthStrategy extends AuthStrategy {
   private auth = inject(Auth);
+  private injector = inject(EnvironmentInjector);
 
-  @RunMethodInContext
   override async signInWithGoogle(): Promise<UserData> {
     const provider = new GoogleAuthProvider();
-    const { user } = await signInWithPopup(this.auth, provider);
+    const { user } = await runInInjectionContext(this.injector, async () => {
+      return await signInWithPopup(this.auth, provider);
+    })
 
     return this.formatUserData(user);
   }
