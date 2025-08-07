@@ -11,12 +11,12 @@ import {
   IonGrid,
   IonIcon,
   IonRow,
-  IonText
+  IonText,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { add, addOutline } from 'ionicons/icons';
 import { map, Observable } from 'rxjs';
-import { HeaderComponent } from "src/app/shared/header/header.component";
+import { HeaderComponent } from 'src/app/shared/header/header.component';
 import { TrainingCardComponent } from './components/training-card/training-card.component';
 
 @Component({
@@ -36,8 +36,8 @@ import { TrainingCardComponent } from './components/training-card/training-card.
     IonFabButton,
     TrainingCardComponent,
     HeaderComponent,
-    RouterLink
-],
+    RouterLink,
+  ],
 })
 export class TrainingComponent implements OnInit {
   private router = inject(Router);
@@ -54,14 +54,16 @@ export class TrainingComponent implements OnInit {
     const training = await this.trainingService.listTrainings();
     this.training$ = training.pipe(
       map((trainings) =>
-        trainings.map(
-          (training): TrainingPreviewData => ({
-            id: training.id,
-            createdAt: training.createdAt,
-            duration: training.duration,
-            name: training.name,
-          })
-        )
+        trainings
+          .map(
+            (training): TrainingPreviewData => ({
+              id: training.id,
+              createdAt: training.createdAt,
+              duration: training.duration,
+              name: training.name,
+            })
+          )
+          .sort((a, b) => b.createdAt.toMillis() - a.createdAt.toMillis())
       )
     );
   }
