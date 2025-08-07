@@ -15,11 +15,3 @@ export function RunInFirebaseContext<T extends { new (...args: any[]): {} }>(
 
   return target;
 }
-
-export function RunMethodInContext(
-  _target: Object,
-  _property: string | symbol,
-  descriptor: TypedPropertyDescriptor<any>
-) {
-  descriptor.value = withInjectionContext(descriptor.value);
-}
