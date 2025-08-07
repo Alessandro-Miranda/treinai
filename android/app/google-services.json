@@ -14,11 +14,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "907724283487-smu0ckljlf212pv0f7p4k6v23eg2qscu.apps.googleusercontent.com",
+          "client_id": "907724283487-bcv6vch4jgi5arjllg920uvd6209uu87.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.alessandro.treinai",
-            "certificate_hash": "beaf23cb94f0e9c7389077e9f901b7e5db2ed5fd"
+            "certificate_hash": "2062cb20965b984cab05f50d9505382a2e7670fd"
           }
         },
         {
