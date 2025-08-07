@@ -1,6 +1,6 @@
 import { Component, inject, Input } from "@angular/core";
+import { Divisions } from "@Features/training/interfaces/training.interface";
 import { IonButton, IonText } from "@ionic/angular/standalone";
-import { Divisions } from "src/app/core/interfaces/training.interface";
 import { CardComponent } from "src/app/shared/card/card.component";
 import { CardContentComponent } from "src/app/shared/card/components/card-content/card-content.component";
 import { CardHeaderComponent } from "src/app/shared/card/components/card-header/card-header.component";

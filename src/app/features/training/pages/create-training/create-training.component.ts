@@ -7,6 +7,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { TrainingData } from '@Features/training/interfaces/training.interface';
+import { TrainingService } from '@Features/training/services/training.service';
 import {
   IonButton,
   IonContent,
@@ -15,8 +17,6 @@ import {
   IonRow,
   IonText
 } from '@ionic/angular/standalone';
-import { TrainingData } from 'src/app/core/interfaces/training.interface';
-import { TrainingService } from 'src/app/core/services/training.service';
 import { HeaderComponent } from "src/app/shared/header/header.component";
 import { ToastService } from 'src/app/shared/toast/toast.service';
 import {
@@ -42,10 +42,10 @@ import { ExerciseFormModalComponent } from './components/exercise-form-modal/exe
     IonText,
     AddDivisionComponent,
     DivisionListComponent,
-    ExerciseFormModalComponent,
     ReactiveFormsModule,
-    HeaderComponent
-],
+    HeaderComponent,
+    ExerciseFormModalComponent
+  ],
 })
 export class CreateTrainingComponent {
   private toastService = inject(ToastService);

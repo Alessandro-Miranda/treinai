@@ -1,6 +1,8 @@
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
+import { TrainingPreviewData } from '@Features/training/interfaces/training.interface';
+import { TrainingService } from '@Features/training/services/training.service';
 import {
   IonButton,
   IonContent,
@@ -14,8 +16,6 @@ import {
 import { addIcons } from 'ionicons';
 import { add, addOutline } from 'ionicons/icons';
 import { map, Observable } from 'rxjs';
-import { TrainingPreviewData } from 'src/app/core/interfaces/training.interface';
-import { TrainingService } from 'src/app/core/services/training.service';
 import { HeaderComponent } from "src/app/shared/header/header.component";
 import { TrainingCardComponent } from './components/training-card/training-card.component';
 

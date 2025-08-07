@@ -1,10 +1,10 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { TrainingPreviewData } from '@Features/training/interfaces/training.interface';
 import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonIcon, IonText } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { calendarOutline, chevronForwardOutline, timeOutline } from 'ionicons/icons';
-import { TrainingPreviewData } from 'src/app/core/interfaces/training.interface';
 
 @Component({
   selector: 'app-training-card',

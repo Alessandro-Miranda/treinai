@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
+import { Divisions } from "@Features/training/interfaces/training.interface";
 import { Subject } from "rxjs";
-import { Divisions } from "src/app/core/interfaces/training.interface";
 
 @Injectable({ providedIn: 'root' })
 export class ExercisesListModalService {

@@ -1,12 +1,12 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Training } from '@Features/training/interfaces/training.interface';
+import { TrainingService } from '@Features/training/services/training.service';
 import { IonCol, IonContent, IonGrid, IonIcon, IonRow, IonText } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { calendarOutline, chevronBackOutline } from 'ionicons/icons';
 import { Observable } from 'rxjs';
-import { Training } from 'src/app/core/interfaces/training.interface';
-import { TrainingService } from 'src/app/core/services/training.service';
 import { HeaderComponent } from 'src/app/shared/header/header.component';
 import { ExercisesListModalComponent } from "./components/exercises-list-modal/exercises-list-modal.component";
 import { TrainingDetailsCardComponent } from "./components/training-details-card/training-details-card.component";
