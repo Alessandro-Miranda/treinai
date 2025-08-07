@@ -2,6 +2,10 @@ ion-content.empty {
   --background: url('../../../../../assets/training-bg.jpg') no-repeat center center / cover;
 }
 
+ion-grid > *:not(:first-child) {
+  margin-top: 2.5rem;
+}
+
 ion-fab {
   margin-bottom: 4rem;
   margin-right: .75rem;
