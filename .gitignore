@@ -76,3 +76,7 @@ Thumbs.db
 .firebase
 *-debug.log
 .runtimeconfig.json
+
+# build
+my-release-key.jks
+keystore.properties
