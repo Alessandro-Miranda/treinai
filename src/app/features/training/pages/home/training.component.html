@@ -31,7 +31,11 @@
         Você ainda não adicionou nenhum treino.
       </p>
     </ion-text>
-    <ion-button fill="outline" class="ion-padding add-new-training" (click)="onAddNewTraining()">
+    <ion-button
+      fill="outline"
+      class="ion-padding add-new-training"
+      [routerLink]="['/training/create']"
+    >
       <ion-icon name="add-outline"></ion-icon>
       Novo Treino
     </ion-button>
