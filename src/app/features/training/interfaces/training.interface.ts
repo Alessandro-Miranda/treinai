@@ -1,4 +1,3 @@
-import { Timestamp } from "@angular/fire/firestore";
 import { FormArray, FormControl } from "@angular/forms";
 import { DivisionGroup, Exercises } from "@Features/training/pages/create-training/@types/exercises";
 
@@ -13,7 +12,7 @@ export interface Training {
   duration: string;
   divisions: Divisions[];
   userId: string;
-  createdAt: Timestamp
+  createdAt: number
 }
 
 export type TrainingPreviewData = Pick<Training, 'id' | 'name' | 'createdAt' | 'duration'>;
