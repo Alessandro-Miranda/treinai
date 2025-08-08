@@ -10,10 +10,10 @@ export class NativeAuthStrategy extends AuthStrategy {
 
     if (!user) return Promise.reject('Loggin Failed');
 
-    return this.formatUserData(user);
+    return this.formatUserData(user) as UserData;
   }
 
-  override async getCurrentUser(): Promise<UserData> {
+  override async getCurrentUser(): Promise<UserData | null> {
     const { user } = await FirebaseAuthentication.getCurrentUser();
     return this.formatUserData(user);
   }

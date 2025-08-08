@@ -21,7 +21,7 @@ export class AuthService implements AuthStrategyInterface {
     return this.authenticator.signInWithGoogle();
   }
 
-  getCurrentUser(): Promise<UserData> {
+  getCurrentUser(): Promise<UserData | null> {
     return this.authenticator.getCurrentUser();
   }
 

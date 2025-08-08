@@ -15,11 +15,15 @@ export class WebAuthStrategy extends AuthStrategy {
       return await signInWithPopup(this.auth, provider);
     })
 
-    return this.formatUserData(user);
+    return this.formatUserData(user) as UserData;
   }
 
-  override async getCurrentUser(): Promise<UserData> {
-    return this.formatUserData(this.auth.currentUser);
+  override async getCurrentUser(): Promise<UserData | null> {
+    return new Promise((resolve) => {
+      this.auth.onAuthStateChanged(user => {
+        return resolve(this.formatUserData(user));
+      });
+    });
   }
 
   override async logout(): Promise<void> {
