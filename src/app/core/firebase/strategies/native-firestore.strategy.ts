@@ -12,12 +12,12 @@ export class NativeFirestoreStrategy implements FirestoreStrategyInterface {
     });
   }
 
-  findDoc<T>({ path }: QueryPath): Observable<T> {
-    const document = FirebaseFirestore.getDocument({
+  async findDoc<T>({ path }: QueryPath): Promise<T> {
+    const { snapshot } = await FirebaseFirestore.getDocument({
       reference: path
-    }).then(({ snapshot }) => snapshot.data)
+    })
 
-    return from(document) as Observable<T>;
+    return snapshot.data as T;
   }
 
   findMany<T>({ path, where }: ReadParams<T>): Observable<T[]> {

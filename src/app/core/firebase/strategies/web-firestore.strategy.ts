@@ -3,16 +3,16 @@ import {
   collection,
   collectionData,
   doc,
-  docSnapshots,
   Firestore,
+  getDoc,
   query,
-  where,
+  where
 } from '@angular/fire/firestore';
 import {
   CollectionReference,
   DocumentData,
   DocumentReference,
-  setDoc,
+  setDoc
 } from 'firebase/firestore';
 import { Observable } from 'rxjs';
 import { FirebaseContext } from '../decorators/firebase-context';
@@ -36,8 +36,9 @@ export class WebFirestoreStrategy
     return setDoc(this.getRef({ path }), data);
   }
 
-  findDoc<T>({ path }: QueryPath): Observable<T> {
-    return docSnapshots(this.getRef({ path })) as Observable<T>;
+  async findDoc<T>({ path }: QueryPath): Promise<T> {
+    const document = await getDoc(this.getRef({ path }))
+    return document.data() as T;
   }
 
   findMany<T>({ path, where: filter }: ReadParams<T>): Observable<T[]> {
