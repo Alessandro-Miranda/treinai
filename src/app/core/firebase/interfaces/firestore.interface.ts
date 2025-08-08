@@ -1,5 +1,8 @@
-import { WhereFilterOp, WithFieldValue } from "firebase/firestore";
-import { Observable } from "rxjs";
+import {
+  WhereFilterOp,
+  WithFieldValue
+} from 'firebase/firestore';
+import { Observable } from 'rxjs';
 
 export type QueryPath = {
   path: string;
@@ -19,6 +22,6 @@ export type ReadParams<T> = QueryPath & {
 
 export interface FirestoreStrategyInterface {
   create: <T>(params: CreateParams<T>) => Promise<void>;
-  findDoc: <T>(params: QueryPath) => Observable<T>;
+  findDoc: <T>(params: QueryPath) => Promise<T>;
   findMany: <T>(params: ReadParams<T>) => Observable<T[]>;
 }
