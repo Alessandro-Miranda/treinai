@@ -51,10 +51,11 @@ export class TrainingComponent implements OnInit {
   }
 
   async ngOnInit() {
+    console.log('chamou o init do home')
     const training = await this.trainingService.listTrainings();
     this.training$ = training.pipe(
-      map((trainings) =>
-        trainings
+      map((trainings) => {
+        return trainings
           .map(
             (training): TrainingPreviewData => ({
               id: training.id,
@@ -63,12 +64,9 @@ export class TrainingComponent implements OnInit {
               name: training.name,
             })
           )
-          .sort((a, b) => b.createdAt.toMillis() - a.createdAt.toMillis())
+          .sort((a, b) => b.createdAt - a.createdAt)
+      }
       )
     );
-  }
-
-  onAddNewTraining() {
-    this.router.navigate(['/training/create']);
   }
 }
