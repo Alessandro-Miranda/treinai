@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
-import { serverTimestamp } from '@angular/fire/firestore';
 import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/core/auth/auth.service';
+import { UserData } from 'src/app/core/auth/interfaces/user-data.interace';
 import { FirestoreService } from 'src/app/core/firebase/firestore.service';
 import { Training, TrainingData } from '../interfaces/training.interface';
 
@@ -17,7 +17,7 @@ export class TrainingService {
       'id' | 'userId' | 'createdAt'
     >;
     const workoutId = crypto.randomUUID();
-    const { uid: userId } = await this.authService.getCurrentUser();
+    const { uid: userId } = await this.authService.getCurrentUser() as UserData;
 
     return this.firestoreService.create<Training>({
       path: `workouts/${workoutId}`,
@@ -25,13 +25,13 @@ export class TrainingService {
         id: workoutId,
         userId,
         ...workout,
-        createdAt: serverTimestamp(),
+        createdAt: Date.now(),
       },
     });
   }
 
   async listTrainings(): Promise<Observable<Training[]>> {
-    const { uid: userId } = await this.authService.getCurrentUser();
+    const { uid: userId } = await this.authService.getCurrentUser() as UserData;
     return this.firestoreService.findMany<Training>({
       path: 'workouts',
       where: {
