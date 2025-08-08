@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
-import { DocumentSnapshot, serverTimestamp } from '@angular/fire/firestore';
+import { serverTimestamp } from '@angular/fire/firestore';
 import { FormGroup } from '@angular/forms';
-import { filter, map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { FirestoreService } from 'src/app/core/firebase/firestore.service';
 import { Training, TrainingData } from '../interfaces/training.interface';
@@ -42,12 +42,9 @@ export class TrainingService {
     });
   }
 
-  findTrainingById(id: Training['id']): Observable<Training> {
-    return this.firestoreService.findDoc<DocumentSnapshot<Training>>({
+  findTrainingById(id: Training['id']): Promise<Training> {
+    return this.firestoreService.findDoc<Training>({
       path: `workouts/${id}`,
-    }).pipe(
-      filter(doc => doc.exists()),
-      map((doc): Training => ({ ...doc.data() }))
-    )
+    })
   }
 }
