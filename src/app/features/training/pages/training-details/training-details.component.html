@@ -1,7 +1,7 @@
 <app-header title="Detalhes do Treino" backTo="/training" />
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  @if (training$ | async; as training) {
+  @if (training) {
     <ion-text class="ion-text-center">
       <h1>
         {{ training.name }}
