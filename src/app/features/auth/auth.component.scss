@@ -2,6 +2,13 @@ ion-content {
   --background: url('../../../assets/main-background.jpg') no-repeat center center / cover;
 }
 
+ion-button[data-isAuthenticating="true"] {
+  ion-icon,
+  ion-text {
+    display: none;
+  }
+}
+
 .auth-grid {
   display: flex;
   flex-direction: column;
@@ -24,4 +31,12 @@ ion-content {
   --background: #fff;
   --color: var(--color-black);
   --border-color: var(--color-dark-magenta);
+}
+
+.loading {
+  display: none;
+
+  &[data-isAuthenticating="true"] {
+    display: block;
+  }
 }

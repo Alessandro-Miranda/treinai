@@ -7,9 +7,16 @@
       fill="outline"
       class="ion-margin-top ion-padding login-google"
       (click)="handleGoogleLogin();"
+      [attr.data-isAuthenticating]="isAuthenticating"
     >
       <ion-icon aria-hidden="true" name="logo-google" class="ion-margin-end"></ion-icon>
-      Login com Google
+      <ion-text>
+        login com Google
+      </ion-text> 
+
+      <span class="loading" [attr.data-isAuthenticating]="isAuthenticating">
+        <ion-spinner [paused]="!isAuthenticating" />
+      </span>
     </ion-button>
   </div>
 

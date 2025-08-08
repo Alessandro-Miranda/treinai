@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonButton, IonContent, IonIcon, IonText } from "@ionic/angular/standalone";
+import { IonButton, IonContent, IonIcon, IonSpinner, IonText } from "@ionic/angular/standalone";
 import { addIcons } from 'ionicons';
 import { logoGoogle } from "ionicons/icons";
 import { AuthService } from 'src/app/core/auth/auth.service';
@@ -12,7 +12,7 @@ import { ToastService } from 'src/app/shared/toast/toast.service';
   selector: 'app-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss'],
-  imports: [IonContent, IonButton, IonText, IonIcon, ToastComponent],
+  imports: [IonContent, IonButton, IonText, IonIcon, ToastComponent, IonSpinner],
 })
 export class AuthComponent {
   private authService = inject(AuthService);
@@ -20,12 +20,15 @@ export class AuthComponent {
   private userService = inject(UserService);
   private toastService = inject(ToastService);
 
+  isAuthenticating = false;
+
   constructor() {
     addIcons({ logoGoogle });
   }
 
   async handleGoogleLogin() {
     try {
+      this.isAuthenticating = true;
       const user = await this.authService.signInWithGoogle();
 
       await this.userService.createIfNotExists(user);
@@ -33,5 +36,7 @@ export class AuthComponent {
     } catch (err: any) {
       this.toastService.show(err.message);
     }
+
+    this.isAuthenticating = false;
   }
 }
