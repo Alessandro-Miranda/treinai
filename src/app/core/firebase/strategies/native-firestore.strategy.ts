@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FirebaseFirestore } from '@capacitor-firebase/firestore';
-import { from, Observable } from "rxjs";
+import { Observable } from "rxjs";
 import { CreateParams, FirestoreStrategyInterface, QueryPath, ReadParams } from "../interfaces/firestore.interface";
 
 @Injectable({ providedIn: 'root' })
@@ -21,21 +21,29 @@ export class NativeFirestoreStrategy implements FirestoreStrategyInterface {
   }
 
   findMany<T>({ path, where }: ReadParams<T>): Observable<T[]> {
-    const collection = FirebaseFirestore.getCollection({
-      reference: path,
-      compositeFilter: {
-        type: 'and',
-        queryConstraints: [
-          {
-            type: 'where',
-            fieldPath: where.fieldPath,
-            opStr: where.operation,
-            value: where.value
-          }
-        ]
-      }
-    }).then(({ snapshots }) => snapshots);
+    return new Observable<T[]>((subscriber) => {
+      const callbackId = FirebaseFirestore.addCollectionSnapshotListener({
+        reference: path,
+        compositeFilter: {
+          type: 'and',
+          queryConstraints: [
+            {
+              type: 'where',
+              fieldPath: where.fieldPath,
+              opStr: where.operation,
+              value: where.value,
+            },
+          ],
+        },
+      }, (event, error) => {
+        if (error) return subscriber.error(error);
 
-    return from(collection) as Observable<T[]>;
+        const data = event?.snapshots.map(doc => doc.data) as T[];
+
+        return subscriber.next(data);
+      }).then(id => id);
+
+      return async () => FirebaseFirestore.removeSnapshotListener({ callbackId: await callbackId })
+    })
   }
 }
