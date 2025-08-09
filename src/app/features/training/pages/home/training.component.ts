@@ -1,6 +1,6 @@
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { TrainingPreviewData } from '@Features/training/interfaces/training.interface';
 import { TrainingService } from '@Features/training/services/training.service';
 import {
@@ -40,7 +40,6 @@ import { TrainingCardComponent } from './components/training-card/training-card.
   ],
 })
 export class TrainingComponent implements OnInit {
-  private router = inject(Router);
   private trainingService = inject(TrainingService);
   training$!: Observable<TrainingPreviewData[]>;
 
@@ -51,7 +50,6 @@ export class TrainingComponent implements OnInit {
   }
 
   async ngOnInit() {
-    console.log('chamou o init do home')
     const training = await this.trainingService.listTrainings();
     this.training$ = training.pipe(
       map((trainings) => {
