@@ -1,2 +1,125 @@
-// For information on how to create your own theme, please refer to:
-// https://ionicframework.com/docs/theming/
+:root {
+  // Design System Definitions
+
+  // Primary color
+  --ds-color-primary: #5F5AFA;
+	--ds-color-primary-light: #8178FF;
+  --ds-color-primary-hover: #7A74FF;
+  --ds-color-primary-soft: #9E90FD;
+  --ds-color-primary-tint: #DED9FF;
+
+  // Background / Surface
+  --ds-color-background-primary: #010107;
+  --ds-color-background-secondary: #171A21;
+  --ds-color-surface: #171A21;
+  --ds-color-surface-hover: #282C35;
+  --ds-color-surface-active: #303440;
+	--ds-color-surface-elevated: #2A2E37;
+	--ds-color-surface-border: #33363F;
+
+  // Text / Content
+  --ds-color-text-primary: #F4F5F7;
+  --ds-color-text-secondary: #B4BAC5;
+  --ds-color-text-muted: #707784;
+  --ds-color-text-disabled: #4F545E;
+
+  // Semantic Colors
+  // Progress
+  --ds-color-progress-positive: #B6FF3B;
+
+  // Movement / Cardio
+  --ds-color-motion: #55F0D6;
+
+  // Performance / Achivements
+  --ds-color-performance: #FF8A3D;
+  --ds-color-performance-support: #FFB36A;
+
+  // Information / Notifications
+  --ds-color-success: #3EE58C;
+  --ds-color-warning: #FFC857;
+  --ds-color-danger: #FF5D73;
+  --ds-color-info: #5DA9FF;
+
+  // Typography
+  --ds-font-family: 'Outfit', sans-serif;
+  --ds-font-regular: 400;
+  --ds-font-medium: 500;
+  --ds-font-semibold: 600;
+  --ds-font-bold: 700;
+
+	--ds-font-size-micro: 11px;
+	--ds-font-size-caption: 13px;
+	--ds-font-size-body: 15px;
+	--ds-font-size-body-lg: 16px;
+	--ds-font-size-h3: 18px;
+	--ds-font-size-h2: 24px;
+	--ds-font-size-h1: 32px;
+	--ds-font-size-display: 36px;
+
+	--ds-font-line-height-micro: 16px;
+	--ds-font-line-height-caption: 20px;
+	--ds-font-line-height-body: 24px;
+	--ds-font-line-height-h3: 24px;
+	--ds-font-line-height-h2: 30px;
+	--ds-font-line-height-h1: 38px;
+	--ds-font-line-height-display: 44px;
+
+	// Spacing
+	--ds-spacing-1: 4px;
+	--ds-spacing-2: 8px;
+	--ds-spacing-3: 12px;
+	--ds-spacing-4: 16px;
+	--ds-spacing-5: 20px;
+	--ds-spacing-6: 24px;
+	--ds-spacing-8: 32px;
+	--ds-spacing-10: 40px;
+	--ds-spacing-12: 48px;
+	--ds-spacing-16: 64px;
+
+	// Border Radius
+	--ds-radius-sm: 8px;
+	--ds-radius-md: 12px;
+	--ds-radius-lg: 16px;
+	--ds-radius-xl: 20px;
+	--ds-radius-2xl: 24px;
+	--ds-radius-full: 999px;
+
+  // End of Design System Definitions
+
+	--ion-color-primary: var(--ds-color-primary);
+	--ion-color-primary-rgb: 95,90,250;
+	--ion-color-primary-contrast: #ffffff;
+	--ion-color-primary-contrast-rgb: 255,255,255;
+	--ion-color-primary-shade: #544fdc;
+	--ion-color-primary-tint: var(--ds-color-primary-tint);
+
+	--ion-color-success: var(--ds-color-success);
+	--ion-color-success-rgb: 62,229,140;
+	--ion-color-success-contrast: #000000;
+	--ion-color-success-contrast-rgb: 0,0,0;
+	--ion-color-success-shade: #37ca7b;
+	--ion-color-success-tint: #51e898;
+
+	--ion-color-warning: var(--ds-color-warning);
+	--ion-color-warning-rgb: 255,200,87;
+	--ion-color-warning-contrast: #000000;
+	--ion-color-warning-contrast-rgb: 0,0,0;
+	--ion-color-warning-shade: #e0b04d;
+	--ion-color-warning-tint: #ffce68;
+
+	--ion-color-danger: var(--ds-color-danger);
+	--ion-color-danger-rgb: 255,93,115;
+	--ion-color-danger-contrast: #000000;
+	--ion-color-danger-contrast-rgb: 0,0,0;
+	--ion-color-danger-shade: #e05265;
+	--ion-color-danger-tint: #ff6d81;
+
+	--ion-color-dark: var(--ds-color-background-primary);
+	--ion-color-dark-rgb: 1,1,7;
+	--ion-color-dark-contrast: #ffffff;
+	--ion-color-dark-contrast-rgb: 255,255,255;
+	--ion-color-dark-shade: #010106;
+	--ion-color-dark-tint: #1a1a20;
+
+  --ion-font-family: var(--ds-font-family);
+}
