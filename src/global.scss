@@ -35,3 +35,36 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+// Typography
+@font-face {
+  font-family: 'Outfit';
+  src: url('./assets/fonts/Outfit-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+h1 {
+  font-weight: var(--ds-font-bold);
+  font-size: var(--ds-font-size-h1);
+  line-height: var(--ds-font-line-height-h1);
+}
+
+h2 {
+  font-weight: var(--ds-font-semibold);
+  font-size: var(--ds-font-size-h2);
+  line-height: var(--ds-font-line-height-h2);
+}
+
+h3 {
+  font-weight: var(--ds-font-semibold);
+  font-size: var(--ds-font-size-h3);
+  line-height: var(--ds-font-line-height-h3);
+}
+
+body {
+  font-weight: var(--ds-font-regular);
+  font-size: var(--ds-font-size-body);
+  line-height: var(--ds-font-line-height-body);
+}
