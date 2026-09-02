@@ -70,6 +70,7 @@ ion-input.login__input {
 
 ion-button {
   --border-radius: var(--ds-radius-sm);
+  text-transform: unset;
 }
 
 ion-button.login__submit {
@@ -78,9 +79,10 @@ ion-button.login__submit {
     var(--ds-color-primary) 0%,
     var(--ds-color-primary-light) 100%
   );
+  --box-shadow: 0px 8px 24px rgba(95, 90, 250, .30);
 }
 
-.login__social-login {
+.login__social {
   text-align: center;
 
   span {
@@ -89,7 +91,24 @@ ion-button.login__submit {
   }
 
   hr {
-    margin: 0;
     background: var(--ds-color-surface-border);
+  }
+}
+
+.login__social__button-container {
+  margin-top: var(--ds-spacing-2);
+}
+
+ion-button.login__social-button {
+  --border-radius: var(--ds-radius-sm);
+  --border-color: var(--ds-color-surface-border);
+  --color: var(--ds-color-text-secondary);
+}
+
+.login__create-account {
+  color: var(--ds-color-text-secondary);
+
+  span {
+    color: var(--ds-color-primary);
   }
 }

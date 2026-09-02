@@ -51,7 +51,7 @@
       </ion-row>
     </ion-grid>
 
-    <ion-grid class="login__social-login">
+    <ion-grid class="login__social">
       <ion-row class="ion-justify-content-center ion-align-items-center">
         <ion-col size="5" class="ion-no-padding">
           <hr />
@@ -64,17 +64,26 @@
         </ion-col>
       </ion-row>
 
-      <ion-row>
+      <ion-row class="login__social__button-container">
         <ion-col size="12">
-          <ion-button expand="block" fill="outline" color="light">
-            <ion-icon slot="start" name="logo-google" aria-hidden="true"></ion-icon>
+          <ion-button
+            expand="block"
+            fill="outline"
+            class="login__social-button"
+          >
+            <ion-icon
+              slot="start"
+              name="logo-google"
+              class="ion-margin-end"
+              aria-hidden="true"
+            ></ion-icon>
             Entrar com Google
           </ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>
 
-    <p>
+    <p class="ion-text-center login__create-account">
       Ainda não tem uma conta? <span>Criar conta</span>
     </p>
   </form>
