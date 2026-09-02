@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   IonButton,
   IonCol,
@@ -25,4 +26,10 @@ import {
     IonCol,
   ],
 })
-export class LoginComponent {}
+export class LoginComponent {
+  private readonly _router = inject(Router);
+
+  navigateToHome(): void {
+    void this._router.navigate(['/workouts']);
+  }
+}
