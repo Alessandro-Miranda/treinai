@@ -1,0 +1,12 @@
+ion-tab-bar {
+  --background: var(--ds-color-background-primary);
+  --color: var(--ds-color-text-secondary);
+  border-top: 1px solid var(--ds-color-surface-border);
+  padding-top: var(--ds-spacing-2);
+}
+
+ion-tab-button {
+  --background: var(--ds-color-background-primary);
+  --color: var(--ds-color-text-secondary);
+  --color-selected: var(--ds-color-primary);
+}
