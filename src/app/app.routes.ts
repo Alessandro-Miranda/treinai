@@ -1,13 +1,17 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './core/auth-guard';
+import { tabRoutes } from './layouts/tab/tab.routes';
 
 export const routes: Routes = [
   {
-    path: 'home',
-    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
+    path: '',
+    loadComponent: () => import('./layouts/tab/tab.component').then((m) => m.TabComponent),
+    canMatch: [authGuard],
+    children: tabRoutes
   },
   {
     path: '',
-    redirectTo: 'home',
-    pathMatch: 'full',
-  },
+    loadComponent: () =>
+      import('./features/login/login.component').then((m) => m.LoginComponent),
+  }
 ];
