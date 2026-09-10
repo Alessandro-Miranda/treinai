@@ -63,6 +63,10 @@ h3 {
   line-height: var(--ds-font-line-height-h3);
 }
 
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+}
+
 body {
   font-weight: var(--ds-font-regular);
   font-size: var(--ds-font-size-body);

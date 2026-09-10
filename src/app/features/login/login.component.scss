@@ -38,12 +38,17 @@ ion-content {
   text-transform: uppercase;
 }
 
-.login__header-title span {
-  color: var(--ds-color-progress-positive);
+.login__header-title {
+  margin-top: var(--ds-spacing-1);
+
+  span {
+    color: var(--ds-color-progress-positive);
+  }
 }
 
 .login__header-description {
   color: var(--ds-color-text-secondary);
+  margin-top: var(--ds-spacing-2);
 }
 
 .login__input-container {
@@ -74,12 +79,8 @@ ion-button {
 }
 
 ion-button.login__submit {
-  --background: linear-gradient(
-    135deg,
-    var(--ds-color-primary) 0%,
-    var(--ds-color-primary-light) 100%
-  );
-  --box-shadow: 0px 8px 24px rgba(95, 90, 250, .30);
+  --background: var(--ds-color-primary-gradient);
+  --box-shadow: var(--ds-color-primary-box-shadow);
 }
 
 .login__social {
@@ -107,6 +108,7 @@ ion-button.login__social-button {
 
 .login__create-account {
   color: var(--ds-color-text-secondary);
+  margin-top: var(--ds-spacing-3);
 
   a {
     color: var(--ds-color-primary);

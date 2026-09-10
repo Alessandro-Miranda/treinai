@@ -7,6 +7,8 @@
   --ds-color-primary-hover: #7A74FF;
   --ds-color-primary-soft: #9E90FD;
   --ds-color-primary-tint: #DED9FF;
+	--ds-color-primary-gradient: linear-gradient(135deg, var(--ds-color-primary) 0%, var(--ds-color-primary-light) 100%);
+	--ds-color-primary-box-shadow: 0px 8px 24px rgba(95, 90, 250, .30);
 
   // Background / Surface
   --ds-color-background-primary: #010107;
