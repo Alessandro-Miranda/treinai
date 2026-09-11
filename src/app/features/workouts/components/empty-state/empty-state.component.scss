@@ -1,0 +1,44 @@
+.empty-state {
+  margin-top: var(--ds-spacing-8);
+  border: 1px dashed var(--ds-color-surface-border); 
+  border-radius: var(--ds-radius-lg);
+  padding: var(--ds-spacing-8);
+  height: 70%;
+  background-image: url('../../../../../assets/images/app-decoration.png');
+  background-repeat: no-repeat;
+  background-position-y: 150%;
+  background-position-x: center;
+
+  h2 {
+    max-width: 80%;
+    
+    span {
+      color: var(--ds-color-progress-positive);
+    }
+  }
+
+
+  p {
+    color: var(--ds-color-text-secondary);
+    margin-top: var(--ds-spacing-2);
+  }
+}
+
+.empty-state__icon {
+  background: var(--ds-color-surface);
+  border-radius: var(--ds-radius-full);
+  border: 1px solid var(--ds-color-surface-border);
+  padding: var(--ds-spacing-5);
+  margin-bottom: var(--ds-spacing-5);
+  width: max-content;
+}
+
+.empty-state__add-button {
+  margin-top: var(--ds-spacing-8);
+}
+
+ion-button {
+  --background: var(--ds-color-primary-gradient);
+  --box-shadow: var(--ds-color-primary-box-shadow);
+  width: 70%;
+}
