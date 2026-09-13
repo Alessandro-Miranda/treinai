@@ -8,9 +8,6 @@ export const tabRoutes: Routes = [
   },
   {
     path: 'workouts',
-    loadComponent: () =>
-      import('@/features/workouts/workouts.component').then(
-        (m) => m.WorkoutsComponent,
-      ),
+    loadChildren: () => import('@/features/workouts/workouts.routes').then(m => m.workoutRoutes)
   },
 ];

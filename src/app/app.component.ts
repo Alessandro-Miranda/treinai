@@ -6,11 +6,13 @@ import {
   arrowForwardOutline,
   barbellOutline,
   calendarClearOutline,
+  listOutline,
   lockClosedOutline,
   logoGoogle,
   mailOutline,
   personOutline,
-  statsChartOutline,
+  play,
+  star,
   timeOutline
 } from 'ionicons/icons';
 
@@ -27,11 +29,13 @@ export class AppComponent {
       logoGoogle,
       arrowForwardOutline,
       barbellOutline,
-      statsChartOutline,
       personOutline,
       timeOutline,
       add,
-      calendarClearOutline
+      calendarClearOutline,
+      star,
+      listOutline,
+      play
     });
   }
 }
