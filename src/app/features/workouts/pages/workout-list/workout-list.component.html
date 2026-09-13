@@ -1,0 +1,47 @@
+<ion-content color="dark" [fullscreen]="true">
+  <div class="welcome-container">
+    <span>
+      Olá, Usuário!
+    </span>
+    <h1>
+      Treinos
+    </h1>
+    <p>
+      Seus treinos do dia
+    </p>
+  </div>
+
+  @if (workouts$ | async; as workouts) {
+    <div class="list__container">
+      <div>
+        <span class="current-workout__title ion-text-uppercase ion-display-block">
+          treino do dia
+        </span>
+
+        <app-workout-card [workout]="workouts.currentWorkout" [isCurrentWorkout]="true" />
+      </div>
+
+      <ion-list class="list__next-workouts ion-no-padding ion-no-margin">
+        <ion-list-header class="ion-no-padding">
+          <ion-label class="list__next-workouts__title ion-text-uppercase">
+            outros treinos
+          </ion-label>
+        </ion-list-header>
+
+        @for (workout of workouts.nextWorkouts; track workout.id) {
+          <ion-item color="dark" class="ion-no-padding">
+            <app-workout-card [workout]="workout" />
+          </ion-item>
+        }
+      </ion-list>
+    </div>
+  } @else {
+    <app-empty-state />
+  }
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

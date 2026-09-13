@@ -1,0 +1,131 @@
+:host {
+  width: 100%;
+}
+
+.workout-card {
+  border: 1px solid var(--ds-color-surface-border);
+  background-color: var(--ds-color-surface-dark);
+  border-radius: var(--ds-radius-md);
+  padding: var(--ds-spacing-5) var(--ds-spacing-4);
+
+  h2 {
+    font-size: 1.125rem;
+  }
+
+  &.currentWorkout {
+    border: 1px solid var(--ds-color-primary-soft);
+    background-image: url("../../../../../assets/images/app-decoration.png");
+    background-repeat: no-repeat;
+    background-position: top left;
+
+    h2 {
+      font-size: var(--ds-font-size-h2);
+      margin-top: var(--ds-spacing-4);
+    }
+
+    & > ion-row {
+      flex-direction: column;
+    }
+
+    & ion-col {
+      flex: 1;
+    }
+  }
+}
+
+ion-chip {
+  border-radius: var(--ds-radius-sm);
+  padding: var(--ds-spacing-1) var(--ds-spacing-3);
+}
+
+ion-icon.workout-card__chip-icon {
+  font-size: 0.75rem;
+}
+
+.workout-card__chip-text {
+  font-size: 0.75rem;
+}
+
+.workout-card__muscle-group {
+  color: var(--ds-color-primary-soft);
+
+  span {
+    font-size: 0.875rem;
+
+    &:not(:last-of-type) {
+      margin-right: var(--ds-spacing-5);
+      position: relative;
+
+      &::after {
+        content: "\2022";
+        position: absolute;
+        margin-left: var(--ds-spacing-2);
+        margin-top: 1.5px;
+      }
+    }
+  }
+}
+
+.workout-card__description {
+  margin-bottom: 0;
+  margin-left: var(--ds-spacing-3);
+  color: var(--ds-color-text-secondary);
+  font-size: .875rem;
+
+  span {
+    margin-left: var(--ds-spacing-2);
+    line-height: 1;
+  }
+
+  &.currentWorkout {
+    margin-top: var(--ds-spacing-4);
+    margin-left: 0;
+  }
+}
+
+.workout-card__description__amount-exercises {
+  margin-top: var(--ds-spacing-3);
+}
+
+.workout-card__description-divider {
+  display: block;
+  width: 100%;
+  position: relative;
+  line-height: 1;
+
+  &::before {
+    content: "|";
+    width: 100%;
+    height: 100%;
+    line-height: 1;
+  }
+}
+
+ion-button.workout-card__start-button {
+  --background: transparent;
+  --border-style: solid;
+  --border-width: 1px;
+  --border-color: var(--ds-color-surface-border);
+  --border-radius: var(--ds-radius-full);
+  text-transform: unset;
+  width: 40px;
+  height: 40px;
+
+  ion-icon {
+    font-size: 1rem;
+  }
+  
+  &.currentWorkout {
+    --background: var(--ds-color-primary-gradient);
+    --box-shadow: var(--ds-color-primary-box-shadow);
+    --border-radius: var(--ds-radius-sm);
+    --border-color: transparent;
+    margin-top: var(--ds-spacing-5);
+    height: max-content;
+    width: 100%;
+
+    ion-icon {
+      margin-right: var(--ds-spacing-2);
+    }
+  }
+}

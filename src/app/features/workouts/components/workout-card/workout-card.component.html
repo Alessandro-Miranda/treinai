@@ -1,0 +1,67 @@
+@let workoutData = workout();
+
+<ion-grid class="workout-card" [class.currentWorkout]="isCurrentWorkout()">
+  <ion-row [class.ion-align-items-center]="!isCurrentWorkout()">
+    <ion-col>
+      @if (isCurrentWorkout()) {
+        <ion-chip color="primary" class="ion-no-margin">
+          <ion-icon name="star" class="workout-card__chip-icon"></ion-icon>
+          <span class="ion-text-uppercase workout-card__chip-text">prioritário</span>
+        </ion-chip>
+      }
+      <h2>
+        {{ workoutData.name }}
+      </h2>
+      <p class="workout-card__muscle-group">
+        @for (muscles of workoutData.muscleGroup; track muscles) {
+        <span>{{ muscles }}</span>
+        }
+      </p>
+    </ion-col>
+
+    <ion-col>
+      <ion-grid
+        class="ion-no-padding workout-card__description"
+        [class.currentWorkout]="isCurrentWorkout()"
+      >
+        <ion-row class="ion-align-items-center ion-align-content-between">
+          <ion-col class="ion-display-flex" size="auto">
+            <ion-icon name="time-outline"></ion-icon>
+            <span>{{ workoutData.duration }} min</span>
+          </ion-col>
+          
+          @if (isCurrentWorkout()) {
+            <ion-col class="ion-text-center" size="auto">
+              <span class="workout-card__description-divider"></span>
+            </ion-col>
+          }
+          
+          <ion-col
+            class="ion-display-flex"
+            [class.ion-margin-start]="isCurrentWorkout()"
+            [class.workout-card__description__amount-exercises]="!isCurrentWorkout()"
+            size="auto"
+          >
+            <ion-icon name="list-outline"></ion-icon>
+            <span>
+              {{ workoutData.exercies.length }} Exercícios
+            </span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-col>
+
+    <ion-col size="auto">
+      <ion-button
+        expand="block"
+        class="workout-card__start-button"
+        [class.currentWorkout]="isCurrentWorkout()"
+      >
+        <ion-icon name="play" slot="icon-only"></ion-icon>
+        @if (isCurrentWorkout()) {
+          <span>Iniciar treino</span>
+        }
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
