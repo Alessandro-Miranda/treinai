@@ -1,17 +1,23 @@
 import { Routes } from '@angular/router';
-import { authGuard } from './core/auth-guard';
+import { authenticatedGuard } from './core/guards/authenticated/authenticated.guard';
 import { tabRoutes } from './layouts/tab/tab.routes';
 
 export const routes: Routes = [
   {
     path: '',
-    loadComponent: () => import('./layouts/tab/tab.component').then((m) => m.TabComponent),
-    canMatch: [authGuard],
-    children: tabRoutes
+    loadComponent: () =>
+      import('./layouts/tab/tab.component').then((m) => m.TabComponent),
+    canMatch: [authenticatedGuard],
+    children: tabRoutes,
   },
   {
     path: '',
-    loadComponent: () =>
-      import('./features/login/login.component').then((m) => m.LoginComponent),
-  }
+    redirectTo: 'login',
+    pathMatch: 'full',
+  },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('@/features/login/login.routes').then((m) => m.loginRoutes),
+  },
 ];
