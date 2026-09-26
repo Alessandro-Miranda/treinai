@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authenticatedGuard } from './core/guards/authenticated/authenticated.guard';
+import { profileCompleteGuard } from './core/guards/profileComplete/profile-complete.guard';
 import { tabRoutes } from './layouts/tab/tab.routes';
 
 export const routes: Routes = [
@@ -8,16 +9,16 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./layouts/tab/tab.component').then((m) => m.TabComponent),
     canMatch: [authenticatedGuard],
-    children: tabRoutes,
+    canActivateChild: [profileCompleteGuard],
+    children: tabRoutes
   },
   {
     path: '',
-    redirectTo: 'login',
-    pathMatch: 'full',
-  },
-  {
-    path: 'login',
     loadChildren: () =>
       import('@/features/login/login.routes').then((m) => m.loginRoutes),
+  },
+  {
+    path: '**',
+    redirectTo: 'sign-in',
   },
 ];
