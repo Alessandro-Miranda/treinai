@@ -1,6 +1,6 @@
+import { AuthService } from '@/core/services/auth.service';
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { FirebaseAuthentication } from '@capacitor-firebase/authentication';
 import {
   AlertController,
   IonButton,
@@ -10,7 +10,7 @@ import {
   IonIcon,
   IonInput,
   IonInputPasswordToggle,
-  IonRow
+  IonRow,
 } from '@ionic/angular';
 
 @Component({
@@ -29,16 +29,17 @@ import {
   ],
 })
 export class SignInComponent {
+  private readonly _authService = inject(AuthService);
   private readonly _router = inject(Router);
   private readonly _alert = inject(AlertController);
 
   async signInWithGoogle() {
     try {
-      const { user } = await FirebaseAuthentication.signInWithGoogle();
-
-      if (!user) throw new Error('An unexpected error has ocurred');
-
-      void this._router.navigate(['/workouts'], { replaceUrl: true });
+      await this._authService.signIn();
+      
+      void this._router.navigate(['/workouts'], {
+        queryParams: { from: 'sign-in' },
+      });
     } catch (err: unknown) {
       const errorMessage = err as string;
       const canceledByUser = new RegExp(/[16]/);
@@ -51,6 +52,7 @@ export class SignInComponent {
         header: 'Ops...',
         message:
           'Ocorreu um erro inesperado. Por favor, tente novamente em instantes.',
+        buttons: ['Ok']
       });
 
       await error.present();
