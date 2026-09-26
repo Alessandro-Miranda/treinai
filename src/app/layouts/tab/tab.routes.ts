@@ -8,6 +8,9 @@ export const tabRoutes: Routes = [
   },
   {
     path: 'workouts',
-    loadChildren: () => import('@/features/workouts/workouts.routes').then(m => m.workoutRoutes)
+    loadChildren: () =>
+      import('@/features/workouts/workouts.routes').then(
+        (m) => m.workoutRoutes,
+      ),
   },
 ];

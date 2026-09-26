@@ -13,6 +13,4 @@ import {
   styleUrls: ['./tab.component.scss'],
   imports: [IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel],
 })
-export class TabComponent {
-  constructor() {}
-}
+export class TabComponent {}
