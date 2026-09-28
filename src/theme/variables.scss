@@ -9,11 +9,12 @@
   --ds-color-primary-tint: #DED9FF;
 	--ds-color-primary-gradient: linear-gradient(135deg, var(--ds-color-primary) 0%, var(--ds-color-primary-light) 100%);
 	--ds-color-primary-box-shadow: 0px 8px 24px rgba(95, 90, 250, .30);
-
+	
   // Background / Surface
   --ds-color-background-primary: #010107;
   --ds-color-background-secondary: #171A21;
   --ds-color-surface: #171A21;
+	--ds-color-surface-highlight: #151b37;
 	--ds-color-surface-dark: #050610;
   --ds-color-surface-hover: #282C35;
   --ds-color-surface-active: #303440;
