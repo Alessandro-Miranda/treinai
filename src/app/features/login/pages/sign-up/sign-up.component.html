@@ -111,6 +111,7 @@
                       id="user-role-athlete"
                       name="user-role"
                       value="athlete"
+                      formControlName="userRole"
                       [checked]="true"
                     />
                   </ion-col>
@@ -136,7 +137,13 @@
                     <ion-icon name="school-outline" size="large" aria-hidden="true"></ion-icon>
                   </ion-col>
                   <ion-col class="ion-text-right">
-                    <input type="radio" id="user-role-coach" name="user-role" value="coach" />
+                    <input
+                      type="radio"
+                      id="user-role-coach"
+                      name="user-role"
+                      value="coach"
+                      formControlName="userRole"
+                    />
                   </ion-col>
                 </ion-row>
 
