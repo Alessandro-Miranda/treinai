@@ -21,6 +21,7 @@
     "@angular/platform-browser": "22.0.1",
     "@angular/router": "22.0.1",
     "@capacitor-firebase/authentication": "^8.5.1",
+    "@capacitor-firebase/firestore": "^8.5.2",
     "@capacitor/android": "8.5.0",
     "@capacitor/app": "8.1.1",
     "@capacitor/core": "8.5.0",
@@ -52,9 +53,9 @@
     "@parcel/watcher@2.6.0": true,
     "lmdb@3.5.4": true,
     "msgpackr-extract@3.0.4": true,
-    "esbuild@0.27.7": true,
     "esbuild@0.28.0": true,
     "@firebase/util@1.15.3": true,
-    "protobufjs@7.6.6": true
+    "protobufjs@7.6.6": true,
+    "esbuild@0.27.2": true
   }
 }
