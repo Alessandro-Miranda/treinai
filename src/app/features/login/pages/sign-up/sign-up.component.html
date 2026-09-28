@@ -1,3 +1,181 @@
-<p>
-  sign-up works!
-</p>
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button default-href="/"></ion-back-button>
+    </ion-buttons>
+    <img src="../../../../../assets/images/logo.png" class="logo" />
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="dark">
+  <div class="header">
+    @if (isCompleteRegistration) {
+      <h1>Criar <span>conta</span></h1>
+      <p>Vamos começar! Preencha seus dados para criar sua conta no Treinaí.</p>
+    } @else {
+      <h1>Complete seu <span>perfil</span></h1>
+      <p>
+        Já encontramos algumas informações da sua conta Google. Agora é só finalizar seu cadastro!
+      </p>
+    }
+  </div>
+
+  <form [formGroup]="signUpForm">
+    <fieldset>
+      <label for="username">Nome de Usuário</label>
+      <ion-input 
+        type="text"
+        placeholder="Ex: João da Silva"
+        aria-label="e-mail"
+        fill="outline"
+        class="signup-form__input"
+        [required]="true"
+        id="username"
+        name="username"
+        formControlName="username"
+      >
+        <ion-icon slot="start" name="person-outline" aria-hidden="true"></ion-icon>
+      </ion-input>
+    </fieldset>
+
+    <fieldset>
+      <label for="email">E-mail</label>
+      <ion-input
+        type="email"
+        placeholder="seu@email.com"
+        aria-label="e-mail"
+        fill="outline"
+        class="signup-form__input"
+        [required]="true"
+        id="email"
+        name="email"
+        formControlName="email"
+      >
+        <ion-icon slot="start" name="mail-outline" aria-hidden="true"></ion-icon>
+      </ion-input>
+    </fieldset>
+
+
+    @if (isCompleteRegistration) {
+      <fieldset>
+        <label for="password">senha</label>
+        <ion-input 
+          type="password"
+          id="password"
+          name="password"
+          placeholder="********"
+          aria-label="senha"
+          fill="outline"
+          [required]="true"
+          class="signup-form__input"
+        >
+          <ion-input-password-toggle slot="end" />
+          <ion-icon slot="start" name="lock-closed-outline" aria-hidden="true"></ion-icon>
+        </ion-input>
+      </fieldset>
+
+      <fieldset>
+        <label for="password-confirm">Confirme sua senha</label>
+        <ion-input
+          type="password"
+          id="password-confirm"
+          name="password-confirm"
+          placeholder="********"
+          aria-label="senha"
+          fill="outline"
+          [required]="true"
+          class="signup-form__input"
+        >
+          <ion-input-password-toggle slot="end" />
+          <ion-icon slot="start" name="lock-closed-outline" aria-hidden="true"></ion-icon>
+        </ion-input>
+      </fieldset>
+    }
+
+
+    <div class="user-role">
+      <h2 class="user-role__title">Como você vai usar o Treinaí?</h2>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <label for="user-role-athlete">
+              <ion-grid class="user-role__card">
+                <ion-row>
+                  <ion-col>
+                    <ion-icon name="person-outline" size="large" aria-hidden="true"></ion-icon>
+                  </ion-col>
+                  <ion-col class="ion-text-right">
+                    <input
+                      type="radio"
+                      id="user-role-athlete"
+                      name="user-role"
+                      value="athlete"
+                      [checked]="true"
+                    />
+                  </ion-col>
+                </ion-row>
+
+                <ion-row>
+                  <ion-col>
+                    <h3>Aluno</h3>
+                    <p class="user-role__card__description">
+                      Receba e realize seus treinos ou crie seus próprios treinos.
+                    </p>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </label>
+          </ion-col>
+
+          <ion-col>
+            <label for="user-role-coach">
+              <ion-grid class="user-role__card">
+                <ion-row>
+                  <ion-col>
+                    <ion-icon name="school-outline" size="large" aria-hidden="true"></ion-icon>
+                  </ion-col>
+                  <ion-col class="ion-text-right">
+                    <input type="radio" id="user-role-coach" name="user-role" value="coach" />
+                  </ion-col>
+                </ion-row>
+
+                <ion-row>
+                  <ion-col>
+                    <h3>Professor</h3>
+                    <p class="user-role__card__description">
+                      Crie treinos para seus alunos e acompanhe a evolução deles.
+                    </p>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </label>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <ion-button type="submit" expand="block" (click)="continueRegistration()">
+      <span>
+        @if (isCompleteRegistration) {
+          Criar Conta
+        } @else {
+          Continuar
+        }
+      </span>
+    </ion-button>
+  </form>
+
+  <div class="footer">
+    @if (isCompleteRegistration) {
+    <p>
+      Já tem uma conta? <a>Fazer login</a>
+    </p>
+    } @else {
+    <ion-icon name="lock-closed-outline"></ion-icon>
+    <small>
+      Seus dados estão seguros. Nenhuma informação será compartilhada com terceiros.
+    </small>
+    }
+  </div>
+</ion-content>
