@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { FirebaseAuthentication } from '@capacitor-firebase/authentication';
-import { doc, getDoc, getFirestore } from 'firebase/firestore';
+import { FirebaseFirestore } from '@capacitor-firebase/firestore';
 import { IUser } from './models/user';
 
 export const profileCompleteGuard: CanActivateFn = async (route, _state) => {
@@ -21,14 +21,12 @@ const userData = async () => {
     const { user } = await FirebaseAuthentication.getCurrentUser();
     
     if (!user) return undefined;
-    
-    const firestore = getFirestore();
-    const userDocPath = `users/${user?.uid}`;
-    const userRef = doc(firestore, userDocPath);
-  
-    const userDocument = await getDoc(userRef);
 
-    return userDocument.data() as IUser | undefined;
+    const { snapshot } = await FirebaseFirestore.getDocument({
+      reference: `users/${user?.uid}`
+    });
+
+    return snapshot.data as IUser | undefined;
   } catch (err) {
     return undefined;
   }
