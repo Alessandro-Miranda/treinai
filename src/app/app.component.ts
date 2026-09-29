@@ -12,6 +12,7 @@ import {
   mailOutline,
   personOutline,
   play,
+  schoolOutline,
   star,
   timeOutline
 } from 'ionicons/icons';
@@ -35,7 +36,8 @@ export class AppComponent {
       calendarClearOutline,
       star,
       listOutline,
-      play
+      play,
+      schoolOutline
     });
   }
 }
