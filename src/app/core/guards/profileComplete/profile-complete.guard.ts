@@ -1,8 +1,8 @@
+import { IUser } from '@/services/user/IUser';
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { FirebaseAuthentication } from '@capacitor-firebase/authentication';
 import { FirebaseFirestore } from '@capacitor-firebase/firestore';
-import { IUser } from './models/user';
 
 export const profileCompleteGuard: CanActivateFn = async (route, _state) => {
   const router = inject(Router);

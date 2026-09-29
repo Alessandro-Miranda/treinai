@@ -1,7 +1,0 @@
-export interface IUser {
-  uid: string;
-  email: string;
-  name: string;
-  createdAt: number;
-  isProfileComplete: boolean;
-}
