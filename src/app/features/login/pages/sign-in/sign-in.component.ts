@@ -1,16 +1,16 @@
 import { AuthService } from '@/core/services/auth/auth.service';
 import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import {
-    AlertController,
-    IonButton,
-    IonCol,
-    IonContent,
-    IonGrid,
-    IonIcon,
-    IonInput,
-    IonInputPasswordToggle,
-    IonRow,
+  AlertController,
+  IonButton,
+  IonCol,
+  IonContent,
+  IonGrid,
+  IonIcon,
+  IonInput,
+  IonInputPasswordToggle,
+  IonRow,
 } from '@ionic/angular';
 
 @Component({
@@ -18,6 +18,7 @@ import {
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss'],
   imports: [
+    RouterLink,
     IonContent,
     IonGrid,
     IonRow,
@@ -38,7 +39,7 @@ export class SignInComponent {
       await this._authService.signIn();
       
       void this._router.navigate(['/workouts'], {
-        queryParams: { from: 'sign-in' },
+        queryParams: { from: 'social-login' },
       });
     } catch (err: unknown) {
       const errorMessage = err as string;

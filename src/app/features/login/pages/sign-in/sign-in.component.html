@@ -55,10 +55,10 @@
 
       <ion-row class="login__social__button-container">
         <ion-col size="12">
-          <ion-button 
-            expand="block" 
-            fill="outline" 
-            class="login__social-button" 
+          <ion-button
+            expand="block"
+            fill="outline"
+            class="login__social-button"
             (click)="signInWithGoogle()"
           >
             <ion-icon
@@ -66,7 +66,7 @@
               name="logo-google"
               class="ion-margin-end"
               aria-hidden="true"
-            ></ion-icon>
+            />
             Entrar com Google
           </ion-button>
         </ion-col>
@@ -74,7 +74,8 @@
     </ion-grid>
 
     <p class="ion-text-center login__create-account">
-      Ainda não tem uma conta? <a>Criar conta</a>
+      Ainda não tem uma conta?
+      <a routerLink="/sign-up" [queryParams]="{ from: 'sign-in' }">Criar conta</a>
     </p>
   </form>
 </ion-content>
