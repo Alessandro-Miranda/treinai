@@ -65,9 +65,11 @@
           name="password"
           placeholder="********"
           aria-label="senha"
+          errorText="A senha deve ter no mínimo 6 caracteres"
           fill="outline"
           [required]="true"
           class="signup-form__input"
+          formControlName="password"
         >
           <ion-input-password-toggle slot="end" />
           <ion-icon slot="start" name="lock-closed-outline" aria-hidden="true"></ion-icon>
@@ -81,10 +83,14 @@
           id="password-confirm"
           name="password-confirm"
           placeholder="********"
+          errorText="Senha e Confirmação devem ser iguais"
           aria-label="senha"
           fill="outline"
           [required]="true"
+          [class.ng-invalid]="isPasswordConfirmationInvalid()"
+          [class.ng-touched]="isPasswordConfirmationTouched()"
           class="signup-form__input"
+          formControlName="passwordConfirm"
         >
           <ion-input-password-toggle slot="end" />
           <ion-icon slot="start" name="lock-closed-outline" aria-hidden="true"></ion-icon>
