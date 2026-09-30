@@ -162,7 +162,12 @@
       </ion-grid>
     </div>
 
-    <ion-button type="submit" expand="block" (click)="continueRegistration()">
+    <ion-button
+      [disabled]="isRegistering"
+      type="submit"
+      expand="block"
+      (click)="continueRegistration()"
+    >
       <span>
         @if (isCompleteRegistration) {
           Criar Conta
@@ -171,6 +176,10 @@
         }
       </span>
     </ion-button>
+    <ion-loading
+      [isOpen]="isRegistering"
+      message="Aguarde, estamos concluíndo seu cadastro..."
+    />
   </form>
 
   <div class="footer">

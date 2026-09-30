@@ -21,6 +21,7 @@ import {
   IonIcon,
   IonInput,
   IonInputPasswordToggle,
+  IonLoading,
   IonRow,
   IonToolbar,
 } from '@ionic/angular';
@@ -51,6 +52,7 @@ interface ISignUpForm {
     IonCol,
     IonButton,
     IonInputPasswordToggle,
+    IonLoading,
   ],
 })
 export class SignUpComponent implements OnInit {
@@ -60,15 +62,16 @@ export class SignUpComponent implements OnInit {
   private readonly _router = inject(Router);
   private readonly _alertController = inject(AlertController);
 
-  isCompleteRegistration: boolean = true;
+  isCompleteRegistration = true;
+  isRegistering = false;
   signUpForm = this._fb.group<ISignUpForm>({
     username: this._fb.nonNullable.control('', Validators.required),
     email: this._fb.nonNullable.control('', Validators.email),
     userRole: this._fb.nonNullable.control('athlete', Validators.required),
-    password: this._fb.nonNullable.control('')
+    password: this._fb.nonNullable.control(''),
   });
 
-  async ngOnInit(): Promise<void> {
+  ngOnInit(): void {
     const redirectedFrom = this._route.snapshot.queryParamMap.get('from') as
       | 'sign-in'
       | 'sign-up';
@@ -76,21 +79,23 @@ export class SignUpComponent implements OnInit {
     this.isCompleteRegistration = redirectedFrom === 'sign-up';
 
     if (!this.isCompleteRegistration) {
-      await this._preConfigureUserData();
+      this._preConfigureUserData();
     }
   }
 
-  continueRegistration() {
+  async continueRegistration() {
     if (this.signUpForm.invalid) {
-      return;
-    }
-    
-    if (this.isCompleteRegistration) {
-      this._signUp();
+      this.signUpForm.markAllAsTouched();
       return;
     }
 
-    this._updateUserProfile();
+    this.isRegistering = true;
+
+    if (this.isCompleteRegistration) {
+      await this._signUp();
+    } else {
+      await this._updateUserProfile();
+    }
   }
 
   private async _preConfigureUserData() {
@@ -107,18 +112,22 @@ export class SignUpComponent implements OnInit {
   private async _updateUserProfile() {
     const formData = this.signUpForm.getRawValue();
 
-    const { user } = await FirebaseAuthentication.getCurrentUser();
-    
     try {
-      await this._userService.updateProfile(user!.uid, {
+      const { user } = await FirebaseAuthentication.getCurrentUser();
+
+      if (!user) throw new Error('An error has occured getting current user');
+
+      await this._userService.updateProfile(user.uid, {
         username: formData.username,
         email: formData.email,
         isProfileComplete: true,
         role: formData.userRole,
       });
 
+      this.isRegistering = false;
+
       this._router.navigate(['/workouts'], { replaceUrl: true });
-    } catch(err) {
+    } catch (err) {
       await this._showErrorMessage();
     }
   }
@@ -137,8 +146,10 @@ export class SignUpComponent implements OnInit {
 
       if (!user) throw new Error('An error has occured creating a new user');
 
+      this.isRegistering = false;
+      
       this._router.navigate(['/workouts'], { replaceUrl: true });
-    } catch(err) {
+    } catch (err) {
       await this._showErrorMessage();
     }
   }
@@ -146,7 +157,8 @@ export class SignUpComponent implements OnInit {
   private async _showErrorMessage() {
     const message = await this._alertController.create({
       header: 'Ops...',
-      message: 'Ocorreu um erro inesperado ao atualizar seu perfil. Por favor, tente novamente mais tarde'
+      message:
+        'Ocorreu um erro inesperado ao atualizar seu perfil. Por favor, tente novamente mais tarde',
     });
 
     await message.present();
