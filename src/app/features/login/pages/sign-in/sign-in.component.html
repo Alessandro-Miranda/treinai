@@ -75,7 +75,7 @@
 
     <p class="ion-text-center login__create-account">
       Ainda não tem uma conta?
-      <a routerLink="/sign-up" [queryParams]="{ from: 'sign-in' }">Criar conta</a>
+      <button (click)="signUp()">Criar conta</button>
     </p>
   </form>
 </ion-content>

@@ -169,7 +169,6 @@
     </div>
 
     <ion-button
-      [disabled]="isRegistering"
       type="submit"
       expand="block"
       (click)="continueRegistration()"
@@ -182,10 +181,6 @@
         }
       </span>
     </ion-button>
-    <ion-loading
-      [isOpen]="isRegistering"
-      message="Aguarde, estamos concluíndo seu cadastro..."
-    />
   </form>
 
   <div class="footer">

@@ -1,6 +1,6 @@
 import { AuthService } from '@/core/services/auth/auth.service';
 import { Component, inject } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import {
   AlertController,
   IonButton,
@@ -12,13 +12,13 @@ import {
   IonInputPasswordToggle,
   IonRow,
 } from '@ionic/angular';
+import { RedirectedFrom } from '../../models/ILogin';
 
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss'],
   imports: [
-    RouterLink,
     IonContent,
     IonGrid,
     IonRow,
@@ -37,9 +37,9 @@ export class SignInComponent {
   async signInWithGoogle() {
     try {
       await this._authService.signIn();
-      
+
       void this._router.navigate(['/workouts'], {
-        queryParams: { from: 'social-login' },
+        queryParams: { from: RedirectedFrom.SocialLogin },
       });
     } catch (err: unknown) {
       const errorMessage = err as string;
@@ -53,10 +53,16 @@ export class SignInComponent {
         header: 'Ops...',
         message:
           'Ocorreu um erro inesperado. Por favor, tente novamente em instantes.',
-        buttons: ['Ok']
+        buttons: ['Ok'],
       });
 
       await error.present();
     }
+  }
+
+  signUp(): void {
+    void this._router.navigate(['/sign-up'], {
+      queryParams: { from: RedirectedFrom.SignIn },
+    });
   }
 }

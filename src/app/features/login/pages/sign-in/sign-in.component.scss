@@ -110,8 +110,10 @@ ion-button.login__social-button {
   color: var(--ds-color-text-secondary);
   margin-top: var(--ds-spacing-3);
 
-  a {
+  button {
     color: var(--ds-color-primary);
-    text-decoration: none;
+    background: none;
+    padding: 0;
+    margin: 0;
   }
 }

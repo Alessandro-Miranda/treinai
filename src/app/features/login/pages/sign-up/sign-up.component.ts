@@ -1,11 +1,13 @@
 import { UserService } from '@/services/user/user.service';
 import { Component, inject, OnInit } from '@angular/core';
 import {
+  AbstractControl,
   FormBuilder,
-  FormControl,
   FormsModule,
   ReactiveFormsModule,
-  Validators,
+  ValidationErrors,
+  ValidatorFn,
+  Validators
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FirebaseAuthentication } from '@capacitor-firebase/authentication';
@@ -21,17 +23,11 @@ import {
   IonIcon,
   IonInput,
   IonInputPasswordToggle,
-  IonLoading,
   IonRow,
   IonToolbar,
+  LoadingController
 } from '@ionic/angular';
-
-interface ISignUpForm {
-  username: FormControl<string>;
-  email: FormControl<string>;
-  userRole: FormControl<'athlete' | 'coach'>;
-  password: FormControl<string>;
-}
+import { ISignUpForm, RedirectedFrom } from '../../models/ILogin';
 
 @Component({
   selector: 'app-sign-up',
@@ -52,7 +48,6 @@ interface ISignUpForm {
     IonCol,
     IonButton,
     IonInputPasswordToggle,
-    IonLoading,
   ],
 })
 export class SignUpComponent implements OnInit {
@@ -61,26 +56,47 @@ export class SignUpComponent implements OnInit {
   private readonly _userService = inject(UserService);
   private readonly _router = inject(Router);
   private readonly _alertController = inject(AlertController);
+  private readonly _loadingController = inject(LoadingController);
 
+  private _loading: HTMLIonLoadingElement | null = null;
+  
   isCompleteRegistration = true;
-  isRegistering = false;
-  signUpForm = this._fb.group<ISignUpForm>({
-    username: this._fb.nonNullable.control('', Validators.required),
-    email: this._fb.nonNullable.control('', Validators.email),
-    userRole: this._fb.nonNullable.control('athlete', Validators.required),
-    password: this._fb.nonNullable.control(''),
-  });
+  signUpForm = this._fb.group<ISignUpForm>(
+    {
+      username: this._fb.nonNullable.control('', Validators.required),
+      email: this._fb.nonNullable.control('', Validators.email),
+      userRole: this._fb.nonNullable.control('athlete', Validators.required),
+      password: this._fb.nonNullable.control('', [
+        Validators.required,
+        Validators.minLength(6),
+      ]),
+      passwordConfirm: this._fb.nonNullable.control('', [
+        Validators.required,
+        Validators.minLength(6),
+      ]),
+    },
+    {
+      validators: this._passwordConfirmValidator(),
+    },
+  );
 
-  ngOnInit(): void {
-    const redirectedFrom = this._route.snapshot.queryParamMap.get('from') as
-      | 'sign-in'
-      | 'sign-up';
+  async ngOnInit(): Promise<void> {
+    const redirectedFrom = this._route.snapshot.queryParamMap.get('from') as RedirectedFrom;
 
-    this.isCompleteRegistration = redirectedFrom === 'sign-up';
+    if (redirectedFrom === RedirectedFrom.SignIn) return;
 
-    if (!this.isCompleteRegistration) {
-      this._preConfigureUserData();
-    }
+    this.isCompleteRegistration = false;
+    this._updateValidatorsForSocialLogin();
+    await this._preConfigureUserData();
+  }
+
+  private _updateValidatorsForSocialLogin() {
+    const { password, passwordConfirm } = this.signUpForm.controls;
+    
+    password.clearValidators();
+    passwordConfirm.clearValidators();
+    password.updateValueAndValidity();
+    passwordConfirm.updateValueAndValidity();
   }
 
   async continueRegistration() {
@@ -89,7 +105,7 @@ export class SignUpComponent implements OnInit {
       return;
     }
 
-    this.isRegistering = true;
+    this._showLoading();
 
     if (this.isCompleteRegistration) {
       await this._signUp();
@@ -98,15 +114,52 @@ export class SignUpComponent implements OnInit {
     }
   }
 
+  isPasswordConfirmationInvalid() {
+    return this.signUpForm.hasError('passwordNotMatch');
+  }
+
+  isPasswordConfirmationTouched() {
+    const pwdConfirm = this.signUpForm.controls.passwordConfirm;
+    
+    return pwdConfirm.touched || pwdConfirm.dirty; 
+  }
+
+  private _passwordConfirmValidator(): ValidatorFn {
+    return (group: AbstractControl): ValidationErrors | null => {
+      const pwd = group.get('password') as AbstractControl<string>;
+      const pwdConfirm = group.get(
+        'passwordConfirm',
+      ) as AbstractControl<string>;
+
+      if(!pwdConfirm) return null;
+
+      const isInvalid = pwd.value !== pwdConfirm.value;
+
+      return isInvalid ? { passwordNotMatch: true } : null;
+    };
+  }
+
   private async _preConfigureUserData() {
-    const { user } = await FirebaseAuthentication.getCurrentUser();
-
-    if (!user) return;
-
-    this.signUpForm.patchValue({
-      username: user.displayName as string,
-      email: user.email as string,
+    try {
+      const { user } = await FirebaseAuthentication.getCurrentUser();
+  
+      if (!user) return;
+  
+      this.signUpForm.patchValue({
+        username: user.displayName as string,
+        email: user.email as string,
+      });
+    } catch(err) {
+      return;
+    }
+  }
+  
+  private async _showLoading() {
+    this._loading = await this._loadingController.create({
+      message: 'Aguarde, estamos concluíndo seu cadastro...'
     });
+
+    await this._loading.present();
   }
 
   private async _updateUserProfile() {
@@ -124,11 +177,11 @@ export class SignUpComponent implements OnInit {
         role: formData.userRole,
       });
 
-      this.isRegistering = false;
-
-      this._router.navigate(['/workouts'], { replaceUrl: true });
+      void this._router.navigate(['/workouts'], { replaceUrl: true });
     } catch (err) {
       await this._showErrorMessage();
+    } finally {
+      this._loading?.dismiss();
     }
   }
 
@@ -146,11 +199,11 @@ export class SignUpComponent implements OnInit {
 
       if (!user) throw new Error('An error has occured creating a new user');
 
-      this.isRegistering = false;
-      
-      this._router.navigate(['/workouts'], { replaceUrl: true });
+      void this._router.navigate(['/workouts'], { replaceUrl: true });
     } catch (err) {
       await this._showErrorMessage();
+    } finally {
+      this._loading?.dismiss();
     }
   }
 
