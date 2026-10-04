@@ -11,28 +11,45 @@
     </p>
   </div>
 
-  <form>
+  <form [formGroup]="loginForm" id="login-form">
     <ion-grid>
       <ion-row class="login__input-container">
         <span class="login__input-label">e-mail</span>
-        <ion-input type="email" placeholder="seu@email.com" aria-label="e-mail" fill="outline" class="login__input">
+        <ion-input
+          type="email"
+          placeholder="seu@email.com" 
+          aria-label="e-mail"
+          fill="outline"
+          class="login__input"
+          [required]="true"
+          errorText="Preencha o e-mail"
+          formControlName="email"
+        >
           <ion-icon slot="start" name="mail-outline" aria-hidden="true"></ion-icon>
         </ion-input>
       </ion-row>
 
       <ion-row class="login__input-container">
         <span class="login__input-label">senha</span>
-        <ion-input type="password" placeholder="********" aria-label="senha" fill="outline" [required]="true"
-          class="login__input">
-          <ion-input-password-toggle slot="end" />
+        <ion-input
+          type="password"
+          placeholder="********"
+          aria-label="senha"
+          fill="outline"
+          class="login__input"
+          [required]="true"
+          errorText="Preencha a senha"
+          formControlName="password"
+        >
           <ion-icon slot="start" name="lock-closed-outline" aria-hidden="true"></ion-icon>
+          <ion-input-password-toggle slot="end" />
         </ion-input>
         <a class="login__forgot-password">Esqueci minha senha</a>
       </ion-row>
 
       <ion-row>
         <ion-col size="12">
-          <ion-button expand="block" class="login__submit">
+          <ion-button expand="block" class="login__submit" (click)="signIn()">
             Entrar
             <ion-icon name="arrow-forward-outline" slot="end" class="ion-margin-start"></ion-icon>
           </ion-button>

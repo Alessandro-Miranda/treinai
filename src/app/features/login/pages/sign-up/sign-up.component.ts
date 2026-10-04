@@ -83,7 +83,7 @@ export class SignUpComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     const redirectedFrom = this._route.snapshot.queryParamMap.get('from') as RedirectedFrom;
 
-    if (redirectedFrom === RedirectedFrom.SignIn) return;
+    if (redirectedFrom === RedirectedFrom.SignUp) return;
 
     this.isCompleteRegistration = false;
     this._updateValidatorsForSocialLogin();
