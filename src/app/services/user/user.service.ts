@@ -16,7 +16,7 @@ export class UserService {
 
     if (!user) throw new Error('An error has occured creating user');
 
-    await this._updateUserDisplayName(userData.username);
+    await this._updateDisplayName(userData.username);
 
     await this.updateProfile(user.uid, {
       username: userData.username,
@@ -46,7 +46,7 @@ export class UserService {
     });
   }
 
-  private _updateUserDisplayName(username: string) {
+  private _updateDisplayName(username: string) {
     return FirebaseAuthentication.updateProfile({
       displayName: username,
     });
