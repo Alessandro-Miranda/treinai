@@ -1,2 +1,72 @@
-<p>login works!</p>
-<button pButton>Teste</button>
+<div class="login__page">
+  <div class="login__form__container">
+
+    <div class="login__form__header">
+      <div class="login__form__header__icon">
+        <i class="pi pi-sign-in"></i>
+      </div>
+
+      <h1>Acesse sua conta</h1>
+      <p>
+        Não tem uma conta?
+        <a (click)="onNavigateToSignUp()" (keypress)="onNavigateToSignUp()" tabindex="1">
+          Cadastre-se
+        </a>
+      </p>
+    </div>
+
+    <form class="login__form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div>
+        <p-floatlabel variant="in">
+          <label for="email">Email</label>
+          <input
+            pInputText
+            variant="filled"
+            fluid
+            [invalid]="isEmailInvalid()"
+            formControlName="email"
+            id="email"
+            type="email"
+            required />
+        </p-floatlabel>
+
+        @if (isEmailInvalid()) {
+          <small class="login__form__error__message">O e-mail é obrigatório</small>
+        }
+      </div>
+
+      <div>
+        <p-float-label variant="in">
+          <p-icon-field>
+            <p-inputicon class="pi pi-lock" />
+            <input
+              pInputPassword
+              variant="filled"
+              fluid
+              formControlName="password"
+              id="password"
+              required
+            />
+            <label pLabel for="password">Senha</label>
+          </p-icon-field>
+        </p-float-label>
+        @if (isPasswordInvalid()) {
+          <small class="login__form__error__message">A senha é obrigatória</small>
+        }
+      </div>
+
+      <button pButton fluid type="submit">Entrar</button>
+
+      <p-divider>
+        <span>ou</span>
+      </p-divider>
+
+      <div>
+        <button pButton variant="outlined" severity="contrast" fluid (click)="onSignInWithGoogle()">
+          <i class="pi pi-google"></i>
+          Continuar com Google
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
