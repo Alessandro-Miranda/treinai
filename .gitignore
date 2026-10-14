@@ -1,5 +1,12 @@
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
+# License and config
+primeui-license.local.ts
+firebase.config.ts
+
+# Log
+*.log
+
 # Compiled output
 /dist
 /tmp
