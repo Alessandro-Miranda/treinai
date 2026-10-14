@@ -3,8 +3,17 @@ import { Routes } from '@angular/router';
 export const coachRoutes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
+    // AQUI DEVE TER UM GUARD PARA REDIRECIONAR PARA LOGIN
+    loadComponent: () => import('./pages/dashboard/dashboard').then((m) => m.Dashboard),
+  },
+  {
+    path: 'login',
     loadComponent: () =>
-      import('@/features/coach/coach-login/coach-login').then((m) => m.CoachLogin),
+      import('@/features/auth/pages/coach-sign-in/coach-sign-in').then((m) => m.CoachSignIn),
+  },
+  {
+    path: 'cadastro',
+    loadComponent: () =>
+      import('@/features/auth/pages/coach-sign-up/coach-sign-up').then((m) => m.CoachSignUp),
   },
 ];

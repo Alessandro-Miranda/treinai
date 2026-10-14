@@ -1,8 +1,10 @@
+import '@/core/firebase/firebase.config';
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import Aura from '@primeuix/themes/aura';
 import { providePrimeNG } from 'primeng/config';
 import { routes } from './app.routes';
+import { primeUiLicense } from './config/primeui-license.local';
+import { TreinaiPreset } from './theme/treinai-preset';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -10,10 +12,11 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     providePrimeNG({
       ripple: true,
+      license: primeUiLicense,
       theme: {
-        preset: Aura,
+        preset: TreinaiPreset,
         options: {
-          darkModeSelector: false,
+          darkModeSelector: 'none',
         },
       },
     }),

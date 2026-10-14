@@ -4,10 +4,10 @@ export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    loadComponent: () => import('@/features/landing/landing').then(m => m.Landing)
+    loadComponent: () => import('@/features/landing/landing').then((m) => m.Landing),
   },
   {
-    path: 'treinador',
-    loadChildren: () => import('@/features/coach/coach.routes').then(m => m.coachRoutes)
-  }
+    path: 'professor',
+    loadChildren: () => import('@/features/coach/coach.routes').then((m) => m.coachRoutes),
+  },
 ];
