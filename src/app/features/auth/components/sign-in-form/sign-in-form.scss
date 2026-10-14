@@ -1,4 +1,4 @@
-.login__page {
+.signin-page {
   background-color: var(--ds-background);
   min-height: 100dvh;
   min-width: 100dvw;
@@ -7,7 +7,7 @@
   align-items: center;
 }
 
-.login__form__container {
+.signin__form__container {
   background-color: var(--ds-surface);
   border-radius: var(--ds-radius-sm);
   padding: var(--ds-spacing-6);
@@ -20,7 +20,7 @@
   }
 }
 
-.login__form__header {
+.signin__form__header {
   text-align: center;
   margin-bottom: var(--ds-spacing-4);
 
@@ -35,7 +35,7 @@
   }
 }
 
-.login__form__header__icon {
+.signin__form__header__icon {
   padding: var(--ds-spacing-2) var(--ds-spacing-3);
   background-color: var(--ds-primary-soft);
   width: max-content;
@@ -44,15 +44,16 @@
   margin: 0 auto var(--ds-spacing-4);
 }
 
-.login__form {
+
+.signin__form {
   display: flex;
   flex-direction: column;
   width: 100%;
   gap: var(--ds-spacing-3);
-}
 
-.login__form__error__message {
-  color: var(--p-red-500);
-  display: block;
-  font-size: .75rem;
+  .error__message {
+    color: var(--p-red-500);
+    display: block;
+    font-size: 0.75rem;
+  }
 }
