@@ -33,6 +33,7 @@ export class SignInForm {
   });
 
   readonly signIn = output<ISignInFormData>();
+  readonly signInWithGoogle = output<void>();
   readonly navigateToSignUp = output<void>();
 
   get email() {
@@ -56,7 +57,7 @@ export class SignInForm {
   }
 
   onSignInWithGoogle() {
-    console.log('logando com o google');
+    this.signInWithGoogle.emit();
   }
 
   onNavigateToSignUp(): void {
