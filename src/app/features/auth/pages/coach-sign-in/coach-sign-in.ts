@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { SignInForm } from '../../components/sign-in-form/sign-in-form';
-import { ISignInFormData } from '../../models/ISignInForm';
+import { ISignInFormData } from '../../models/IAuthForm';
 
 @Component({
   imports: [SignInForm],

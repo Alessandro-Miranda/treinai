@@ -1,1 +1,95 @@
-<p>coach-sign-up works!</p>
+<div class="signup-page">
+  <div class="signup__form__container">
+
+    <div class="signup__form__header">
+      <div class="signup__form__header__icon">
+        <i class="pi pi-user-plus"></i>
+      </div>
+      <h1>Crie sua conta</h1>
+      <p>Crie, edite e gerencie o treino dos seus alunos</p>
+    </div>
+
+    <form class="signup__form" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+      <div>
+        <p-floatlabel variant="in">
+          <label for="name">Nome</label>
+          <input
+            pInputText
+            variant="filled"
+            fluid
+            [invalid]="isNameInvalid()"
+            id="name"
+            type="text"
+            formControlName="name"
+            required
+          />
+        </p-floatlabel>
+      </div>
+      
+      <div>
+        <p-floatlabel variant="in">
+          <label for="email">Email</label>
+          <input
+            pInputText
+            variant="filled"
+            fluid
+            [invalid]="isEmailInvalid()"
+            formControlName="email"
+            id="email"
+            type="email"
+            required
+            />
+        </p-floatlabel>
+
+        @if (isEmailInvalid()) {
+          <small class="error__message">O e-mail é obrigatório</small>
+        }
+      </div>
+
+      <div>
+        <p-float-label variant="in">
+          <p-icon-field>
+            <p-inputicon class="pi pi-lock" />
+            <input
+              pInputPassword
+              variant="filled"
+              fluid
+              formControlName="password"
+              id="password"
+              required
+            />
+            <label pLabel for="password">Senha</label>
+          </p-icon-field>
+        </p-float-label>
+
+        @if (isPasswordInvalid()) {
+          <small class="error__message">A senha é obrigatória</small>
+        }
+      </div>
+
+      <div>
+        <p-float-label variant="in">
+          <p-icon-field>
+            <p-inputicon class="pi pi-lock" />
+            <input
+              pInputPassword
+              variant="filled"
+              fluid
+              formControlName="passwordConfirm"
+              id="password"
+              required
+            />
+            <label pLabel for="password">Confirme sua senha</label>
+          </p-icon-field>
+        </p-float-label>
+      
+        @if (isPasswordConfirmInvalid()) {
+          <small class="error__message">A senhas devem ser iguais</small>
+        }
+      </div>
+
+      <button pButton fluid type="submit">Cadastrar</button>
+    </form>
+
+  </div>
+</div>

@@ -7,7 +7,7 @@ import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { InputPasswordModule } from 'primeng/inputpassword';
 import { InputTextModule } from 'primeng/inputtext';
-import { ISignInForm, ISignInFormData } from '../../models/ISignInForm';
+import { ISignInForm, ISignInFormData } from '../../models/IAuthForm';
 
 @Component({
   imports: [
